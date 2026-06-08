@@ -1,0 +1,66 @@
+
+==========================================
+Round: baseline (dev=259:13)
+  cache: /home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_baseline.yaml
+==========================================
+[drive] vllm bash pid=685205
+[drive] waiting for vllm...
+[serve] cache_dir=/home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_baseline.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_baseline.yaml
+[drive] vllm ready after 17s
+[drive] round baseline summary (load_rc=0):
+  cold_mean_ttft = 0.785s  (2 reqs)
+  warm_mean_ttft = 0.033s  (6 reqs)
+  speedup        = 23.5x
+/home/ficus/llm/infer/ai_ssd_prestudy/scripts/drive_rounds.sh: 第 117 行： 685205 已杀死                  bash "$SCRIPT_DIR/serve_lmcache.sh" "$CACHE_DIR" "$YAML" "$TAG"  （工作目录：~/llm）
+  cache_size: 1.9G  files: 54
+
+==========================================
+Round: ai_ssd0_nvme0n1 (dev=259:2)
+  cache: /mnt/ai_ssd0/lmcache
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd0_nvme0n1.yaml
+==========================================
+[drive] vllm bash pid=686282
+[drive] waiting for vllm...
+[serve] cache_dir=/mnt/ai_ssd0/lmcache  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_ai_ssd0_nvme0n1.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd0_nvme0n1.yaml
+[drive] vllm ready after 18s
+[drive] round ai_ssd0_nvme0n1 summary (load_rc=0):
+  cold_mean_ttft = 0.787s  (2 reqs)
+  warm_mean_ttft = 0.034s  (6 reqs)
+  speedup        = 23.5x
+/home/ficus/llm/infer/ai_ssd_prestudy/scripts/drive_rounds.sh: 第 117 行： 686282 已杀死                  bash "$SCRIPT_DIR/serve_lmcache.sh" "$CACHE_DIR" "$YAML" "$TAG"
+  cache_size: 1.9G  files: 54
+
+==========================================
+Round: ai_ssd1_nvme2n1 (dev=259:9)
+  cache: /mnt/ai_ssd1/lmcache
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd1_nvme2n1.yaml
+==========================================
+[drive] vllm bash pid=688214
+[drive] waiting for vllm...
+[serve] cache_dir=/mnt/ai_ssd1/lmcache  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_ai_ssd1_nvme2n1.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd1_nvme2n1.yaml
+[drive] vllm ready after 21s
+[drive] round ai_ssd1_nvme2n1 summary (load_rc=0):
+  cold_mean_ttft = 0.788s  (2 reqs)
+  warm_mean_ttft = 0.034s  (6 reqs)
+  speedup        = 22.9x
+/home/ficus/llm/infer/ai_ssd_prestudy/scripts/drive_rounds.sh: 第 117 行： 688214 已杀死                  bash "$SCRIPT_DIR/serve_lmcache.sh" "$CACHE_DIR" "$YAML" "$TAG"
+  cache_size: 1.9G  files: 54
+
+==========================================
+Round: ai_ssd2_nvme3n1 (dev=259:5)
+  cache: /mnt/ai_ssd2/lmcache
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd2_nvme3n1.yaml
+==========================================
+[drive] vllm bash pid=693112
+[drive] waiting for vllm...
+[serve] cache_dir=/mnt/ai_ssd2/lmcache  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_ai_ssd2_nvme3n1.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd2_nvme3n1.yaml
+[drive] vllm ready after 16s
+[drive] round ai_ssd2_nvme3n1 summary (load_rc=0):
+  cold_mean_ttft = 0.787s  (2 reqs)
+  warm_mean_ttft = 0.034s  (6 reqs)
+  speedup        = 22.9x
+/home/ficus/llm/infer/ai_ssd_prestudy/scripts/drive_rounds.sh: 第 117 行： 693112 已杀死                  bash "$SCRIPT_DIR/serve_lmcache.sh" "$CACHE_DIR" "$YAML" "$TAG"
+  cache_size: 1.9G  files: 54
+
+[drive] all rounds done

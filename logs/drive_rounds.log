@@ -1,0 +1,35 @@
+
+==========================================
+Round: baseline
+  cache: /home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_baseline.yaml
+==========================================
+[drive] waiting for vllm (pid=634357)...
+[serve] cache_dir=/home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_baseline.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_baseline.yaml
+[drive] ERROR: vllm failed to start in 90s, skipping round
+
+==========================================
+Round: ai_ssd0_nvme0n1
+  cache: /mnt/ai_ssd0/lmcache
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd0_nvme0n1.yaml
+==========================================
+[drive] waiting for vllm (pid=635293)...
+[serve] cache_dir=/mnt/ai_ssd0/lmcache  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_ai_ssd0_nvme0n1.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd0_nvme0n1.yaml
+[drive] ERROR: vllm failed to start in 90s, skipping round
+
+==========================================
+Round: ai_ssd1_nvme2n1
+  cache: /mnt/ai_ssd1/lmcache
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd1_nvme2n1.yaml
+==========================================
+[drive] waiting for vllm (pid=636213)...
+[serve] cache_dir=/mnt/ai_ssd1/lmcache  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_ai_ssd1_nvme2n1.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd1_nvme2n1.yaml
+[drive] ERROR: vllm failed to start in 90s, skipping round
+
+==========================================
+Round: ai_ssd2_nvme3n1
+  cache: /mnt/ai_ssd2/lmcache
+  yaml:  /home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd2_nvme3n1.yaml
+==========================================
+[drive] waiting for vllm (pid=637141)...
+[serve] cache_dir=/mnt/ai_ssd2/lmcache  log=/home/ficus/llm/infer/ai_ssd_prestudy/logs/vllm_ai_ssd2_nvme3n1.log  yaml=/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_ai_ssd2_nvme3n1.yaml

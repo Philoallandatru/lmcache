@@ -1,0 +1,47 @@
+/*
+ * bpftrace: 监测 LMCache 落盘 IO 的细粒度特征
+ *
+ * 目标: 抓 vllm + LMCache 进程触发的所有 block IO, 输出每次 IO 的:
+ *   - 设备 (nvme0n1, nvme1n1, ...)
+ *   - 操作 (read/write)
+ *   - 字节数
+ *   - 延迟 (issue -> complete)
+ *   - 请求 sector 范围
+ *
+ * 用法: bpftrace blk_io_latency.bt <device> <output.csv>
+ *   device 例: nvme0n1   (匹配该设备的 IO)
+ */
+#include <linux/blk_types.h>
+
+BEGIN {
+    printf("ts_us,op,bytes,sector,latency_us,device\n");
+}
+
+kprobe:blk_mq_start_request,
+kprobe:blk_start_request {
+    $rq = (struct request *)arg0;
+    $dev_name = kaddr->__request->rq_disk->disk_name;
+    if (strncmp($dev_name, $1, strlen($1)) == 0) {
+        // 记录 issue 时间戳
+        @start[$rq] = nsecs;
+    }
+}
+
+kprobe:blk_mq_end_request,
+kprobe:blk_complete_request {
+    $rq = (struct request *)arg0;
+    $dev_name = kaddr->__request->rq_disk->disk_name;
+    if (@start[$rq] != 0 && strncmp($dev_name, $1, strlen($1)) == 0) {
+        $lat = (nsecs - @start[$rq]) / 1000;
+        $op = $rq->cmd_flags & 1 ? "W" : "R";
+        $bytes = $rq->__data_len;
+        $sector = $rq->__sector;
+        printf("%llu,%s,%lu,%lu,%lu,%s\n",
+            nsecs/1000, $op, $bytes, $sector, $lat, $dev_name);
+        delete(@start[$rq]);
+    }
+}
+
+END {
+    printf("# done\n");
+}

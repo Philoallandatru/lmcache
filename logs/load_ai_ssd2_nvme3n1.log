@@ -1,0 +1,24 @@
+Waiting for vllm...
+vllm ready
+
+=== Round: ai_ssd2_nvme3n1_r1 ===
+  [cold] req0: prefix=ctx_hiuzmjas prompt_tokens=7011
+    ttft=0.810s total=1.382s
+  [warm] req1: prefix=ctx_hiuzmjas prompt_tokens=7011
+    ttft=0.035s total=0.616s
+  [warm] req2: prefix=ctx_hiuzmjas prompt_tokens=7011
+    ttft=0.033s total=0.614s
+  [warm] req3: prefix=ctx_hiuzmjas prompt_tokens=7011
+    ttft=0.034s total=0.615s
+Waiting for vllm...
+vllm ready
+
+=== Round: ai_ssd2_nvme3n1_r2 ===
+  [cold] req0: prefix=ctx_ibkgzfxh prompt_tokens=7011
+    ttft=0.765s total=1.326s
+  [warm] req1: prefix=ctx_ibkgzfxh prompt_tokens=7011
+    ttft=0.036s total=0.606s
+  [warm] req2: prefix=ctx_ibkgzfxh prompt_tokens=7011
+    ttft=0.035s total=0.605s
+  [warm] req3: prefix=ctx_ibkgzfxh prompt_tokens=7011
+    ttft=0.034s total=0.604s

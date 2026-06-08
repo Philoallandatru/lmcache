@@ -1,0 +1,3 @@
+stdin:12:90-92: ERROR: syntax error, unexpected &&
+/(args->dev >> 20) == 259 && (args->dev & 0xFFFFF) == 5 && str(args->comm) == "python3"/ && @usecs[args->bio] != 0
+                                                                                         ~~

@@ -1,0 +1,18 @@
+# LMCache local storage 真实 offload 配置
+# 用途: AI-SSD 预研 baseline - 系统盘 BIWIN ext4
+# 关键设计:
+#   - chunk_size=256 tokens -> 与 LMCache 文档推荐一致
+#   - local_cpu=True -> L1 prefetch, 避免 disk 同步阻塞推理
+#   - use_odirect=True -> ext4 上 O_DIRECT 干净支持, 绕过 page cache
+#   - max_local_disk_size=20GB -> 4B 模型 KV cache 单请求约 0.5-1GB, 留足空间放 30+ 请求
+chunk_size: 256
+local_cpu: true
+max_local_cpu_size: 4.0
+local_disk: "file:///home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline/"
+max_local_disk_size: 20.0
+# 注意: ext4 干净支持 O_DIRECT, 强制绕过 page cache
+extra_config:
+  use_odirect: true
+  # 启用 block-level alignment 调试
+  # (LMCache 内部会按磁盘块大小对齐)
+# remote_url 不设, 仅本地存储

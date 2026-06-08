@@ -1,0 +1,24 @@
+Waiting for vllm...
+vllm ready
+
+=== Round: baseline_r1 ===
+  [cold] req0: prefix=ctx_xrxshlzr prompt_tokens=7011
+    ttft=0.809s total=1.381s
+  [warm] req1: prefix=ctx_xrxshlzr prompt_tokens=7011
+    ttft=0.034s total=0.604s
+  [warm] req2: prefix=ctx_xrxshlzr prompt_tokens=7011
+    ttft=0.033s total=0.603s
+  [warm] req3: prefix=ctx_xrxshlzr prompt_tokens=7011
+    ttft=0.033s total=0.602s
+Waiting for vllm...
+vllm ready
+
+=== Round: baseline_r2 ===
+  [cold] req0: prefix=ctx_bkylblqb prompt_tokens=7011
+    ttft=0.761s total=1.266s
+  [warm] req1: prefix=ctx_bkylblqb prompt_tokens=7011
+    ttft=0.034s total=0.649s
+  [warm] req2: prefix=ctx_bkylblqb prompt_tokens=7011
+    ttft=0.033s total=0.649s
+  [warm] req3: prefix=ctx_bkylblqb prompt_tokens=7011
+    ttft=0.033s total=0.648s

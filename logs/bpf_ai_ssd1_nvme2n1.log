@@ -1,0 +1,5 @@
+[bpf] dev=259:9 comm=python3 dur=90s out=/home/ficus/llm/infer/ai_ssd_prestudy/logs/blk_io_259_9_python3.log
+[bpf] pid=692917
+stdin:12:90-92: ERROR: syntax error, unexpected &&
+/(args->dev >> 20) == 259 && (args->dev & 0xFFFFF) == 9 && str(args->comm) == "python3"/ && @usecs[args->bio] != 0
+                                                                                         ~~

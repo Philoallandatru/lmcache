@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+
+# LMCache 落盘 cache (1.9G, 可重生成)
+lmcache_cache_baseline/
+**/lmcache_cache*/
+*.pt
+*.bin
+*.gguf
+*.safetensors
+*.pth
+*.ckpt
+
+# 模型
+**/models/
+
+# vllm 启动噪声 log (含 ENORMOUS 异步输出)
+/logs/vllm_*.log
+
+# 临时/系统
+*.swp
+.DS_Store
+.idea/
+.vscode/
+*.log.bak
