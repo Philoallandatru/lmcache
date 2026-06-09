@@ -1,0 +1,59 @@
+{
+  "tag": "ai_ssd0_nvme0n1",
+  "mount": "/mnt/ai_ssd0/lmcache",
+  "chunk_MB": 2048,
+  "num_chunks": 5,
+  "samples": [
+    {
+      "idx": 1,
+      "cum_MB": 2048,
+      "bw_MiBps": 1971.0,
+      "bw_MBps": 2067.0,
+      "io_MB": 2048.0,
+      "p99_us": 6063.0
+    },
+    {
+      "idx": 2,
+      "cum_MB": 4096,
+      "bw_MiBps": 946.0,
+      "bw_MBps": 992.0,
+      "io_MB": 2048.0,
+      "p99_us": 12256.0
+    },
+    {
+      "idx": 3,
+      "cum_MB": 6144,
+      "bw_MiBps": 850.0,
+      "bw_MBps": 891.0,
+      "io_MB": 2048.0,
+      "p99_us": 11994.0
+    },
+    {
+      "idx": 4,
+      "cum_MB": 8192,
+      "bw_MiBps": 900.0,
+      "bw_MBps": 944.0,
+      "io_MB": 2048.0,
+      "p99_us": 11076.0
+    },
+    {
+      "idx": 5,
+      "cum_MB": 10240,
+      "bw_MiBps": 958.0,
+      "bw_MBps": 1005.0,
+      "io_MB": 2048.0,
+      "p99_us": 11207.0
+    }
+  ],
+  "slc_cliff": {
+    "after_chunk": 1,
+    "cumulative_MB_before": 2048,
+    "estimated_SLC_capacity_GB": 2.0,
+    "bw_pre_MiBps": 1971.0,
+    "bw_post_MiBps": 946.0,
+    "drop_ratio": 0.48
+  },
+  "bw_peak_MiBps": 1971.0,
+  "bw_first_MiBps": 1971.0,
+  "bw_last_MiBps": 958.0
+}

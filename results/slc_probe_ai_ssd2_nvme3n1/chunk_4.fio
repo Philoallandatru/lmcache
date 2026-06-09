@@ -1,0 +1,12 @@
+[global]
+ioengine=libaio
+direct=1
+bs=128k
+iodepth=32
+group_reporting=1
+filename=/mnt/ai_ssd2/lmcache/.slc_4.dat
+size=2048M
+stonewall
+
+[chunk]
+rw=write

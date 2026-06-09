@@ -1,0 +1,53 @@
+{
+  "tag": "ai_ssd2_nvme3n1",
+  "mount": "/mnt/ai_ssd2/lmcache",
+  "chunk_MB": 2048,
+  "num_chunks": 5,
+  "samples": [
+    {
+      "idx": 1,
+      "cum_MB": 2048,
+      "bw_MiBps": 4644.0,
+      "bw_MBps": 4870.0,
+      "io_MB": 2048.0,
+      "p99_us": 1385.0
+    },
+    {
+      "idx": 2,
+      "cum_MB": 4096,
+      "bw_MiBps": 4582.0,
+      "bw_MBps": 4804.0,
+      "io_MB": 2048.0,
+      "p99_us": 1434.0
+    },
+    {
+      "idx": 3,
+      "cum_MB": 6144,
+      "bw_MiBps": 4644.0,
+      "bw_MBps": 4870.0,
+      "io_MB": 2048.0,
+      "p99_us": 1352.0
+    },
+    {
+      "idx": 4,
+      "cum_MB": 8192,
+      "bw_MiBps": 4582.0,
+      "bw_MBps": 4804.0,
+      "io_MB": 2048.0,
+      "p99_us": 1434.0
+    },
+    {
+      "idx": 5,
+      "cum_MB": 10240,
+      "bw_MiBps": 4633.0,
+      "bw_MBps": 4859.0,
+      "io_MB": 2048.0,
+      "p99_us": 1467.0
+    }
+  ],
+  "slc_cliff": null,
+  "note": "全程 BW 稳定, SLC cache >= 10GB, 未触发跌速",
+  "bw_peak_MiBps": 4644.0,
+  "bw_first_MiBps": 4644.0,
+  "bw_last_MiBps": 4633.0
+}

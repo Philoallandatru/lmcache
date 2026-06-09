@@ -1,0 +1,37 @@
+{
+  "tag": "baseline",
+  "mount": "/home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline",
+  "chunk_MB": 1024,
+  "num_chunks": 3,
+  "samples": [
+    {
+      "idx": 1,
+      "cum_MB": 1024,
+      "bw_MiBps": 6481.0,
+      "bw_MBps": 6796.0,
+      "io_MB": 1024.0,
+      "p99_us": 1303.0
+    },
+    {
+      "idx": 2,
+      "cum_MB": 2048,
+      "bw_MiBps": 6693.0,
+      "bw_MBps": 7018.0,
+      "io_MB": 1024.0,
+      "p99_us": 1029.0
+    },
+    {
+      "idx": 3,
+      "cum_MB": 3072,
+      "bw_MiBps": 6522.0,
+      "bw_MBps": 6839.0,
+      "io_MB": 1024.0,
+      "p99_us": 881.0
+    }
+  ],
+  "slc_cliff": null,
+  "note": "全程 BW 稳定, SLC cache >= 3GB, 未触发跌速",
+  "bw_peak_MiBps": 6693.0,
+  "bw_first_MiBps": 6481.0,
+  "bw_last_MiBps": 6522.0
+}

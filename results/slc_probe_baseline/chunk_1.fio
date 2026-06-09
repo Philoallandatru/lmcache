@@ -1,0 +1,12 @@
+[global]
+ioengine=libaio
+direct=1
+bs=128k
+iodepth=32
+group_reporting=1
+filename=/home/ficus/llm/infer/ai_ssd_prestudy/lmcache_cache_baseline/.slc_1.dat
+size=1024M
+stonewall
+
+[chunk]
+rw=write

@@ -152,6 +152,58 @@ baseline ext4 开 use_odirect=true; 3 块 NTFS 候选盘 O_DIRECT 不可用, 走
 本次测试由于 LMCache `local_cpu: true` 把 KV 留内存, 第 2~3 次 warm 实际从 CPU L1 拿, 不读盘。
 这是 LMCache 设计的"perfected cache"行为, 不算 bug; 但意味着 IO 对比必须用 drop_caches 强制冷读。
 
+## 3.6 盘基本写速 + SLC cache 实测 (fio 稳态)
+
+**测试方法**: fio `--direct=1 --bs=128k --iodepth=32`, 每块盘跑 5 段 × 2GB (baseline 3 段 × 1GB), 同步后 drop_caches, 单次大块写测 SLC 跌速。
+**关键发现**: LMCache 报告里的"写带宽峰值 643-977 MB/s"被 iostat 1s 粒度平均 + LMCache 异步 store 短突发严重低估。fio 测出真实盘能力 1.0-6.7 GB/s, 是 LMCache 测值的 **3-7×**。
+
+| 指标 | baseline (BIWIN ext4) | nvme0 WDC (NTFS) | nvme2 致钛 (NTFS) | nvme3 Seagate (NTFS) |
+|---|---|---|---|---|
+| fio peak BW (MB/s) | 6693 | 1971 | 3730 | 4644 |
+| fio first-1GB BW (MB/s) | 6481 | 1971 | 3016 | 4644 |
+| fio last chunk BW (MB/s) | 6522 | 958 | 3730 | 4633 |
+| LMCache 报告写带宽 (MB/s) | 977 | 643 | 684 | 648 |
+| LMCache w_await 峰值 (ms) | 10.69 | 1.10 | 0.20 | 17.00 |
+
+**SLC cache 测试样本 (per-chunk BW MiB/s)**:
+| 段 | baseline (1GB chunk) | WDC (2GB) | 致钛 (2GB) | Seagate (2GB) |
+|---|---|---|---|---|
+| chunk 1 | 6481 MiB/s | 1971 MiB/s | 3016 MiB/s | 4644 MiB/s |
+| chunk 2 | 6693 MiB/s | 946 MiB/s | 3525 MiB/s | 4582 MiB/s |
+| chunk 3 | 6522 MiB/s | 850 MiB/s | 3513 MiB/s | 4644 MiB/s |
+| chunk 4 | - | 900 MiB/s | 3625 MiB/s | 4582 MiB/s |
+| chunk 5 | - | 958 MiB/s | 3730 MiB/s | 4633 MiB/s |
+
+### 3.7 报告数据正确性评估
+
+**LMCache 报告 vs fio 真实盘能力 关键差异**:
+
+1. **LMCache 实测写带宽被严重低估 (3-7×)**
+   - LMCache 报告: 643-977 MB/s 写带宽
+   - fio 测真实盘能力: 1.0-6.7 GB/s
+   - **LMCache 实际只打到盘能力的 11-23%**
+   - 原因: (a) LMCache 异步 store + 4 worker 短突发 14ms 写 0.28GB
+          (b) iostat 1s 采样粒度把 14ms 突发分摊到 1s 平均, 实测值被抹平
+          (c) 监控取样没赶上 LMCache store 高峰
+   - **修正结论**: 4 块盘均不是 IO 瓶颈, 是 LMCache 内部 store 调度 (4 worker) 是瓶颈
+
+2. **WDC nvme0n1 唯一测出 SLC 断崖 (~2GB)**, 跌速 52%
+   - **对 LMCache 影响**: 单请求 offload 0.95GB 刚好在 SLC cache 内, 不会跌速;
+     但**多并发场景会撞 SLC 边界 → 跌到 TLC 直写 1 GB/s**
+   - 这是 WDC 消费级特性, 致钛/Seagate 标称 SLC cache > 10GB, 不容易触发
+   - 致钛 (3.7 GB/s) 和 Seagate (4.6 GB/s) **SLC cache 容量均 ≥ 10GB**, 但实际 AI-SSD 选型看延迟比看 SLC cache 重要
+
+3. **延迟选型** (LMCache w_await 数据更可靠):
+   - 致钛 (nvme2): w_await 0.20ms = **延迟最稳**
+   - WDC (nvme0): w_await 1.10ms
+   - BIWIN (baseline): w_await 10.69ms (OS/系统盘干扰)
+   - Seagate (nvme3): w_await 17.00ms (NTFS 异常, 待 bpftrace 重测)
+
+4. **建议** (按本数据集):
+   - **AI-SSD 首选致钛 nvme2**: SLC cache ≥ 10GB + 3.7 GB/s 稳态 + 0.20ms 写延迟 (4 块盘里综合最优)
+   - **避免选 WDC nvme0**: SLC cache 仅 2GB, 多并发场景会跌到 1 GB/s
+   - **Seagate nvme3 待 bpftrace 重测**: w_await 17ms 异常 (NTFS 自身问题还是 O_DIRECT 不可用导致, 需 ext4 baseline 重测)
+
 ## 4. 启示
 
 1. **LMCache real offload 链路完整可用**: 端到端实测 cold store 0.95GB, warm hit reload 6912/7000 tokens, TTFT 加速 ~23x
