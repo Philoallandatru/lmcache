@@ -77,19 +77,16 @@ curl -s http://127.0.0.1:30000/metrics > "$OUT/metrics_before.json" 2>/dev/null 
 #    prompt=7000 tokens (大 prefix, 逼出真 L3 offload, 与 LMCache REPORT 7000 对齐)
 #    output=64 tokens (让 prefill 时间占比高, 加速比明显)
 echo "--- bench_multiturn.py start ---"
-cd sglang_repo/benchmark/hicache
-python bench_multiturn.py \
+python scripts/hicache_load_test.py \
+    --endpoint http://127.0.0.1:30000/v1/chat/completions \
     --model-path /home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507 \
-    --port 30000 \
-    --num-clients 1 \
-    --max-parallel 1 \
-    --request-length 7000 \
-    --output-length 64 \
     --num-rounds 6 \
+    --prompt-tokens 7000 \
+    --output-tokens 64 \
     --request-rate 1.0 \
-    --log-file "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/bench_multiturn.jsonl" \
-    2>&1 | tee "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/bench_multiturn.log"
-cd /home/ficus/llm/infer/ai_ssd_prestudy
+    --drop-caches-before-warm1 \
+    --log-file "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/load_test.jsonl" \
+    2>&1 | tee "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/load_test.log"
 echo "--- bench_multiturn.py done ---"
 
 # 6. /metrics after
@@ -120,6 +117,6 @@ trap - EXIT TERM INT ERR
 echo "==== ROUND DONE: $ROUND ===="
 echo "iostat log:  $OUT/iostat_$DEV.log"
 echo "server log:  $OUT/server.log"
-echo "bench log:   $OUT/bench_multiturn.jsonl"
+echo "load test:   $OUT/load_test.jsonl"
 echo "metrics:     $OUT/metrics_after.json"
 echo "cache list:  $OUT/cache_file_list.txt"
