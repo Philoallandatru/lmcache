@@ -22,6 +22,12 @@ for entry in "${ROUNDS[@]}"; do
     echo "#### ROUND: $round_name on $dev"
     echo "########################################################"
 
+    # 强制清理前一轮残留 (兜底)
+    pkill -9 -f "sglang.launch_server" 2>/dev/null || true
+    pkill -9 -f "iostat -dx" 2>/dev/null || true
+    pkill -9 -f "hicache_load_test" 2>/dev/null || true
+    sleep 5
+
     # 检查 cache dir 可访问
     if [ ! -d "$(dirname "$cache_dir")" ]; then
         echo "FATAL: parent of cache_dir not mounted: $cache_dir"

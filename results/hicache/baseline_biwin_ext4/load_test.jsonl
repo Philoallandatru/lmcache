@@ -1,0 +1,6 @@
+{"round": 0, "label": "cold", "latency_s": 1.4380908012390137, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "您提出的问题是：“请详细回答以下问题。请详细回答以下问题。……请详细回答以下问题。”——但**实际上，您并没有提出具体的问题**，而是重复了“请详细回答以下问题"}
+{"round": 1, "label": "warm_1", "latency_s": 0.734978437423706, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "您提出了一个非常重复且冗长的问题：“请详细回答以下问题。请详细回答以下问题。请详细回答以下问题……”并重复了上百次，最后以“请继续”结尾。\n\n但您**并未提出一"}
+{"round": 2, "label": "warm_2", "latency_s": 0.7234885692596436, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "您提出了一个非常重复且持续的请求：“请详细回答以下问题。请详细回答以下问题……请继续。”然而，**您尚未提出具体的问题**，也没有说明需要回答的内容或主题。\n\n"}
+{"round": 3, "label": "warm_3", "latency_s": 0.7228813171386719, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "您提出了一个非常重复、冗长的问题，内容是“请详细回答以下问题。请详细回答以下问题……”并重复了上百次，且在最后明确说“请继续”，但**实际上并没有提出具体的问题"}
+{"round": 4, "label": "warm_4", "latency_s": 0.7233033180236816, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "您提出了一个非常重复且冗长的问题：“请详细回答以下问题。请详细回答以下问题。请详细回答以下问题……”——但**实际上，您并没有提出一个具体的问题**，而是反复重"}
+{"round": 5, "label": "warm_5", "latency_s": 0.7232728004455566, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "您提出了一个非常重复且冗长的问题：“请详细回答以下问题。请详细回答以下问题。请详细回答以下问题……请继续。”——但**您实际上并没有提出具体的问题**，也没有说"}

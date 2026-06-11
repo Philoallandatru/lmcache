@@ -28,6 +28,13 @@ source ~/llm/.venv/bin/activate
 
 echo "==== ROUND START: $ROUND on $DEV (policy=$WRITE_POLICY) ===="
 
+# 0. 安全检查: 确保 :30000 没被旧 server 占用
+if curl -s --max-time 2 http://127.0.0.1:30000/v1/models > /dev/null 2>&1; then
+    echo "FATAL: port 30000 already has a server. Kill it first:"
+    pgrep -af "sglang.launch_server" | grep -v bash | head -3
+    exit 1
+fi
+
 # 1. 启动 iostat 后台
 bash scripts/hicache_io_monitor.sh "$DEV" "$OUT" 1 &
 IOSTAT_PID=$!
@@ -41,12 +48,25 @@ echo "server pid: $SERVER_PID"
 
 # cleanup hook — 任何失败时收尾
 cleanup() {
-    echo "[cleanup] killing server=$SERVER_PID iostat=$IOSTAT_PID"
-    kill -TERM $SERVER_PID 2>/dev/null || true
-    kill -TERM $IOSTAT_PID 2>/dev/null || true
+    echo "[cleanup] killing server pid=$SERVER_PID + children + iostat pid=$IOSTAT_PID"
+    # 杀 sglang 整个进程组 (nohup + python)
+    if [ -n "$SERVER_PID" ]; then
+        # 杀 python 子进程
+        pkill -9 -P "$SERVER_PID" 2>/dev/null || true
+        # 杀 server group
+        kill -TERM -"$SERVER_PID" 2>/dev/null || true
+        kill -TERM "$SERVER_PID" 2>/dev/null || true
+    fi
+    if [ -n "$IOSTAT_PID" ]; then
+        kill -TERM "$IOSTAT_PID" 2>/dev/null || true
+    fi
     sleep 5
-    kill -9 $SERVER_PID 2>/dev/null || true
-    kill -9 $IOSTAT_PID 2>/dev/null || true
+    pkill -9 -P "$SERVER_PID" 2>/dev/null || true
+    kill -9 "$SERVER_PID" 2>/dev/null || true
+    kill -9 "$IOSTAT_PID" 2>/dev/null || true
+    # 兜底: 全杀 sglang
+    pkill -9 -f "sglang.launch_server" 2>/dev/null || true
+    pkill -9 -f "iostat -dx" 2>/dev/null || true
 }
 trap cleanup EXIT TERM INT ERR
 
@@ -99,11 +119,22 @@ sudo -n sh -c 'echo 3 > /proc/sys/vm/drop_caches' 2>&1 || echo "drop_caches fail
 
 # 8. 收集 L3 文件清单
 echo "--- L3 cache file list ---"
-ls -la "$CACHE_DIR" | awk 'NR>3 {print $5, $9}' > "$OUT/cache_file_list.txt"
-FILE_COUNT=$(wc -l < "$OUT/cache_file_list.txt")
-TOTAL_BYTES=$(awk '{sum+=$1} END {print sum}' "$OUT/cache_file_list.txt")
-echo "L3 file count: $FILE_COUNT"
-echo "L3 total size: $(echo "scale=2; $TOTAL_BYTES/1048576" | bc) MB"
+# 用 stat 而不是 ls -la (NTFS 上 ls -la 格式不输出 size 数值列)
+python3 -c "
+import os, sys
+cache_dir = '$CACHE_DIR'
+files = sorted(os.listdir(cache_dir))
+total = 0
+with open('$OUT/cache_file_list.txt', 'w') as f:
+    for fname in files:
+        p = os.path.join(cache_dir, fname)
+        if os.path.isfile(p):
+            sz = os.path.getsize(p)
+            f.write(f'{sz} {fname}\n')
+            total += sz
+print(f'L3 file count: {len(files)}')
+print(f'L3 total size: {total/1048576:.2f} MB')
+"
 
 # 9. 关 server + iostat
 echo "--- cleanup ---"
