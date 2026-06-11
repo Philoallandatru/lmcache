@@ -1,0 +1,71 @@
+#!/usr/bin/env bpftrace
+// scripts/hicache_blk_io_latency.bt
+// 跟踪指定设备的 block IO latency 与 size 分布 (best-effort, 仅供参考)
+//
+// 用法:
+//   sudo bpftrace hicache_blk_io_latency.bt <major> <minor>
+//   例如: sudo bpftrace hicache_blk_io_latency.bt 259 10
+//
+// ⚠️ 已知限制 (kernel 6.x + bpftrace 0.25):
+//   - `args->bio` 在 block_rq_complete 里不可访问 (kernel 没暴露)
+//   - `delete(@map[key])` 在 bpftrace 0.25 被弃用
+//   - 当前实现只能用 sector 作为 key, 同 sector 复用会导致 latency 错位
+//
+// 替代方案: 优先使用 scripts/hicache_io_monitor.sh (iostat 1s 粒度)
+//           或 scripts/hicache_bench_one_round.sh 调用的 fio
+//
+// 此脚本仅作 best-effort 参考, 真实数据以 iostat + metrics 为准
+
+BEGIN {
+    printf("[hicache_blk_io_latency] tracking dev=(%d,%d) — best effort\n", $1, $2);
+}
+
+tracepoint:block:block_rq_issue {
+    $dev_target = ($1 << 20) | $2;
+    if (args->dev == $dev_target) {
+        // 用 sector 作为 key (有冲突风险, 但内核内不同 sector 的 IO 通常间隔足够)
+        @start_ts[args->sector] = nsecs;
+        @start_rwbs[args->sector] = args->rwbs;
+        @start_sectors[args->sector] = args->nr_sector;
+    }
+}
+
+tracepoint:block:block_rq_complete {
+    $dev_target = ($1 << 20) | $2;
+    if (args->dev != $dev_target) { return; }
+
+    $start = @start_ts[args->sector];
+    if ($start == 0) { return; }
+
+    $lat_us = (nsecs - $start) / 1000;
+    $rwbs = @start_rwbs[args->sector];
+    $size_kb = (uint64)@start_sectors[args->sector] * 512 / 1024;
+
+    if (strcontains($rwbs, "W") || strcontains($rwbs, "D") || strcontains($rwbs, "F")) {
+        @write_count++;
+        @write_total_kb += $size_kb;
+        @write_lat_hist = lhist($lat_us, 1, 1024, 2);
+        @write_size_hist = lhist($size_kb, 1, 1024, 2);
+    } else if (strcontains($rwbs, "R")) {
+        @read_count++;
+        @read_total_kb += $size_kb;
+        @read_lat_hist = lhist($lat_us, 1, 1024, 2);
+        @read_size_hist = lhist($size_kb, 1, 1024, 2);
+    }
+
+    @total_count++;
+    @total_size_kb += $size_kb;
+}
+
+END {
+    printf("\n");
+    printf("============ HiCache Block IO Summary (best effort) ============\n");
+    printf("Total IO:  %lld (%.2f MB)\n", @total_count, (uint64)@total_size_kb / 1024.0);
+    printf("  Read:    %lld (%.2f MB)\n", @read_count, (uint64)@read_total_kb / 1024.0);
+    printf("  Write:   %lld (%.2f MB)\n", @write_count, (uint64)@write_total_kb / 1024.0);
+    printf("\n");
+    printf("=== Read latency (us, log2 bins 1..1024 step 2) ===\n");
+    print(@read_lat_hist);
+    printf("\n=== Write latency (us, log2 bins 1..1024 step 2) ===\n");
+    print(@write_lat_hist);
+}
