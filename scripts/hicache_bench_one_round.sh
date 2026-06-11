@@ -28,7 +28,22 @@ source ~/llm/.venv/bin/activate
 
 echo "==== ROUND START: $ROUND on $DEV (policy=$WRITE_POLICY) ===="
 
-# 0. 安全检查: 确保 :30000 没被旧 server 占用
+# 0a. 磁盘存在性检查
+if [ ! -e "/sys/block/$DEV" ]; then
+    echo "FATAL: device /sys/block/$DEV does not exist"
+    ls /sys/block/ | grep nvme || true
+    exit 1
+fi
+echo "[precheck] /sys/block/$DEV exists, model=$(cat /sys/block/$DEV/device/model 2>/dev/null | tr -d '\n' || echo 'unknown')"
+
+# 0b. 缓存目录检查
+if [ ! -d "$CACHE_DIR" ]; then
+    echo "FATAL: cache_dir $CACHE_DIR does not exist"
+    exit 1
+fi
+echo "[precheck] cache_dir=$CACHE_DIR mount=$(df --output=source,target $CACHE_DIR | tail -1)"
+
+# 0c. 安全检查: 确保 :30000 没被旧 server 占用
 if curl -s --max-time 2 http://127.0.0.1:30000/v1/models > /dev/null 2>&1; then
     echo "FATAL: port 30000 already has a server. Kill it first:"
     pgrep -af "sglang.launch_server" | grep -v bash | head -3
@@ -47,26 +62,38 @@ SERVER_PID=$!
 echo "server pid: $SERVER_PID"
 
 # cleanup hook — 任何失败时收尾
+# 关键: sglang 启的 python -m sglang.launch_server 会 fork 出 scheduler/detokenizer
+#       这些是 python 的子进程, 不是 bash 的子进程,
+#       所以 pkill -P $SERVER_PID 找不到 → 必须用 pkill -f 全杀
 cleanup() {
-    echo "[cleanup] killing server pid=$SERVER_PID + children + iostat pid=$IOSTAT_PID"
-    # 杀 sglang 整个进程组 (nohup + python)
+    echo "[cleanup] killing all sglang + iostat (sglang forks out of bash process tree)"
+    # 1. 杀整个进程组 (nohup + 子进程)
     if [ -n "$SERVER_PID" ]; then
-        # 杀 python 子进程
-        pkill -9 -P "$SERVER_PID" 2>/dev/null || true
-        # 杀 server group
         kill -TERM -"$SERVER_PID" 2>/dev/null || true
         kill -TERM "$SERVER_PID" 2>/dev/null || true
     fi
     if [ -n "$IOSTAT_PID" ]; then
         kill -TERM "$IOSTAT_PID" 2>/dev/null || true
     fi
-    sleep 5
-    pkill -9 -P "$SERVER_PID" 2>/dev/null || true
-    kill -9 "$SERVER_PID" 2>/dev/null || true
-    kill -9 "$IOSTAT_PID" 2>/dev/null || true
-    # 兜底: 全杀 sglang
+    sleep 3
+    # 2. 兜底: 按命令行特征杀 — sglang 的所有 worker 都会被命中
     pkill -9 -f "sglang.launch_server" 2>/dev/null || true
-    pkill -9 -f "iostat -dx" 2>/dev/null || true
+    pkill -9 -f "sglang::scheduler" 2>/dev/null || true
+    pkill -9 -f "sglang::detokenizer" 2>/dev/null || true
+    pkill -9 -f "iostat -dx -m" 2>/dev/null || true
+    # 3. 强杀端口 30000 上的 listener (fuser 不一定有, 用 lsof 兜底)
+    fuser -k 30000/tcp 2>/dev/null || true
+    sleep 2
+    # 4. 验证端口真释放
+    for i in {1..10}; do
+        if ! curl -s --max-time 1 http://127.0.0.1:30000/v1/models > /dev/null 2>&1; then
+            echo "[cleanup] port 30000 free after ${i}*1s"
+            return 0
+        fi
+        sleep 1
+    done
+    echo "[cleanup] WARNING: port 30000 still occupied after 10s"
+    pgrep -af "sglang" | head -5
 }
 trap cleanup EXIT TERM INT ERR
 
@@ -92,11 +119,11 @@ sleep 5  # 让 HiCache 内部线程完全初始化
 echo "--- /metrics baseline ---"
 curl -s http://127.0.0.1:30000/metrics > "$OUT/metrics_before.json" 2>/dev/null || true
 
-# 5. 跑官方 bench_multiturn.py
+# 5. 跑自定义 hicache_load_test.py (OpenAI client)
 #    按 README L19: 1 client, 6 rounds = 1 cold + 5 warm (per 同 prompt)
 #    prompt=7000 tokens (大 prefix, 逼出真 L3 offload, 与 LMCache REPORT 7000 对齐)
 #    output=64 tokens (让 prefill 时间占比高, 加速比明显)
-echo "--- bench_multiturn.py start ---"
+echo "--- hicache_load_test.py start ---"
 python scripts/hicache_load_test.py \
     --endpoint http://127.0.0.1:30000/v1/chat/completions \
     --model-path /home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507 \
@@ -107,7 +134,7 @@ python scripts/hicache_load_test.py \
     --drop-caches-before-warm1 \
     --log-file "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/load_test.jsonl" \
     2>&1 | tee "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/load_test.log"
-echo "--- bench_multiturn.py done ---"
+echo "--- hicache_load_test.py done ---"
 
 # 6. /metrics after
 curl -s http://127.0.0.1:30000/metrics > "$OUT/metrics_after.json" 2>/dev/null || true
@@ -138,12 +165,8 @@ print(f'L3 total size: {total/1048576:.2f} MB')
 
 # 9. 关 server + iostat
 echo "--- cleanup ---"
-kill -TERM $SERVER_PID 2>/dev/null || true
-sleep 5
-kill -TERM $IOSTAT_PID 2>/dev/null || true
-wait $SERVER_PID 2>/dev/null || true
-wait $IOSTAT_PID 2>/dev/null || true
-trap - EXIT TERM INT ERR
+# 显式调用 cleanup (不只靠 trap, 因为 tee 在 pipe 末端可能干扰 trap 触发)
+cleanup
 
 echo "==== ROUND DONE: $ROUND ===="
 echo "iostat log:  $OUT/iostat_$DEV.log"

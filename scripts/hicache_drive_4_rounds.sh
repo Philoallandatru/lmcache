@@ -37,6 +37,37 @@ for entry in "${ROUNDS[@]}"; do
     fi
 
     bash scripts/hicache_bench_one_round.sh "$round_name" "$dev" "$cache_dir" write_through
+    rc=$?
+    if [ "$rc" != "0" ]; then
+        echo "FATAL: round $round_name exited with rc=$rc, aborting"
+        exit "$rc"
+    fi
+
+    # 验证本轮数据完整性: load_test.jsonl 应该有 6 行 + cold TTFT > 1.4s
+    if [ ! -f "results/hicache/$round_name/load_test.jsonl" ]; then
+        echo "FATAL: results/hicache/$round_name/load_test.jsonl missing"
+        exit 1
+    fi
+    nlines=$(wc -l < "results/hicache/$round_name/load_test.jsonl")
+    if [ "$nlines" -lt 6 ]; then
+        echo "FATAL: load_test.jsonl has only $nlines lines (expected >= 6)"
+        exit 1
+    fi
+    # cold TTFT 应 > 1.4s (4 盘 7000-token 模型 cold 都 ~1.43-1.44s)
+    # jsonl 字段是 label (cold/warm_1/...), 不是 phase
+    cold_ttft=$(jq -r 'select(.label=="cold") | .latency_s' "results/hicache/$round_name/load_test.jsonl" 2>/dev/null | head -1)
+    echo "[verify] $round_name: cold TTFT=$cold_ttft  lines=$nlines"
+    cold_ms=$(awk -v t="$cold_ttft" 'BEGIN { printf "%d", t*1000 }')
+    if [ -z "$cold_ttft" ] || [ "$cold_ttft" = "null" ]; then
+        echo "FATAL: could not parse cold TTFT from load_test.jsonl"
+        head -2 "results/hicache/$round_name/load_test.jsonl"
+        exit 1
+    fi
+    if [ "$cold_ms" -lt 1400 ]; then
+        echo "FATAL: cold TTFT=$cold_ttft s ($cold_ms ms) is too low, likely cached"
+        exit 1
+    fi
+    echo "[verify] $round_name: cold TTFT=$cold_ms ms >= 1400 ms, OK"
 
     echo ""
     echo "==== DONE: $round_name ===="

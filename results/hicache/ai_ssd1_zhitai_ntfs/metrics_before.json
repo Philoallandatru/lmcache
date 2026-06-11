@@ -1,6 +1,6 @@
 # HELP sglang:time_to_first_token_seconds Histogram of time to first token in seconds.
 # TYPE sglang:time_to_first_token_seconds histogram
-sglang:time_to_first_token_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.12016638903878629
+sglang:time_to_first_token_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.12031475099502131
 sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="0.1",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
 sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="0.2",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
 sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="0.4",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
@@ -23,7 +23,7 @@ sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="+Inf",model_
 sglang:time_to_first_token_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
 # HELP sglang:e2e_request_latency_seconds Histogram of End-to-end request latency in seconds
 # TYPE sglang:e2e_request_latency_seconds histogram
-sglang:e2e_request_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.12016820500139147
+sglang:e2e_request_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.12031625601230189
 sglang:e2e_request_latency_seconds_bucket{engine_type="unified",le="0.1",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
 sglang:e2e_request_latency_seconds_bucket{engine_type="unified",le="0.2",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
 sglang:e2e_request_latency_seconds_bucket{engine_type="unified",le="0.4",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
@@ -170,10 +170,10 @@ sglang:generation_tokens_histogram_bucket{engine_type="unified",le="+Inf",model_
 sglang:generation_tokens_histogram_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
 # HELP sglang:num_retracted_reqs The number of retracted requests.
 # TYPE sglang:num_retracted_reqs gauge
-sglang:num_retracted_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="2806155",pp_rank="0",tp_rank="0"} 0.0
+sglang:num_retracted_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="2856719",pp_rank="0",tp_rank="0"} 0.0
 # HELP sglang:num_paused_reqs The number of paused requests by async weight sync.
 # TYPE sglang:num_paused_reqs gauge
-sglang:num_paused_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="2806155",pp_rank="0",tp_rank="0"} 0.0
+sglang:num_paused_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="2856719",pp_rank="0",tp_rank="0"} 0.0
 # HELP sglang:cuda_graph_passes_total Total number of forward passes categorized by CUDA graph.
 # TYPE sglang:cuda_graph_passes_total counter
 sglang:cuda_graph_passes_total{engine_type="unified",mode="prefill_none",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 1.0
@@ -184,7 +184,7 @@ sglang:realtime_tokens_total{engine_type="unified",mode="prefill_compute",model_
 sglang:realtime_tokens_total{engine_type="unified",mode="decode",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 8.0
 # HELP sglang:per_stage_req_latency_seconds The latency of each stage of requests.
 # TYPE sglang:per_stage_req_latency_seconds histogram
-sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 5.234300624579191e-05
+sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 5.129497731104493e-05
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 1.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0016200000000000001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 1.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0026244000000000007",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 1.0
@@ -217,7 +217,7 @@ sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="735.225238
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="1191.064887146242",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 1.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="+Inf",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 1.0
 sglang:per_stage_req_latency_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 1.0
-sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.045023086946457624
+sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.04513884801417589
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0016200000000000001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0026244000000000007",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.0
@@ -252,7 +252,7 @@ sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="+Inf",mode
 sglang:per_stage_req_latency_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 1.0
 # HELP sglang:queue_time_seconds Histogram of queueing time in seconds.
 # TYPE sglang:queue_time_seconds histogram
-sglang:queue_time_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0003922750474885106
+sglang:queue_time_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0003816719981841743
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 1.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.005",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 1.0
@@ -462,7 +462,7 @@ sglang:routing_key_all_req_count{engine_type="unified",gt="200",le="+Inf",model_
 # HELP sglang:process_cpu_seconds_total Total CPU time consumed by this process (user + system)
 # TYPE sglang:process_cpu_seconds_total counter
 sglang:process_cpu_seconds_total{component="detokenizer"} 0.0
-sglang:process_cpu_seconds_total{component="tokenizer"} 0.16000000000000036
+sglang:process_cpu_seconds_total{component="tokenizer"} 0.1499999999999997
 # HELP sglang:http_requests_total Total number of HTTP requests by endpoint and method
 # TYPE sglang:http_requests_total counter
 sglang:http_requests_total{endpoint="/v1/models",method="GET"} 1.0
