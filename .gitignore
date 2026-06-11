@@ -30,3 +30,15 @@ lmcache_cache_baseline/
 .idea/
 .vscode/
 *.log.bak
+
+# HiCache L3 落盘目录
+cache/
+results/hicache/*/cache/
+*.bin
+/tmp/hicache/
+
+# sglang repo (local shallow clone, 不入版本)
+sglang_repo/
+
+# sglang server 日志
+logs/sglang/
