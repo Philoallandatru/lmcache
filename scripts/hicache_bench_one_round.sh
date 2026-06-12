@@ -20,9 +20,18 @@ DEV=${2:?"device required (e.g. nvme1n1)"}
 CACHE_DIR=${3:?"cache_dir required"}
 WRITE_POLICY=${4:-write_through}
 
+# 模型 + 部署 env vars (跟 serve.sh 同步, 都可选, 默认 4B Phase2 配)
+MODEL_PATH=${MODEL_PATH:-/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507}
+TP_SIZE=${TP_SIZE:-1}
+PORT=${PORT:-30000}
+CTX_LEN=${CTX_LEN:-8192}
+MEM_STATIC=${MEM_STATIC:-0.7}
+WATCHDOG_TIMEOUT=${WATCHDOG_TIMEOUT:-}
+
 cd /home/ficus/llm/infer/ai_ssd_prestudy
-# OUT_DIR_SUBDIR 允许 driver 把不同 policy 的数据放到不同子目录
+# OUT_DIR_SUBDIR 允许 driver 把不同 policy / model 的数据放到不同子目录
 # 默认 hicache, write_back 时 driver 会传 "hicache_writeback"
+# 不同 model (如 14B-AWQ) driver 会传 "hicache_14b_awq"
 OUT_DIR_SUBDIR=${OUT_DIR_SUBDIR:-hicache}
 OUT="results/${OUT_DIR_SUBDIR}/$ROUND"
 mkdir -p "$OUT"
@@ -46,9 +55,9 @@ if [ ! -d "$CACHE_DIR" ]; then
 fi
 echo "[precheck] cache_dir=$CACHE_DIR mount=$(df --output=source,target $CACHE_DIR | tail -1)"
 
-# 0c. 安全检查: 确保 :30000 没被旧 server 占用
-if curl -s --max-time 2 http://127.0.0.1:30000/v1/models > /dev/null 2>&1; then
-    echo "FATAL: port 30000 already has a server. Kill it first:"
+# 0c. 安全检查: 确保 :$PORT 没被旧 server 占用
+if curl -s --max-time 2 http://127.0.0.1:$PORT/v1/models > /dev/null 2>&1; then
+    echo "FATAL: port $PORT already has a server. Kill it first:"
     pgrep -af "sglang.launch_server" | grep -v bash | head -3
     exit 1
 fi
@@ -59,7 +68,7 @@ IOSTAT_PID=$!
 echo "iostat pid: $IOSTAT_PID"
 sleep 1
 
-# 2. 启动 sglang server
+# 2. 启动 sglang server (透传 model + 部署 env vars)
 nohup bash scripts/hicache_serve.sh "$CACHE_DIR" "$WRITE_POLICY" > "$OUT/server.log" 2>&1 &
 SERVER_PID=$!
 echo "server pid: $SERVER_PID"
@@ -84,18 +93,18 @@ cleanup() {
     pkill -9 -f "sglang::scheduler" 2>/dev/null || true
     pkill -9 -f "sglang::detokenizer" 2>/dev/null || true
     pkill -9 -f "iostat -dx -m" 2>/dev/null || true
-    # 3. 强杀端口 30000 上的 listener (fuser 不一定有, 用 lsof 兜底)
-    fuser -k 30000/tcp 2>/dev/null || true
+    # 3. 强杀端口 $PORT 上的 listener (fuser 不一定有, 用 lsof 兜底)
+    fuser -k $PORT/tcp 2>/dev/null || true
     sleep 2
     # 4. 验证端口真释放
     for i in {1..10}; do
-        if ! curl -s --max-time 1 http://127.0.0.1:30000/v1/models > /dev/null 2>&1; then
-            echo "[cleanup] port 30000 free after ${i}*1s"
+        if ! curl -s --max-time 1 http://127.0.0.1:$PORT/v1/models > /dev/null 2>&1; then
+            echo "[cleanup] port $PORT free after ${i}*1s"
             return 0
         fi
         sleep 1
     done
-    echo "[cleanup] WARNING: port 30000 still occupied after 10s"
+    echo "[cleanup] WARNING: port $PORT still occupied after 10s"
     pgrep -af "sglang" | head -5
 }
 trap cleanup EXIT TERM INT ERR
@@ -103,7 +112,7 @@ trap cleanup EXIT TERM INT ERR
 # 3. 等 server 就绪 (最长 180s)
 READY=0
 for i in {1..90}; do
-    if curl -s --max-time 2 http://127.0.0.1:30000/v1/models > /dev/null 2>&1; then
+    if curl -s --max-time 2 http://127.0.0.1:$PORT/v1/models > /dev/null 2>&1; then
         echo "server ready after ${i}*2s"
         READY=1
         break
@@ -120,16 +129,17 @@ sleep 5  # 让 HiCache 内部线程完全初始化
 
 # 4. /metrics baseline
 echo "--- /metrics baseline ---"
-curl -s http://127.0.0.1:30000/metrics > "$OUT/metrics_before.json" 2>/dev/null || true
+curl -s http://127.0.0.1:$PORT/metrics > "$OUT/metrics_before.json" 2>/dev/null || true
 
 # 5. 跑自定义 hicache_load_test.py (OpenAI client)
 #    按 README L19: 1 client, 6 rounds = 1 cold + 5 warm (per 同 prompt)
 #    prompt=7000 tokens (大 prefix, 逼出真 L3 offload, 与 LMCache REPORT 7000 对齐)
 #    output=64 tokens (让 prefill 时间占比高, 加速比明显)
+#    NOTE: --model-path 必须跟 server 启动的 model 一致(否则 tokenize 失败)
 echo "--- hicache_load_test.py start ---"
 python scripts/hicache_load_test.py \
-    --endpoint http://127.0.0.1:30000/v1/chat/completions \
-    --model-path /home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507 \
+    --endpoint http://127.0.0.1:$PORT/v1/chat/completions \
+    --model-path "$MODEL_PATH" \
     --num-rounds 6 \
     --prompt-tokens 7000 \
     --output-tokens 64 \
@@ -140,7 +150,7 @@ python scripts/hicache_load_test.py \
 echo "--- hicache_load_test.py done ---"
 
 # 6. /metrics after
-curl -s http://127.0.0.1:30000/metrics > "$OUT/metrics_after.json" 2>/dev/null || true
+curl -s http://127.0.0.1:$PORT/metrics > "$OUT/metrics_after.json" 2>/dev/null || true
 
 # 7. drop_caches + 补一发 warm, 验证 disk read
 echo "--- drop_caches + extra warm ---"

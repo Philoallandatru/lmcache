@@ -1,0 +1,6 @@
+{"round": 0, "label": "cold", "latency_s": 4.892267227172852, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "<think>\n好的，用户让我详细回答一个问题，但问题内容好像没有显示出来。我需要先确认用户具体想问什么。可能的情况是用户可能在输入时遇到了问题，或者复制粘贴时"}
+{"round": 1, "label": "warm_1", "latency_s": 0.9870686531066895, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "<think>\n好的，我现在需要处理用户的问题，但用户连续发送了多次相同的请求，即“请详细回答以下问题。”，并且在最后还多次发送了“请继续。”。首先，我需要确认"}
+{"round": 2, "label": "warm_2", "latency_s": 0.9871325492858887, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "<think>\n好的，我现在需要处理用户提供的这个查询。首先，用户连续多次发送了相同的请求：“请详细回答以下问题。请详细回答以下问题。请详细回答以下问题。请继续"}
+{"round": 3, "label": "warm_3", "latency_s": 0.9850149154663086, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "<think>\n好的，我现在需要处理用户的一个查询，用户多次重复了“请详细回答以下问题。”，然后最后有一个“请继续。”。看起来用户可能是在测试我的响应能力，或者"}
+{"round": 4, "label": "warm_4", "latency_s": 0.9867599010467529, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "<think>\n好的，用户让我详细回答问题，但问题本身并没有具体说明是什么问题。我需要先确认用户到底想问什么。可能用户复制粘贴的时候出现了问题，或者问题没有正确"}
+{"round": 5, "label": "warm_5", "latency_s": 0.9879083633422852, "prompt_tokens": 7008, "completion_tokens": 64, "content_preview": "<think>\n好的，用户让我详细回答一个问题，但问题部分被重复了多次，而且最后没有具体的问题内容。可能用户在输入时遇到了问题，或者可能是在测试我的响应能力。首"}
