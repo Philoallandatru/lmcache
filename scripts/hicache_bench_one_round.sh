@@ -21,7 +21,10 @@ CACHE_DIR=${3:?"cache_dir required"}
 WRITE_POLICY=${4:-write_through}
 
 cd /home/ficus/llm/infer/ai_ssd_prestudy
-OUT=results/hicache/$ROUND
+# OUT_DIR_SUBDIR 允许 driver 把不同 policy 的数据放到不同子目录
+# 默认 hicache, write_back 时 driver 会传 "hicache_writeback"
+OUT_DIR_SUBDIR=${OUT_DIR_SUBDIR:-hicache}
+OUT="results/${OUT_DIR_SUBDIR}/$ROUND"
 mkdir -p "$OUT"
 
 source ~/llm/.venv/bin/activate
