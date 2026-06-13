@@ -31,6 +31,10 @@ TP_SIZE=${TP_SIZE:-1}
 PORT=${PORT:-30000}
 CTX_LEN=${CTX_LEN:-8192}
 MEM_STATIC=${MEM_STATIC:-0.7}
+# hicache_ratio 决定 L2 host RAM 容量 (= device_pool_size × hicache_ratio)
+#   - 默认 2: device pool 20K × 2 = 41K tokens (8K prompt 装得下, L2 hit 100%)
+#   - Phase6 暴露盘差: 0.1 → 2K tokens < 8K prompt → 必 L2 miss → L3 真读盘
+HICACHE_RATIO=${HICACHE_RATIO:-2}
 
 source ~/llm/.venv/bin/activate
 
@@ -66,7 +70,7 @@ python -m sglang.launch_server \
     --enable-metrics \
     --enable-cache-report \
     --enable-hierarchical-cache \
-    --hicache-ratio 2 \
+    --hicache-ratio "$HICACHE_RATIO" \
     --hicache-size 0 \
     --hicache-mem-layout page_first_direct \
     --hicache-io-backend direct \

@@ -34,6 +34,7 @@ case "$MODEL_KEY" in
         export MEM_STATIC=0.7
         export WATCHDOG_TIMEOUT=""
         export PORT=30000
+        export HICACHE_RATIO=2
         SUBDIR=hicache
         CACHE_SUBDIR=cache_hicache
         ;;
@@ -47,8 +48,25 @@ case "$MODEL_KEY" in
         export MEM_STATIC=0.7
         export WATCHDOG_TIMEOUT=1800
         export PORT=30002
+        export HICACHE_RATIO=2
         SUBDIR=hicache_multiclient
         CACHE_SUBDIR=cache_multiclient
+        ;;
+    qwen3_4b_l2small)
+        # Phase6: 4B + hicache-ratio=1.05 + 30K prompt 强制 L2 evict → L3 真读盘
+        # 注意: sglang 0.5.13 硬约束 L2 > device, ratio 必须 > 1.0
+        # 30K prompt > L1(20K) + L2(21K) = 41K? 实际不能完全填满
+        # 真实效果取决于 sglang 内部 radix tree 行为
+        export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+        export TP_SIZE=1
+        export CTX_LEN=40960
+        export MEM_STATIC=0.7
+        export WATCHDOG_TIMEOUT=1800
+        export PORT=30003
+        export HICACHE_RATIO=1.05
+        # 依赖 env vars: PROMPT_TOKENS=30000 (大 prompt 让 L2 evict)
+        SUBDIR=hicache_l2small
+        CACHE_SUBDIR=cache_l2small
         ;;
     qwen3_14b_awq)
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-14B-AWQ
@@ -57,12 +75,13 @@ case "$MODEL_KEY" in
         export MEM_STATIC=0.85
         export WATCHDOG_TIMEOUT=1800
         export PORT=30001
+        export HICACHE_RATIO=2
         SUBDIR=hicache_14b_awq
         CACHE_SUBDIR=cache_14b_awq
         ;;
     *)
         echo "FATAL: unknown model_key '$MODEL_KEY'"
-        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_14b_awq"
+        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_14b_awq"
         exit 1
         ;;
 esac
@@ -111,7 +130,7 @@ for entry in "${ROUNDS[@]}"; do
     fi
 
     # 复用已有 bench_one_round.sh, 但把结果写到 SUBDIR 目录
-    # 通过 OUT_DIR_SUBDIR + 透传所有 model env vars
+    # 通过 OUT_DIR_SUBDIR + 透传所有 model + load env vars
     OUT_DIR_SUBDIR="$SUBDIR" \
     bash scripts/hicache_bench_one_round.sh \
         "$round_name" "$dev" "$cache_dir" "write_through"
@@ -144,9 +163,11 @@ for entry in "${ROUNDS[@]}"; do
     # 14B-AWQ cold TTFT 期望 ~4.6s (vs 4B ~1.4s), 阈值设 2500ms
     # 4B cold 期望 ~1.4s, 阈值 1400ms
     # 4B multiclient cold N=4 期望 ~1.7s (BIWIN ext4), 阈值 1600ms (NTFS 期望 >2s)
+    # 4B l2small cold 期望 30K prompt 长, BIWIN ~3-5s / NTFS ~15-30s, 阈值 3000ms
     case "$MODEL_KEY" in
         qwen3_4b)              MIN_COLD_MS=1400 ;;
         qwen3_4b_multiclient)  MIN_COLD_MS=1600 ;;
+        qwen3_4b_l2small)      MIN_COLD_MS=3000 ;;
         qwen3_14b_awq)         MIN_COLD_MS=2500 ;;
     esac
     if [ "$cold_ms" -lt "$MIN_COLD_MS" ]; then
