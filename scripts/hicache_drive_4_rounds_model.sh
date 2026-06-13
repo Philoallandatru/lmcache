@@ -37,6 +37,19 @@ case "$MODEL_KEY" in
         SUBDIR=hicache
         CACHE_SUBDIR=cache_hicache
         ;;
+    qwen3_4b_multiclient)
+        # Phase5: 4B + 4 client 并发 + drop_caches every round
+        # 数据写到独立子目录避免污染 Phase2 hicache/
+        # 依赖 env vars: CONCURRENT_CLIENTS=4 DROP_EVERY_ROUND=1
+        export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+        export TP_SIZE=1
+        export CTX_LEN=8192
+        export MEM_STATIC=0.7
+        export WATCHDOG_TIMEOUT=1800
+        export PORT=30002
+        SUBDIR=hicache_multiclient
+        CACHE_SUBDIR=cache_multiclient
+        ;;
     qwen3_14b_awq)
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-14B-AWQ
         export TP_SIZE=2
@@ -49,7 +62,7 @@ case "$MODEL_KEY" in
         ;;
     *)
         echo "FATAL: unknown model_key '$MODEL_KEY'"
-        echo "  supported: qwen3_4b | qwen3_14b_awq"
+        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_14b_awq"
         exit 1
         ;;
 esac
@@ -130,9 +143,11 @@ for entry in "${ROUNDS[@]}"; do
     fi
     # 14B-AWQ cold TTFT 期望 ~4.6s (vs 4B ~1.4s), 阈值设 2500ms
     # 4B cold 期望 ~1.4s, 阈值 1400ms
+    # 4B multiclient cold N=4 期望 ~1.7s (BIWIN ext4), 阈值 1600ms (NTFS 期望 >2s)
     case "$MODEL_KEY" in
-        qwen3_4b)        MIN_COLD_MS=1400 ;;
-        qwen3_14b_awq)   MIN_COLD_MS=2500 ;;
+        qwen3_4b)              MIN_COLD_MS=1400 ;;
+        qwen3_4b_multiclient)  MIN_COLD_MS=1600 ;;
+        qwen3_14b_awq)         MIN_COLD_MS=2500 ;;
     esac
     if [ "$cold_ms" -lt "$MIN_COLD_MS" ]; then
         echo "FATAL: cold TTFT=$cold_ttft s ($cold_ms ms) < ${MIN_COLD_MS}ms (model=$MODEL_KEY), likely cached"

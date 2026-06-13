@@ -27,6 +27,11 @@ PORT=${PORT:-30000}
 CTX_LEN=${CTX_LEN:-8192}
 MEM_STATIC=${MEM_STATIC:-0.7}
 WATCHDOG_TIMEOUT=${WATCHDOG_TIMEOUT:-}
+# 负载模式 (Phase5 多并发测):
+#   CONCURRENT_CLIENTS=1 + DROP_EVERY_ROUND=0 → 1 client 串行, warm_1 前 drop (默认)
+#   CONCURRENT_CLIENTS=4 + DROP_EVERY_ROUND=1 → 4 client 并发, 每轮前 drop, 真 L3 读盘
+CONCURRENT_CLIENTS=${CONCURRENT_CLIENTS:-1}
+DROP_EVERY_ROUND=${DROP_EVERY_ROUND:-0}
 
 cd /home/ficus/llm/infer/ai_ssd_prestudy
 # OUT_DIR_SUBDIR 允许 driver 把不同 policy / model 的数据放到不同子目录
@@ -136,15 +141,22 @@ curl -s http://127.0.0.1:$PORT/metrics > "$OUT/metrics_before.json" 2>/dev/null 
 #    prompt=7000 tokens (大 prefix, 逼出真 L3 offload, 与 LMCache REPORT 7000 对齐)
 #    output=64 tokens (让 prefill 时间占比高, 加速比明显)
 #    NOTE: --model-path 必须跟 server 启动的 model 一致(否则 tokenize 失败)
-echo "--- hicache_load_test.py start ---"
+#    Phase5 多并发模式 (env: CONCURRENT_CLIENTS=4 DROP_EVERY_ROUND=1):
+#      强制每轮前 drop_caches + 4 client 同时发, 暴露 N 路 L3 真读盘延迟
+echo "--- hicache_load_test.py start (clients=$CONCURRENT_CLIENTS drop_every=$DROP_EVERY_ROUND) ---"
+LOAD_TEST_FLAGS="--num-rounds 6 --prompt-tokens 7000 --output-tokens 64 --request-rate 1.0"
+if [ "$DROP_EVERY_ROUND" = "1" ]; then
+    LOAD_TEST_FLAGS="$LOAD_TEST_FLAGS --drop-caches-every-round"
+else
+    LOAD_TEST_FLAGS="$LOAD_TEST_FLAGS --drop-caches-before-warm1"
+fi
+if [ "$CONCURRENT_CLIENTS" -gt 1 ]; then
+    LOAD_TEST_FLAGS="$LOAD_TEST_FLAGS --concurrent-clients $CONCURRENT_CLIENTS"
+fi
 python scripts/hicache_load_test.py \
     --endpoint http://127.0.0.1:$PORT/v1/chat/completions \
     --model-path "$MODEL_PATH" \
-    --num-rounds 6 \
-    --prompt-tokens 7000 \
-    --output-tokens 64 \
-    --request-rate 1.0 \
-    --drop-caches-before-warm1 \
+    $LOAD_TEST_FLAGS \
     --log-file "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/load_test.jsonl" \
     2>&1 | tee "/home/ficus/llm/infer/ai_ssd_prestudy/$OUT/load_test.log"
 echo "--- hicache_load_test.py done ---"

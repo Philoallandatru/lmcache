@@ -1,0 +1,55 @@
+[hicache_load_test] endpoint=http://127.0.0.1:30002/v1/chat/completions
+[hicache_load_test] num_rounds=6 prompt_tokens=7000
+[hicache_load_test] output_tokens=64 rate=1.0
+[hicache_load_test] prompt char count: 10333
+
+[1/6] cold request (clients=4)
+[cold] drop_caches...
+[cold cid=0] latency=1.725s prompt_tokens=7008 completion_tokens=64
+[cold cid=1] latency=1.727s prompt_tokens=7008 completion_tokens=64
+[cold cid=2] latency=1.727s prompt_tokens=7008 completion_tokens=64
+[cold cid=3] latency=1.726s prompt_tokens=7008 completion_tokens=64
+
+[2/6] warm_1 request (clients=4)
+[warm_1] drop_caches...
+[warm_1 cid=0] latency=0.798s prompt_tokens=7008 completion_tokens=64
+[warm_1 cid=1] latency=0.799s prompt_tokens=7008 completion_tokens=64
+[warm_1 cid=2] latency=0.799s prompt_tokens=7008 completion_tokens=64
+[warm_1 cid=3] latency=0.798s prompt_tokens=7008 completion_tokens=64
+
+[3/6] warm_2 request (clients=4)
+[warm_2] drop_caches...
+[warm_2 cid=0] latency=0.794s prompt_tokens=7008 completion_tokens=64
+[warm_2 cid=1] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_2 cid=2] latency=0.796s prompt_tokens=7008 completion_tokens=64
+[warm_2 cid=3] latency=0.796s prompt_tokens=7008 completion_tokens=64
+
+[4/6] warm_3 request (clients=4)
+[warm_3] drop_caches...
+[warm_3 cid=0] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_3 cid=1] latency=0.794s prompt_tokens=7008 completion_tokens=64
+[warm_3 cid=2] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_3 cid=3] latency=0.794s prompt_tokens=7008 completion_tokens=64
+
+[5/6] warm_4 request (clients=4)
+[warm_4] drop_caches...
+[warm_4 cid=0] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_4 cid=1] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_4 cid=2] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_4 cid=3] latency=0.796s prompt_tokens=7008 completion_tokens=64
+
+[6/6] warm_5 request (clients=4)
+[warm_5] drop_caches...
+[warm_5 cid=0] latency=0.794s prompt_tokens=7008 completion_tokens=64
+[warm_5 cid=1] latency=0.795s prompt_tokens=7008 completion_tokens=64
+[warm_5 cid=2] latency=0.794s prompt_tokens=7008 completion_tokens=64
+[warm_5 cid=3] latency=0.795s prompt_tokens=7008 completion_tokens=64
+
+========== Summary ==========
+Cold (cold, N=4): max=1.727s mean=1.726s
+warm_1 (N=4): max=0.799s mean=0.799s (speedup vs cold max 2.16x)
+warm_2 (N=4): max=0.796s mean=0.795s (speedup vs cold max 2.17x)
+warm_3 (N=4): max=0.795s mean=0.794s (speedup vs cold max 2.17x)
+warm_4 (N=4): max=0.796s mean=0.795s (speedup vs cold max 2.17x)
+warm_5 (N=4): max=0.795s mean=0.795s (speedup vs cold max 2.17x)
+Results written to: /home/ficus/llm/infer/ai_ssd_prestudy/results/hicache_multiclient/baseline_biwin_ext4/load_test.jsonl
