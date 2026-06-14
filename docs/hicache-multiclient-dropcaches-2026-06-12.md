@@ -4,6 +4,8 @@
 
 **核心发现**:**L2 host DRAM 完全屏蔽 L3 读盘延迟**。`hicache_host_used_tokens = 8256 / hicache_host_total_tokens = 41024` —— 8K prompt 装得下 41K L2 容量,`drop_caches` 清的是 OS page cache,对 sglang 进程自管理的 L2 host buffer **无效**。
 
+> **📌 v3 mount-fixed 重跑已确认**: 2026-06-15 Phase5 v3 spread 23ms (BIWIN 偶发慢 20ms) 跟本报告 v2 spread 5ms 同量级, 详见 [hicache-v3-mount-fixed-2026-06-15.md](./hicache-v3-mount-fixed-2026-06-15.md)。
+
 ## 背景:Phase2/4 单 client 测试为什么被吃光?
 
 | Phase | 模式 | Cold spread | Warm spread | 原因 |

@@ -8,12 +8,22 @@ set -e
 cd /home/ficus/llm/infer/ai_ssd_prestudy
 
 # round_name : device : cache_dir
+# Phase2 v3: mount 修正后重跑, 用 v3 子目录隔离 Phase2 老数据
+# OUT_DIR_SUBDIR 跟 cache_dir 同步 v3 (默认 hicache 写到 results/hicache/ = 老数据)
+export OUT_DIR_SUBDIR=hicache_v3
 declare -a ROUNDS=(
-    "baseline_biwin_ext4:nvme1n1:cache/baseline"
-    "ai_ssd0_wdc_ntfs:nvme0n1:/mnt/ai_ssd0/cache_hicache"
-    "ai_ssd1_zhitai_ntfs:nvme2n1:/mnt/ai_ssd1/cache_hicache"
-    "ai_ssd2_seagate_ntfs:nvme3n1:/mnt/ai_ssd2/cache_hicache"
+    "baseline_biwin_ext4:nvme1n1:cache_hicache_v3"
+    "ai_ssd0_wdc_ntfs:nvme0n1:/mnt/ai_ssd0/cache_hicache_v3"
+    "ai_ssd1_seagate_ntfs:nvme2n1:/mnt/ai_ssd1/cache_hicache_v3"
+    "ai_ssd2_zhitai_ntfs:nvme3n1:/mnt/ai_ssd2/cache_hicache_v3"
 )
+
+# 预创建所有 cache_dir (避免 bench_one_round.sh precheck fail)
+# 注意: 必须在 cd 之后; relative path 相对于当前 cwd
+mkdir -p cache_hicache_v3
+for mount_dir in /mnt/ai_ssd0 /mnt/ai_ssd1 /mnt/ai_ssd2; do
+    mkdir -p "$mount_dir/cache_hicache_v3" 2>/dev/null || echo "WARN: cannot create $mount_dir/cache_hicache_v3 (mount may not exist)"
+done
 
 for entry in "${ROUNDS[@]}"; do
     IFS=':' read -r round_name dev cache_dir <<< "$entry"
@@ -44,23 +54,24 @@ for entry in "${ROUNDS[@]}"; do
     fi
 
     # 验证本轮数据完整性: load_test.jsonl 应该有 6 行 + cold TTFT > 1.4s
-    if [ ! -f "results/hicache/$round_name/load_test.jsonl" ]; then
-        echo "FATAL: results/hicache/$round_name/load_test.jsonl missing"
+    # v3 (mount-fixed): 用 OUT_DIR_SUBDIR 而非写死 results/hicache/
+    if [ ! -f "results/${OUT_DIR_SUBDIR}/$round_name/load_test.jsonl" ]; then
+        echo "FATAL: results/${OUT_DIR_SUBDIR}/$round_name/load_test.jsonl missing"
         exit 1
     fi
-    nlines=$(wc -l < "results/hicache/$round_name/load_test.jsonl")
+    nlines=$(wc -l < "results/${OUT_DIR_SUBDIR}/$round_name/load_test.jsonl")
     if [ "$nlines" -lt 6 ]; then
         echo "FATAL: load_test.jsonl has only $nlines lines (expected >= 6)"
         exit 1
     fi
     # cold TTFT 应 > 1.4s (4 盘 7000-token 模型 cold 都 ~1.43-1.44s)
     # jsonl 字段是 label (cold/warm_1/...), 不是 phase
-    cold_ttft=$(jq -r 'select(.label=="cold") | .latency_s' "results/hicache/$round_name/load_test.jsonl" 2>/dev/null | head -1)
+    cold_ttft=$(jq -r 'select(.label=="cold") | .latency_s' "results/${OUT_DIR_SUBDIR}/$round_name/load_test.jsonl" 2>/dev/null | head -1)
     echo "[verify] $round_name: cold TTFT=$cold_ttft  lines=$nlines"
     cold_ms=$(awk -v t="$cold_ttft" 'BEGIN { printf "%d", t*1000 }')
     if [ -z "$cold_ttft" ] || [ "$cold_ttft" = "null" ]; then
         echo "FATAL: could not parse cold TTFT from load_test.jsonl"
-        head -2 "results/hicache/$round_name/load_test.jsonl"
+        head -2 "results/${OUT_DIR_SUBDIR}/$round_name/load_test.jsonl"
         exit 1
     fi
     if [ "$cold_ms" -lt 1400 ]; then

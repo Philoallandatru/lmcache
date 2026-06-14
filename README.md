@@ -97,8 +97,8 @@ MODEL_KEY=qwen3_14b_awq bash scripts/hicache_drive_4_rounds_model.sh
 
 ## 后续 / 未完成项
 
-- [ ] 重跑 Phase2/4/5 (mount 已修, 真 4 盘基线)
-- [ ] bpftrace kernel 6.x 兼容修复 (block_rq_issue 存 nsecs, `delete()` API 移除)
+- ✅ ~~重跑 Phase2/4/5 (mount 已修, 真 4 盘基线)~~ (06-15 v3 完成, 验证 spread 跟 v2 一致, 详见 [hicache-v3-mount-fixed-2026-06-15.md](./docs/hicache-v3-mount-fixed-2026-06-15.md))
+- [ ] bpftrace kernel 6.x 兼容修复 (block_rq_issue 存 nsecs, `delete()` API 移除) — 暂缓, 已有 iostat + Phase7 数据足够
 - [ ] 32B-AWQ 模型 (更大压力, TP=2 跨 3 卡)
 - [ ] 多 prompt 累积场景下的 4 盘 vs 4 client × 4 prompt 对比 (核并发 reload)
 
@@ -109,12 +109,13 @@ MODEL_KEY=qwen3_14b_awq bash scripts/hicache_drive_4_rounds_model.sh
 | [REPORT.md](./REPORT.md) | **主报告** — 7 phase 时间线 / 选型推荐 / 后续 / 数据事故复盘 |
 | [REPORT_LMCACHE.md](./REPORT_LMCACHE.md) | Phase 0 历史 baseline (vLLM + LMCache 时代, 4 盘 spread 1ms) |
 | [docs/hicache-smoke-test-findings-2026-06-11.md](./docs/hicache-smoke-test-findings-2026-06-11.md) | Phase 1 装环境 + 启动验证 |
-| [docs/hicache-4disk-headline-2026-06-12.md](./docs/hicache-4disk-headline-2026-06-12.md) | Phase 2 4B write_through 4 盘 baseline ⚠️ mount 事故 |
-| [docs/hicache-writeback-vs-writethrough-2026-06-13.md](./docs/hicache-writeback-vs-writethrough-2026-06-13.md) | Phase 3 write_through vs write_back 对比 ⚠️ mount 事故 |
-| [docs/hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) | Phase 4 14B-AWQ TP=2 4 盘 baseline ⚠️ mount 事故 |
-| [docs/hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) | Phase 5 4 client + drop_caches 每 round ⚠️ mount 事故 |
+| [docs/hicache-4disk-headline-2026-06-12.md](./docs/hicache-4disk-headline-2026-06-12.md) | Phase 2 4B write_through 4 盘 baseline ✅ v3 验证 |
+| [docs/hicache-writeback-vs-writethrough-2026-06-13.md](./docs/hicache-writeback-vs-writethrough-2026-06-13.md) | Phase 3 write_through vs write_back 对比 ⚠️ mount 事故未重跑 |
+| [docs/hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) | Phase 4 14B-AWQ TP=2 4 盘 baseline ✅ v3 验证 |
+| [docs/hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) | Phase 5 4 client + drop_caches 每 round ✅ v3 验证 |
 | [docs/l3-fio-bench-2026-06-13.md](./docs/l3-fio-bench-2026-06-13.md) | Phase 6 fio 4 盘 L3 file read 硬件极限 |
 | [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) | **Phase 7 multiprompt + replay ✅ 真 4 盘基线 (选型依据)** |
+| [docs/hicache-v3-mount-fixed-2026-06-15.md](./docs/hicache-v3-mount-fixed-2026-06-15.md) | **Phase 2/4/5 v3 mount-fixed 重跑 ✅ 验证 spread 跟 v2 一致** |
 
 ## 计划文档
 

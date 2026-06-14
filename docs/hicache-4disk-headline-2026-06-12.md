@@ -21,6 +21,8 @@
 | **L3 文件** | 4 盘各 **115 × 9.0 MB = 1035 MB** |
 | **与 LMCache 对比** | HiCache 1.96× vs LMCache 23.5× — write_through 同步阻塞导致温和加速 |
 
+> **📌 v3 mount-fixed 重跑已确认**: 2026-06-15 Phase2 v3 (mount 修正后) spread 6ms 跟本报告 v2 spread 1ms 一致。详见 [hicache-v3-mount-fixed-2026-06-15.md](./hicache-v3-mount-fixed-2026-06-15.md)。**iostat 数值需要重新看 v3 数据** (NTFS 真实 0 读, v2 看到 8-12 MB/s 是 page cache 命中, 误导)。
+
 **核心洞察**:
 1. **HiCache file backend 走 page cache (buffered IO)**, 用户态 TTFT **无法**区分 4 盘
 2. **BIWIN 系统盘 (ext4)** 受益于内核 page cache, **avg_r=1976 MB/s** 是其他 3 块 NTFS 外置盘的 **200×**

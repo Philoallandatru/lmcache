@@ -1,0 +1,32 @@
+[hicache_load_test] endpoint=http://127.0.0.1:30000/v1/chat/completions
+[hicache_load_test] num_rounds=6 prompt_tokens=7000
+[hicache_load_test] output_tokens=64 rate=1.0
+[hicache_load_test] single prompt x 6 rounds mode
+
+[1/6] prompt_id=0 label=cold request (clients=1)
+[cold] latency=1.438s prompt_tokens=7008 completion_tokens=64
+
+[2/6] prompt_id=1 label=warm_1 request (clients=1)
+[warm_1] drop_caches...
+[warm_1] latency=0.741s prompt_tokens=7008 completion_tokens=64
+
+[3/6] prompt_id=2 label=warm_2 request (clients=1)
+[warm_2] latency=0.722s prompt_tokens=7008 completion_tokens=64
+
+[4/6] prompt_id=3 label=warm_3 request (clients=1)
+[warm_3] latency=0.722s prompt_tokens=7008 completion_tokens=64
+
+[5/6] prompt_id=4 label=warm_4 request (clients=1)
+[warm_4] latency=0.722s prompt_tokens=7008 completion_tokens=64
+
+[6/6] prompt_id=5 label=warm_5 request (clients=1)
+[warm_5] latency=0.722s prompt_tokens=7008 completion_tokens=64
+
+========== Summary ==========
+  [1/6] cold: 1.438s
+  [2/6] warm_1: 0.741s
+  [3/6] warm_2: 0.722s
+  [4/6] warm_3: 0.722s
+  [5/6] warm_4: 0.722s
+  [6/6] warm_5: 0.722s
+Results written to: /home/ficus/llm/infer/ai_ssd_prestudy/results/hicache_v3/ai_ssd0_wdc_ntfs/load_test.jsonl

@@ -28,6 +28,7 @@ cd /home/ficus/llm/infer/ai_ssd_prestudy
 # 模型: 路径 | TP | ctx_len | mem_static | watchdog_timeout | port | OUT_DIR_SUBDIR | cache_subdir
 case "$MODEL_KEY" in
     qwen3_4b)
+        # Phase2 v3: mount 修正后重跑, 数据写到 hicache_v3 子目录, 不覆盖 Phase2 老数据
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
         export TP_SIZE=1
         export CTX_LEN=8192
@@ -35,12 +36,12 @@ case "$MODEL_KEY" in
         export WATCHDOG_TIMEOUT=""
         export PORT=30000
         export HICACHE_RATIO=2
-        SUBDIR=hicache
+        SUBDIR=hicache_v3
         CACHE_SUBDIR=cache_hicache
         ;;
     qwen3_4b_multiclient)
-        # Phase5: 4B + 4 client 并发 + drop_caches every round
-        # 数据写到独立子目录避免污染 Phase2 hicache/
+        # Phase5 v3: 4B + 4 client 并发 + drop_caches every round
+        # 数据写到 hicache_multiclient_v3 子目录, 不覆盖 Phase5 老数据
         # 依赖 env vars: CONCURRENT_CLIENTS=4 DROP_EVERY_ROUND=1
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
         export TP_SIZE=1
@@ -49,7 +50,7 @@ case "$MODEL_KEY" in
         export WATCHDOG_TIMEOUT=1800
         export PORT=30002
         export HICACHE_RATIO=2
-        SUBDIR=hicache_multiclient
+        SUBDIR=hicache_multiclient_v3
         CACHE_SUBDIR=cache_multiclient
         ;;
     qwen3_4b_l2small)
@@ -84,6 +85,7 @@ case "$MODEL_KEY" in
         CACHE_SUBDIR=cache_multiprompt
         ;;
     qwen3_14b_awq)
+        # Phase4 v3: mount 修正后重跑, 数据写到 hicache_14b_awq_v3
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-14B-AWQ
         export TP_SIZE=2
         export CTX_LEN=12288
@@ -91,7 +93,7 @@ case "$MODEL_KEY" in
         export WATCHDOG_TIMEOUT=1800
         export PORT=30001
         export HICACHE_RATIO=2
-        SUBDIR=hicache_14b_awq
+        SUBDIR=hicache_14b_awq_v3
         CACHE_SUBDIR=cache_14b_awq
         ;;
     *)
@@ -111,12 +113,22 @@ echo "########################################################"
 
 # round_name : device : cache_dir
 # CACHE_SUBDIR 跟 4B 数据隔离(避免 14B L3 写到 4B 测试用的 cache_hicache 目录)
+# v3 (mount-fixed): 盘映射修正 (nvme2n1=Seagate, nvme3n1=ZHITAI), v3 cache_dir 隔离 v2 老数据
 declare -a ROUNDS=(
-    "baseline_biwin_ext4:nvme1n1:cache/${CACHE_SUBDIR}"
-    "ai_ssd0_wdc_ntfs:nvme0n1:/mnt/ai_ssd0/${CACHE_SUBDIR}"
-    "ai_ssd1_zhitai_ntfs:nvme2n1:/mnt/ai_ssd1/${CACHE_SUBDIR}"
-    "ai_ssd2_seagate_ntfs:nvme3n1:/mnt/ai_ssd2/${CACHE_SUBDIR}"
+    "baseline_biwin_ext4:nvme1n1:cache/${CACHE_SUBDIR}_v3"
+    "ai_ssd0_wdc_ntfs:nvme0n1:/mnt/ai_ssd0/${CACHE_SUBDIR}_v3"
+    "ai_ssd1_seagate_ntfs:nvme2n1:/mnt/ai_ssd1/${CACHE_SUBDIR}_v3"
+    "ai_ssd2_zhitai_ntfs:nvme3n1:/mnt/ai_ssd2/${CACHE_SUBDIR}_v3"
 )
+
+# 预创建所有 cache_dir (避免 bench_one_round.sh precheck fail)
+# qwen3_4b CACHE_SUBDIR=cache_hicache → cache/cache_hicache_v3 (BIWIN ext4 根分区)
+# qwen3_4b_multiclient CACHE_SUBDIR=cache_multiclient → cache/cache_multiclient_v3
+# qwen3_14b_awq CACHE_SUBDIR=cache_14b_awq → cache/cache_14b_awq_v3
+mkdir -p "cache/${CACHE_SUBDIR}_v3" 2>/dev/null || true
+for mount_dir in /mnt/ai_ssd0 /mnt/ai_ssd1 /mnt/ai_ssd2; do
+    mkdir -p "$mount_dir/${CACHE_SUBDIR}_v3" 2>/dev/null || echo "WARN: cannot create $mount_dir/${CACHE_SUBDIR}_v3"
+done
 
 for entry in "${ROUNDS[@]}"; do
     IFS=':' read -r round_name dev cache_dir <<< "$entry"

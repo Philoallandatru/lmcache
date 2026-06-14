@@ -37,6 +37,9 @@ cache_14b_awq/
 results/hicache/*/cache/
 results/hicache_14b_awq/*/cache/
 results/hicache_writeback/*/cache/
+results/hicache_v3/*/cache/
+results/hicache_14b_awq_v3/*/cache/
+results/hicache_multiclient_v3/*/cache/
 *.bin
 /tmp/hicache/
 

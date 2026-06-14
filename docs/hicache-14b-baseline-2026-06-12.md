@@ -2,6 +2,8 @@
 
 **TL;DR**: Qwen3-14B-AWQ TP=2 + 7000-token prompt,4 盘 Cold TTFT 4.890s ± 2ms,Warm 0.987s ± 1ms,**加速比 4.95×**。盘差 spread 5ms(cold) / 2ms(warm),**被 page cache + L2 host DRAM 100% 掩盖**。iostat 显示各盘 L3 写吞吐差异显著(WDC/ZHITAI/Seagate 突发写 1100 MB/s vs BIWIN 790 MB/s),**但 cold TTFT 仍同质**。
 
+> **📌 v3 mount-fixed 重跑已确认**: 2026-06-15 Phase4 v3 spread 5ms 跟本报告 v2 完全一致, 详见 [hicache-v3-mount-fixed-2026-06-15.md](./hicache-v3-mount-fixed-2026-06-15.md)。
+
 ## 测试配置
 
 | 项 | 值 |
