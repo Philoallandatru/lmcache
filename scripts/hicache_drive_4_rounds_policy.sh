@@ -22,12 +22,19 @@ cd /home/ficus/llm/infer/ai_ssd_prestudy
 
 # round_name : device : cache_dir
 # 加 SUFFIX 避免与 write_through 数据共存时 verify 逻辑撞车
+# v3 (mount-fixed): 盘映射修正 (nvme2n1=Seagate, nvme3n1=ZHITAI), v3 SUBDIR 隔离 v2 老数据
 declare -a ROUNDS=(
-    "baseline_biwin_ext4${SUFFIX}:nvme1n1:cache/baseline${SUFFIX}"
-    "ai_ssd0_wdc_ntfs${SUFFIX}:nvme0n1:/mnt/ai_ssd0/cache_hicache${SUFFIX}"
-    "ai_ssd1_zhitai_ntfs${SUFFIX}:nvme2n1:/mnt/ai_ssd1/cache_hicache${SUFFIX}"
-    "ai_ssd2_seagate_ntfs${SUFFIX}:nvme3n1:/mnt/ai_ssd2/cache_hicache${SUFFIX}"
+    "baseline_biwin_ext4${SUFFIX}:nvme1n1:cache/baseline${SUFFIX}_v3"
+    "ai_ssd0_wdc_ntfs${SUFFIX}:nvme0n1:/mnt/ai_ssd0/cache_hicache${SUFFIX}_v3"
+    "ai_ssd1_seagate_ntfs${SUFFIX}:nvme2n1:/mnt/ai_ssd1/cache_hicache${SUFFIX}_v3"
+    "ai_ssd2_zhitai_ntfs${SUFFIX}:nvme3n1:/mnt/ai_ssd2/cache_hicache${SUFFIX}_v3"
 )
+
+# 预创建所有 cache_dir (避免 bench_one_round.sh precheck fail)
+mkdir -p "cache/baseline${SUFFIX}_v3" 2>/dev/null || true
+for mount_dir in /mnt/ai_ssd0 /mnt/ai_ssd1 /mnt/ai_ssd2; do
+    mkdir -p "$mount_dir/cache_hicache${SUFFIX}_v3" 2>/dev/null || echo "WARN: cannot create $mount_dir/cache_hicache${SUFFIX}_v3"
+done
 
 for entry in "${ROUNDS[@]}"; do
     IFS=':' read -r round_name dev cache_dir <<< "$entry"

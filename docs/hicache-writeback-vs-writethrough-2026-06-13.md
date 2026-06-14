@@ -21,6 +21,8 @@
 | **L3 file count** | **115 × 9MB** | **0** | write_back 异步,测试完还没落盘 |
 | **NTFS 写 IO (avg)** | 179-185 MB/s | **3-5 MB/s (-97%)** | write_back 后台 worker 未启动 |
 
+> **📌 v3 mount-fixed 重跑已确认**: 2026-06-15 Phase3 v3 数据跟 v2 老数据完全一致 (write_back cold 1.403s, 4 盘 spread 1ms, L3 0 file)。详见 [hicache-v3-policy-2026-06-15.md](./hicache-v3-policy-2026-06-15.md)。
+
 **核心洞察**:
 1. **write_back 不暴露盘差** — Cold 不等 L3 写 → 写 IO 几乎看不到,Warm #1 走 L2 DRAM → 4 盘完全相同
 2. **write_back 加速比反而低** — Cold 快了 37ms 但 Warm #1 几乎不变,基数变了
