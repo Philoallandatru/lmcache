@@ -68,6 +68,21 @@ case "$MODEL_KEY" in
         SUBDIR=hicache_l2small
         CACHE_SUBDIR=cache_l2small
         ;;
+    qwen3_4b_multiprompt)
+        # Phase7: 4B + 20 个不同 prompt + replay_p0
+        # 20 个 prompt × 7K tokens = 140K total > L2 (21K) → p0 必 evict
+        # replay p0 时 → L2 miss → 走 L3 reload → 暴露真盘差
+        # 单 client, 经典 mode (依赖 env vars: NUM_PROMPTS=20 REPLAY_PROMPT_ID=0)
+        export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+        export TP_SIZE=1
+        export CTX_LEN=8192
+        export MEM_STATIC=0.7
+        export WATCHDOG_TIMEOUT=1800
+        export PORT=30004
+        export HICACHE_RATIO=2
+        SUBDIR=hicache_multiprompt
+        CACHE_SUBDIR=cache_multiprompt
+        ;;
     qwen3_14b_awq)
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-14B-AWQ
         export TP_SIZE=2
@@ -81,7 +96,7 @@ case "$MODEL_KEY" in
         ;;
     *)
         echo "FATAL: unknown model_key '$MODEL_KEY'"
-        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_14b_awq"
+        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_4b_multiprompt | qwen3_14b_awq"
         exit 1
         ;;
 esac
@@ -152,7 +167,7 @@ for entry in "${ROUNDS[@]}"; do
         echo "FATAL: $jsonl has only $nlines lines (expected >= 6)"
         exit 1
     fi
-    cold_ttft=$(jq -r 'select(.label=="cold") | .latency_s' "$jsonl" 2>/dev/null | head -1)
+    cold_ttft=$(jq -r 'select(.label=="cold" or .label=="p0") | .latency_s' "$jsonl" 2>/dev/null | head -1)
     echo "[verify] $round_name: cold TTFT=$cold_ttft  lines=$nlines"
     cold_ms=$(awk -v t="$cold_ttft" 'BEGIN { printf "%d", t*1000 }')
     if [ -z "$cold_ttft" ] || [ "$cold_ttft" = "null" ]; then
@@ -164,10 +179,12 @@ for entry in "${ROUNDS[@]}"; do
     # 4B cold 期望 ~1.4s, 阈值 1400ms
     # 4B multiclient cold N=4 期望 ~1.7s (BIWIN ext4), 阈值 1600ms (NTFS 期望 >2s)
     # 4B l2small cold 期望 30K prompt 长, BIWIN ~3-5s / NTFS ~15-30s, 阈值 3000ms
+    # 4B multiprompt p0 cold 期望 ~1.5s (L1+L2 miss 写 L3), 阈值 1300ms
     case "$MODEL_KEY" in
         qwen3_4b)              MIN_COLD_MS=1400 ;;
         qwen3_4b_multiclient)  MIN_COLD_MS=1600 ;;
         qwen3_4b_l2small)      MIN_COLD_MS=3000 ;;
+        qwen3_4b_multiprompt)  MIN_COLD_MS=1300 ;;
         qwen3_14b_awq)         MIN_COLD_MS=2500 ;;
     esac
     if [ "$cold_ms" -lt "$MIN_COLD_MS" ]; then
