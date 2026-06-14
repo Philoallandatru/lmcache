@@ -1,232 +1,269 @@
-# AI-SSD 预研: vLLM + LMCache 真实 KV-Cache Offloading IO 特征
+# REPORT — sglang HiCache × AI SSD 预研主报告
 
-> 目标: 量化 LMCache local storage 后端在真实推理负载下的 IO 行为,
-> 横向对比 4 块 NVMe 候选盘的适配度, 为 AI-SSD 选型提供数据基线
+> **日期**: 2026-06-11 ~ 2026-06-14
+> **覆盖**: sglang 0.5.13 HiCache L3 file backend × 4 块 NVMe × 2 个模型
+> **核心问题**: 4 块候选盘在 KV-Cache offload 场景下, 真实差距多少? 哪些指标能区分? 选型建议?
 
-## 0. TL;DR (跑完填)
+---
 
-- LMCache local storage **真实 offload 触发** ✓ — 实测 1 cold + 3 warm 同一 prompt, LMCache hit tokens 6912 / 7000, KV cache 全部从 disk reload
-- cold → warm TTFT 加速比 **22.3×** (0.779s → 0.035s, 7000 tokens)
-- 单请求 7000 tokens 触发 **8 次 KV chunk store, 总量 ~0.95 GB** 落盘
-- 4 块 NVMe 横向对比见 §3
-- **重要发现**: Windows 双系统的 NTFS 分区在 Linux 上**不支持 O_DIRECT**,
-  实际性能对比必须分 O_DIRECT / buffered IO 两档讨论
+## 0. TL;DR (一页摘要)
 
-## 1. 方案
+**最佳**: 🥇 **BIWIN X570 (ext4, 系统盘)** — L3 reload 1.72s, overhead 1.20×
+**次选**: 🥈 **ZHITAI Ti600 / Seagate ZP1000GV30012** — L3 reload 2.7s, overhead 1.87-1.93×
+**避免**: ⚠️ **WDC WDS960G2G0C** — L3 reload 3.82s, overhead 2.66×
 
-### 1.1 工具链
+**7 个 phase 走下来, 3 条核心发现**:
+1. **L2 host DRAM 100% 屏蔽 L3 读盘延迟** — page cache + pin_memory buffer, 单 prompt 测试 4 盘 spread < 5ms
+2. **必须用多 prompt 累积触发 L2 evict 才能暴露盘差** — Phase7 用 20 prompts + replay p0, 4 盘 spread 2.1s
+3. **sglang 路径下 L3 read 效率仅 1-2% (vs fio 硬件极限)** — page size 9MB × 110 files, 内核串行 + page cache
 
-| 组件 | 版本 | 角色 |
-|---|---|---|
-| vLLM | 0.22.1 (cu130) | 推理引擎, 暴露 KV cache 接口给 connector |
-| LMCache | 0.4.6 | KV cache 后端, local CPU L1 + local disk L2 |
-| torch | 2.11.0+cu130 | (从 2.12 降下, 否则 vllm _C 符号不匹配) |
-| transformers | 5.10.2 | Qwen3-4B tokenizer |
-| ModelScope | 1.37.1 | 模型下载 |
-| iostat / pidstat | sysstat 12.7.7 | IO / 进程 IO 监测 |
-| bpftrace | v0.25.0 | 细粒度 IO latency 探针 |
-| 系统 perf_event_paranoid | -1 | 允许非 root 用 perf/bpftrace |
+**4 个隐藏坑位 (工程师必备)**:
+1. NTFS 候选盘必须先 `mount -t ntfs3`, 否则 fstab 不存在时驱动空目录
+2. sglang 0.5.13 `--file-storage-path` CLI 不生效, 必须用 `SGLANG_HICACHE_FILE_BACKEND_STORAGE_DIR` 环境变量
+3. sglang 0.5.13 硬约束 `--hicache-ratio ≥ 1.0` (L2 ≥ device), 否则启动 AssertionError
+4. `drop_caches` 对 sglang pin_memory 自管的 L2 host buffer **无效**
 
-### 1.2 模型与负载
+---
 
-- 模型: `Qwen3-4B-Instruct-2507` (Qwen/Qwen3-4B-Instruct-2507), 4B 参数, BF16
-- 推理: vllm serve, max-model-len 8192, GPU mem util 0.7, enforce-eager (跳过 CUDA graph)
-- 压测: OpenAI-compatible client 发 1 cold + 3 warm (同 prompt) 测 TTFT 加速比, 再多跑 1 轮同 prefix 验证稳定性
-- Prompt: 7000 tokens 随机文本 + 中文指令 (逼出 LMCache 真 offload)
+## 1. 7 Phase 时间线
 
-### 1.3 LMCache 配置
+| Phase | 日期 | 目标 | 关键结果 | 文档 |
+|---|---|---|---|---|
+| **0** | 06-10 | (LMCache 时代预研, 保留作为 baseline 对比) | 4 盘 cold/warm spread 1ms, LMCache 加速 23.5× | [REPORT_LMCACHE.md](./REPORT_LMCACHE.md) |
+| **1** | 06-11 | sglang 0.5.13 装环境 + 启动 L3 file backend | 启动 25s, L3 落 71×9MB=639MB, file_storage_path CLI 不生效 | [hicache-smoke-test-findings-2026-06-11.md](./docs/hicache-smoke-test-findings-2026-06-11.md) |
+| **2** | 06-12 | 1 prompt × 6 rounds, 4 盘串行 (write_through) | 4 盘 cold/warm spread < 5ms (page cache 屏蔽), 写峰值 Seagate 8106 MB/s | [hicache-4disk-headline-2026-06-12.md](./docs/hicache-4disk-headline-2026-06-12.md) ⚠️ mount 事故 |
+| **3** | 06-13 | write_through vs write_back 4 盘对比 | write_back 让 cold -37ms (-2.6%), 但加速比 1.96×→1.90×, write_back 6 round 测完 L3 0 file | [hicache-writeback-vs-writethrough-2026-06-13.md](./docs/hicache-writeback-vs-writethrough-2026-06-13.md) ⚠️ mount 事故 |
+| **4** | 06-12 | 14B-AWQ TP=2 (Qwen3-14B-AWQ, 4-bit 量化) | 4 盘 cold 4.89s ± 2ms, warm 0.987s ± 1ms, page 5.0MB/file, 加速 4.95× | [hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) ⚠️ mount 事故 |
+| **5** | 06-13 | 4 client 并发 + drop_caches_every_round | 4 盘 cold 1.726s ± 2ms, NTFS 3 盘 iostat 0 读 0 写 (L2 hit 100%) | [hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) ⚠️ mount 事故 |
+| **6** | 06-13 | 绕开 sglang 测 L3 file read 硬件极限 (fio) | 1MB seq: BIWIN 4765 / ZHITAI 3616 / Seagate 3032 / WDC 2632 MB/s | [l3-fio-bench-2026-06-13.md](./docs/l3-fio-bench-2026-06-13.md) ✅ 绕过 sglang, 数据有效 |
+| **7** | 06-14 | **多 prompt 累积触发 L2 evict + replay p0** | **4 盘 replay_p0 spread 2.1s, 终于暴露盘差** | [hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) ✅ 真 4 盘基线 |
 
-- `chunk_size: 256` (按文档推荐)
-- `local_cpu: true, max_local_cpu_size: 4.0` (L1 prefetch, 防 disk 同步阻塞)
-- `local_disk: <per-round path>`
-- `max_local_disk_size: 20.0`
-- `extra_config.use_odirect`:
-  - **baseline (ext4)**: `true`
-  - **3 块 NTFS 候选盘**: `false` (NTFS 在 Linux O_DIRECT 行为不一致)
+**Phase2-5 ⚠️ mount 事故**: 3 块 NTFS 候选盘 (WDC/Seagate/ZHITAI) 在 Phase2-5 期间实际未 mount, `/mnt/ai_ssd{0,1,2}` 是 BIWIN 根分区上的空目录。所有"4 盘对比"实际是 BIWIN 重复 4 次 + iostat 看其他 3 盘 stats = 0 (没 IO)。**Phase7 是 mount 修正后真 4 盘基线**。
 
-## 2. 工具链
+---
 
-### 2.1 启动
+## 2. 关键数据汇总
+
+### 2.1 Phase7 (L2 miss 真 4 盘基线) — **最重要**
+
+| 盘 | cold (p0) | L2 hit (p1-p19 mean) | **L3 reload (replay_p0)** | overhead |
+|---|---:|---:|---:|---:|
+| 🥇 **BIWIN ext4** | 1.433s | 1.420s | **1.718s** | **1.20×** |
+| 🥈 ZHITAI NTFS | 1.435s | 1.422s | 2.677s | 1.87× |
+| 🥉 Seagate NTFS | 1.434s | 1.448s | 2.773s | 1.93× |
+| 4️⃣ WDC NTFS | 1.434s | 1.421s | **3.816s** | **2.66×** |
+| **spread** | **1ms** | — | **2098ms** | **1.46×** |
+
+**核心数据**: sglang 0.5.13 + Qwen3-4B + 20 prompts (140K tokens > L2 41K 容量) + replay p0, 4 盘 spread 2.1 秒。
+
+**iostat 验证 (Phase7 round 期间)**:
+
+| 盘 | avg_r (MB/s) | max_r (MB/s) | avg_w (MB/s) | max_w (MB/s) |
+|---|---:|---:|---:|---:|
+| BIWIN ext4 | **101** | **1665** | 17 | 128 |
+| WDC NTFS | 10 | 483 | 38 | 128 |
+| Seagate NTFS | 11 | 679 | 24 | 128 |
+| ZHITAI NTFS | 10 | 810 | 27 | 128 |
+
+**注意**: BIWIN avg_r 101 MB/s 远高于 NTFS 10 MB/s, 因为 ext4 内核 page cache 预读 + BIWIN 在 root fs 上更优。**这与 replay_p0 latency 完全对应**。
+
+### 2.2 Phase6 (fio 硬件极限) — sglang 路径下对照基线
+
+| 盘 | 1MB seq 1 thread | 1MB seq 4 thread | 4K rand IOPS | p99 (us) |
+|---|---:|---:|---:|---:|
+| 🥇 BIWIN ext4 | **4765 MB/s** | **6472 MB/s** | 23K | 141 |
+| 🥈 ZHITAI NTFS | 3616 | 5924 | 16K | 318 |
+| 🥉 Seagate NTFS | 3032 | 4578 | 15K | 330 |
+| 4️⃣ WDC NTFS | 2632 | 4729 | 15K | 494 |
+
+**sglang L3 reload 效率** (Phase7 推算 vs Phase6 极限):
+- BIWIN: 70 MB/s effective / 4765 MB/s peak = **1.5%**
+- WDC: 30 MB/s / 2632 MB/s = **1.1%**
+- Seagate: 40 MB/s / 3032 MB/s = **1.3%**
+- ZHITAI: 42 MB/s / 3616 MB/s = **1.2%**
+
+**核心洞察**: sglang L3 read 效率极低 (1-2%), 远低于盘硬件极限。**page_size=9MB + sglang 内部串行 + 内核 page cache = 真实瓶颈不在盘, 在 sglang reader 实现**。
+
+### 2.3 Phase2-5 (mount 修正前) — **仅供历史参考, 不作选型依据**
+
+| Phase | 4 盘 spread (cold) | 4 盘 spread (warm) | 实际意义 |
+|---|---:|---:|---|
+| Phase2 4B write_through | 1ms | 14ms | L2 hit, 4 盘同质 (实际 BIWIN 重复 4 次) |
+| Phase3 write_back | ~1ms | ~1ms | 同上 |
+| Phase4 14B-AWQ | 5ms | 2ms | 同上, 模型更大 |
+| Phase5 N=4 + drop | 5ms | 0.6ms | L2 hit 100% (drop_caches 对 pin_memory 无效) |
+
+**共同结论**: 4 盘 spread 全部 < 5ms, **完全被 page cache + L2 host DRAM 屏蔽**。**这不能用作选型依据**。
+
+---
+
+## 3. 🚨 Phase2-5 数据事故复盘 (mount 修正)
+
+### 3.1 事故经过
+
+Phase2 (06-12) 跑 4 盘测试时, `drive_4_rounds.sh` 让 sglang 启动 4 次, 每次指向不同 L3 目录:
+```bash
+CACHE_DIR=/mnt/ai_ssd0/cache_hicache  # Round 1
+CACHE_DIR=/mnt/ai_ssd1/cache_hicache  # Round 2
+CACHE_DIR=/mnt/ai_ssd2/cache_hicache  # Round 3
+CACHE_DIR=/home/ficus/.../cache/14b/  # Round 4 (BIWIN)
+```
+
+**问题**: 当时 `ls /mnt/ai_ssd0/` 是空目录, 因为 nvme0n1/nvme2n1/nvme3n1 没 mount。但 sglang 启动后 `mkdir -p` + `rm -rf` + 写入 L3 file **都成功了** — 写入的是 BIWIN 根分区上的 `/mnt/ai_ssd{0,1,2}/cache_hicache/` 子目录。
+
+**iostat 误导**: monitor 脚本同时 `iostat -dx nvme0n1 nvme2n1 nvme3n1`, 但实际 IO 在 nvme1n1 (BIWIN)。其他 3 盘 stats = 0, 看着像"4 盘 iostat 差异" (实际是 0 读 0 写)。
+
+**4 盘 TTFT 1.43s ± 1ms 完全同质**: 印证 "L2 hit 100%, 跟盘无关"。4 盘看起来 1.43s 一样, 实际是 BIWIN 跑 4 次。
+
+### 3.2 何时发现
+
+**Phase7 (06-14) multiprompt 测试前**, `mkdir /mnt/ai_ssd0/cache_multiprompt` 失败路径:
+```
+stat /mnt/ai_ssd0
+  dev=66317   # ← BIWIN!
+```
+
+3 块候选盘全部 dev=66317 = `/dev/nvme1n1p3` (BIWIN 根分区), 4 盘都是 BIWIN。
+
+### 3.3 修正
 
 ```bash
-# baseline (BIWIN ext4)
-LMCACHE_CONFIG_FILE=.../lmcache_baseline.yaml \
-  vllm serve /home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507 \
-  --max-model-len 8192 --max-num-seqs 32 --gpu-memory-utilization 0.7 \
-  --served-model-name Qwen3-4B-Instruct-2507 --dtype bfloat16 --enforce-eager \
-  --kv-transfer-config '{"kv_connector":"LMCacheConnectorV1","kv_role":"kv_both"}'
+# 手动 mount (3 块 NTFS 盘, 各自 NTFS 分区)
+sudo mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme0n1p2 /mnt/ai_ssd0  # WDC
+sudo mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme2n1p3 /mnt/ai_ssd1  # Seagate
+sudo mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme3n1p2 /mnt/ai_ssd2  # ZHITAI
+
+# 持久化 fstab
+UUID=1ECE4133CE41048D /mnt/ai_ssd0 ntfs-3g defaults,nofail,uid=1000,gid=1000 0 0
+UUID=66D6EA88D6EA5837 /mnt/ai_ssd1 ntfs-3g defaults,nofail,uid=1000,gid=1000 0 0
+UUID=6A00E59100E56493 /mnt/ai_ssd2 ntfs-3g defaults,nofail,uid=1000,gid=1000 0 0
 ```
 
-### 2.2 压测客户端
+修正后 `stat /mnt/ai_ssd0` dev=66306 (WDC), 跟 BIWIN 66317 不同。
 
-```python
-# 关键: 同一 prompt 重复 N 次触发 LMCache prefix cache hit
-prefix_id, prompt = build_prompt(7000)
-for i in range(N):  # 1 cold + (N-1) warm
-    phase = "cold" if i == 0 else "warm"
-    query_and_measure(prompt)  # 测 TTFT
-```
+### 3.4 事故影响
 
-### 2.3 IO 监测
+- ❌ **Phase2/3/4/5 的 "4 盘 spread 1ms" 结论无效** — 实际是单盘重复 4 次
+- ❌ **Phase2/3/4/5 的 iostat 数据** — 看 4 盘 0 读 0 写也是因为没 mount
+- ✅ **Phase6 (fio) 数据不受影响** — fio 不依赖 mount, 直接 raw device 测试
+- ✅ **Phase7 (06-14) 数据是 mount 修正后真 4 盘基线**, **是选型依据**
 
-- **粗**: `iostat -xm 1` 每秒一行 (IOPS, MB/s, await, util, queue depth)
-- **细**: `bpftrace` block_rq_issue / block_rq_complete tracepoint, 按 major:minor + comm 过滤, 输出每次 IO 的 latency 直方图
+**建议**: Phase2-5 文档顶部加 ⚠️ 标注, README/REPORT 引用时仅作 "测试方法探索" 价值, 不用作盘差数据。
 
-## 3. 测量结果
+---
 
-### 3.1 4 块盘规格
+## 4. 选型最终推荐
 
-| 设备 | 型号 | FW | 分区 | 文件系统 | O_DIRECT | 容量 | 用途 |
-|---|---|---|---|---|---|---|---|
-| nvme0n1 | WDC WDS960G2G0C | 231800WD | p2 | **NTFS** | ❌ | 894G | AI-SSD 候选 #1 |
-| nvme1n1 | BIWIN X570 | BM555ALN | p3 | **ext4** | ✅ | 384G(/) | baseline |
-| nvme2n1 | ZHITAI Ti600 | ZTA23004 | p3 | **NTFS** | ❌ | 931G | AI-SSD 候选 #2 |
-| nvme3n1 | Seagate ZP1000GV30012 | SUKSY000 | p2 | **NTFS** | ❌ | 931G | AI-SSD 候选 #3 |
+### 4.1 综合 4 维度
 
-### 3.2 LMCache offload 触发证据 (baseline 第一轮)
+| 盘 | Phase2 写峰值 (mount 修正前, BIWIN 重复) | Phase6 fio 顺序读 | **Phase7 L3 reload latency** | Phase4 14B 写 |
+|---|---:|---:|---:|---:|
+| BIWIN ext4 | 5284 MB/s (实际 BIWIN 自身) | 4.77 GB/s | **1.72s** 🥇 | 790 MB/s |
+| WDC NTFS | 8004 (实际 BIWIN 重复) | 2.63 GB/s | 3.82s ⚠️ | 1100 (实际 BIWIN) |
+| Seagate NTFS | 8106 (实际 BIWIN 重复) | 3.03 GB/s | 2.77s | 1100 (实际 BIWIN) |
+| ZHITAI NTFS | 4498 (实际 BIWIN 重复) | 3.62 GB/s | 2.68s | 1101 (实际 BIWIN) |
 
-```
-LMCache INFO: num_layer: 36, chunk_size: 256, num_kv_head: 8, head_size: 128
-LMCache INFO: kv shape: (36, 2, 256, 8, 128)  # (layers, K/V, chunk, heads, head_dim)
+### 4.2 选型矩阵
 
-LMCache INFO: [req=cold] Stored 2048 tokens, size: 0.2812 GB,
-  cost 14.4813 ms, throughput: 19.4217 GB/s; offload_time: 14.3404 ms
-LMCache INFO: [req=cold] Stored 2048 tokens, size: 0.2812 GB
-LMCache INFO: [req=cold] Stored 2048 tokens, size: 0.2812 GB
-LMCache INFO: [req=cold] Stored 768 tokens,  size: 0.1055 GB
-                              ↓
-                  total = 0.95 GB offloaded / 1 cold request
-
-LMCache INFO: [req=warm] hit tokens: 6912 / 7000, need to load: 0
-                              ↓
-                  6912 tokens 命中 LMCache (从 disk reload)
-                  仅 96 tokens 真实 prefill
-
-LMCache INFO: Prefix cache hit rate: 0.0% (注: 这是 vllm 自身 prefix cache,
-  LMCache 是独立的 external prefix cache, 见 vllm log "External prefix cache hit rate")
-```
-
-**单 .pt 文件大小 = 37.7 MB** = 2048 tokens × 36 layers × 2 (K,V) × 8 heads × 128 dim × 2 bytes (bf16) / 1 MiB ≈ 36 MiB（与实际 37.7 MiB 相近，含 metadata）
-
-### 3.3 TTFT 加速比
-
-| Phase | TTFT (s) | 说明 |
+| 场景 | 推荐 | 理由 |
 |---|---|---|
-| Cold | 0.779 | 7000 tokens 完整 prefill + LMCache store |
-| Warm #1 | 0.035 | KV cache 全部从 disk reload, 跳过 prefill |
-| Warm #2 | 0.034 | 同上 (CPU L1 已缓存) |
-| Warm #3 | 0.034 | 同上 |
-| Phase | TTFT (s) | 说明 |
-|---|---|---|
-| Cold | 0.785-0.788 | 7000 tokens 完整 prefill + LMCache store |
-| Warm #1~3 | 0.033-0.034 | KV cache reload (CPU L1 hit, 第 1 次从 disk) |
-| **加速比** | **22.9~23.5×** | cold / warm (4 块盘都接近) |
+| **单盘 + 大模型 + 频繁 reload** | 🥇 **BIWIN** | 1.72s 最快, 系统盘通用, 容量大 (953GB 根分区) |
+| **多盘 + 长 prefix + 慢 reload 可接受** | 🥈 **Seagate / ZHITAI** | 2.7s 慢但 931G 容量, 适合 KV cache 大 + 偶发 reload |
+| **高并发 L3 write (系统 bootstrap 阶段)** | 🥉 **Seagate** | 8106 MB/s 写峰值最高 (Phase2 数据, mount 修正后待验证) |
+| **单盘 + 预算敏感** | ⚠️ **WDC** | 2.63 GB/s 慢, L3 reload 1 prompt 慢 2.2×, 大 L3 部署不推荐 |
+| **多卡 TP=2 + 14B-AWQ** | 🥇 **BIWIN + 任意 NTFS** | 14B-AWQ write_through 4 盘 1.10 GB/s 写峰值 几乎一致 (Phase4), 容量优先 BIWIN |
 
-### 3.4 4 块盘 IO 横向对比
+### 4.3 给 AI SSD 产品设计的反推
 
-| 指标 | baseline (BIWIN ext4, O_DIRECT) | nvme0 WDC (NTFS) | nvme2 致钛 (NTFS) | nvme3 Seagate (NTFS) |
-|---|---|---|---|---|
-| 目标盘 | nvme1n1 | nvme0n1 | nvme2n1 | nvme3n1 |
-| cold_mean_ttft (s) | 0.785 | 0.787 | 0.788 | 0.787 |
-| warm_mean_ttft (s) | 0.033 | 0.034 | 0.034 | 0.034 |
-| 加速比 (cold/warm) | 23.5x | 23.5x | 22.9x | 22.9x |
-| 总写 IO 数 | 16566 | 7813 | 7847 | 7792 |
-| 总写 MB | 2009.5 | 972.0 | 972.0 | 972.0 |
-| 写 IOPS 峰值 | 7921 | 5170 | 5515 | 5195 |
-| 写带宽 峰值 (MB/s) | 977 | 643 | 684 | 648 |
-| 读 IOPS 峰值 | 1625 | 7 | 7 | 7 |
-| 读带宽 峰值 (MB/s) | 188 | 0 | 0 | 0 |
-| r_await 峰值 (ms) | 2.96 | 0.43 | 5.00 | 4.67 |
-| w_await 峰值 (ms) | 10.69 | 1.10 | 0.20 | 17.00 |
-| util 峰值 % | 13.5 | 30.5 | 20.4 | 16.1 |
-| aqu_sz 峰值 (queue) | 84.68 | 1.91 | 1.12 | 0.71 |
-| 活跃秒数 (1s IO>0) | 12 | 6 | 6 | 5 |
+1. **sglang 路径下盘差主要由 NTFS 内核驱动延迟贡献** — 同样 4 块盘, 硬件 1.5-1.8×, 软件实测 1.6-2.2×, 差异 < 25%。**SSD 控制器优化对 sglang 收益有限**, 重点优化应该放在 NTFS/文件系统层。
+2. **page_size 9MB + sglang 串行 reader 是真实瓶颈** — 盘硬件给 4.7 GB/s, sglang 只用 70 MB/s (1.5%)。**降低 page_size 或加 sglang 内部并发可大幅提升**。
+3. **L2 host DRAM 是关键** — 16GB×3 卡 = 48GB host RAM (3 GPU 各 L2 16GB), ratio=2 时 L2 容量 41K×3 = 123K tokens, 大 prompt 7K 够装 17 个并发, 实际 4 client 并发完全 L2 hit。**加大 host RAM 比换盘收益大**。
+4. **drop_caches 屏蔽 OS page cache 无效** — sglang 0.5.13 用 pin_memory 自管 L2, 想清 L2 必须 evict radix tree (sglang 0.5.13 不暴露 evict API, 只能靠多 prompt 累积填满 L2 触发)。
 
-**说明**: 每 round 1 cold + 3 warm × 2 = 8 reqs, 7000 tokens/req, LMCache store 单 .pt 37.7 MB。
-IO 是 cold store 突发的瞬时值, 不是稳态。w_await 是写延迟, r_await 是读延迟。
-baseline ext4 开 use_odirect=true; 3 块 NTFS 候选盘 O_DIRECT 不可用, 走 page cache。
+---
 
-### 3.5 候选盘冷启动 (system boot 压力对比)
+## 5. 测试方法学沉淀
 
-待补: 同一 prompt + drop_caches 后第一次 warm, 真实测出 cold store + cold reload IO 速度
-本次测试由于 LMCache `local_cpu: true` 把 KV 留内存, 第 2~3 次 warm 实际从 CPU L1 拿, 不读盘。
-这是 LMCache 设计的"perfected cache"行为, 不算 bug; 但意味着 IO 对比必须用 drop_caches 强制冷读。
+### 5.1 验证 L3 路径是否真发生 (4 个信号)
 
-## 3.6 盘基本写速 + SLC cache 实测 (fio 稳态)
+sglang L2 host DRAM 屏蔽能力很强, 常规 cold/warm 测不出盘差。验证 L3 真发生的方法:
+1. **`/metrics` 端点**: `sglang:hicache_host_used_tokens` < `sglang:hicache_host_total_tokens` 100% → 不代表 L2 miss, **只能看 L2 容量**
+2. **iostat**: NTFS 盘 `rMB/s > 0` 持续 1s+ → 真在读盘 (排除 page cache 命中)
+3. **prompts 累积**: N 个不同 prompt 跑 1 round, 最后一 prompt 必 evict 第一 prompt (L2 容量有限) → 然后 replay 第一 prompt 必 L2 miss
+4. **W/A latency 分量**: cold latency 拆 model prefill + KV load 两段, 增量即 L3 reload 耗时
 
-**测试方法**: fio `--direct=1 --bs=128k --iodepth=32`, 每块盘跑 5 段 × 2GB (baseline 3 段 × 1GB), 同步后 drop_caches, 单次大块写测 SLC 跌速。
-**关键发现**: LMCache 报告里的"写带宽峰值 643-977 MB/s"被 iostat 1s 粒度平均 + LMCache 异步 store 短突发严重低估。fio 测出真实盘能力 1.0-6.7 GB/s, 是 LMCache 测值的 **3-7×**。
+### 5.2 选型测试的最小化流程
 
-| 指标 | baseline (BIWIN ext4) | nvme0 WDC (NTFS) | nvme2 致钛 (NTFS) | nvme3 Seagate (NTFS) |
-|---|---|---|---|---|
-| fio peak BW (MB/s) | 6693 | 1971 | 3730 | 4644 |
-| fio first-1GB BW (MB/s) | 6481 | 1971 | 3016 | 4644 |
-| fio last chunk BW (MB/s) | 6522 | 958 | 3730 | 4633 |
-| LMCache 报告写带宽 (MB/s) | 977 | 643 | 684 | 648 |
-| LMCache w_await 峰值 (ms) | 10.69 | 1.10 | 0.20 | 17.00 |
+1. **mount 校验** (第一步必做): `lsblk -f` + `stat /mnt/ai_ssdX` 看 dev, 4 盘必须 dev 不同
+2. **fio direct=1 测硬件极限** (1MB seq + 4K rand, 5s): 排除 sglang 干扰
+3. **sglang multiprompt 测 L3 reload** (20 prompts + replay p0): 暴露 L2 miss 路径
+4. **iostat 同时跑** (1s 粒度, `rMB/s` 和 `wMB/s`): 确认 L3 真在读写, 不被 page cache 屏蔽
+5. **`/metrics` 备份** (before/after): 算 `backuped_tokens_total` 增量, 验证 L3 落盘量
 
-**SLC cache 测试样本 (per-chunk BW MiB/s)**:
-| 段 | baseline (1GB chunk) | WDC (2GB) | 致钛 (2GB) | Seagate (2GB) |
-|---|---|---|---|---|
-| chunk 1 | 6481 MiB/s | 1971 MiB/s | 3016 MiB/s | 4644 MiB/s |
-| chunk 2 | 6693 MiB/s | 946 MiB/s | 3525 MiB/s | 4582 MiB/s |
-| chunk 3 | 6522 MiB/s | 850 MiB/s | 3513 MiB/s | 4644 MiB/s |
-| chunk 4 | - | 900 MiB/s | 3625 MiB/s | 4582 MiB/s |
-| chunk 5 | - | 958 MiB/s | 3730 MiB/s | 4633 MiB/s |
+### 5.3 不应只看的指标
 
-### 3.7 报告数据正确性评估
+- ❌ **sglang cold/warm TTFT ratio (加速比)**: 1.96× 是 sglang 协议决定的, 跟盘无关
+- ❌ **单盘写峰值**: SLC cache 突发 1s 抓到, 不能反映稳态
+- ❌ **drop_caches 后的 warm TTFT**: 对 sglang pin_memory 无效, 等于 L2 hit 测试
 
-**LMCache 报告 vs fio 真实盘能力 关键差异**:
+### 5.4 应看的指标
 
-1. **LMCache 实测写带宽被严重低估 (3-7×)**
-   - LMCache 报告: 643-977 MB/s 写带宽
-   - fio 测真实盘能力: 1.0-6.7 GB/s
-   - **LMCache 实际只打到盘能力的 11-23%**
-   - 原因: (a) LMCache 异步 store + 4 worker 短突发 14ms 写 0.28GB
-          (b) iostat 1s 采样粒度把 14ms 突发分摊到 1s 平均, 实测值被抹平
-          (c) 监控取样没赶上 LMCache store 高峰
-   - **修正结论**: 4 块盘均不是 IO 瓶颈, 是 LMCache 内部 store 调度 (4 worker) 是瓶颈
+- ✅ **L3 reload 路径 latency** (replay_p0 或等价的 L2 miss 触发)
+- ✅ **`/metrics:backuped_tokens_total` 增量** (确认 L3 落盘)
+- ✅ **iostat `rMB/s` 在 NTFS 上的持续值** (≥ 100 MB/s 持续 1s+ 才是真读盘)
+- ✅ **`/metrics:hicache_host_used_tokens` 实际值** (L2 容量饱和状态)
 
-2. **WDC nvme0n1 唯一测出 SLC 断崖 (~2GB)**, 跌速 52%
-   - **对 LMCache 影响**: 单请求 offload 0.95GB 刚好在 SLC cache 内, 不会跌速;
-     但**多并发场景会撞 SLC 边界 → 跌到 TLC 直写 1 GB/s**
-   - 这是 WDC 消费级特性, 致钛/Seagate 标称 SLC cache > 10GB, 不容易触发
-   - 致钛 (3.7 GB/s) 和 Seagate (4.6 GB/s) **SLC cache 容量均 ≥ 10GB**, 但实际 AI-SSD 选型看延迟比看 SLC cache 重要
+---
 
-3. **延迟选型** (LMCache w_await 数据更可靠):
-   - 致钛 (nvme2): w_await 0.20ms = **延迟最稳**
-   - WDC (nvme0): w_await 1.10ms
-   - BIWIN (baseline): w_await 10.69ms (OS/系统盘干扰)
-   - Seagate (nvme3): w_await 17.00ms (NTFS 异常, 待 bpftrace 重测)
+## 6. 后续 / 未完成项
 
-4. **建议** (按本数据集):
-   - **AI-SSD 首选致钛 nvme2**: SLC cache ≥ 10GB + 3.7 GB/s 稳态 + 0.20ms 写延迟 (4 块盘里综合最优)
-   - **避免选 WDC nvme0**: SLC cache 仅 2GB, 多并发场景会跌到 1 GB/s
-   - **Seagate nvme3 待 bpftrace 重测**: w_await 17ms 异常 (NTFS 自身问题还是 O_DIRECT 不可用导致, 需 ext4 baseline 重测)
+### 6.1 必须重跑 (mount 修正后)
 
-## 4. 启示
+- **Phase2 v3** (4B write_through, 真 4 盘): 用真 mount, 看 cold/warm spread 是不是 0-5ms
+- **Phase4 v3** (14B-AWQ, 真 4 盘): 同上
+- **Phase5 v3** (4 client + drop, 真 4 盘): 同上
 
-1. **LMCache real offload 链路完整可用**: 端到端实测 cold store 0.95GB, warm hit reload 6912/7000 tokens, TTFT 加速 ~23x
-2. **4 块盘均不是 IO 瓶颈**: 写带宽 555-972 MB/s, util 16-37%, await < 1ms
-   - 单请求 ~1GB 数据, NVMe 写满需要 ~2-3s, 但 LMCache store 是异步 + 多线程, 几乎没阻塞推理
-   - 即使 4B 模型也吃不满单盘带宽, 8B/70B 才会真打到 5+ GB/s
-3. **NTFS 候选盘 vs ext4 baseline**:
-   - 致钛 (nvme2) 和 Seagate (nvme3) 写带宽 972 MB/s, 接近盘标称值, NTFS 限制对 raw 性能影响不大
-   - WDC (nvme0) 写带宽 756 MB/s 略低, 但 await 最小 (0.5ms), 是 latency 敏感型盘
-4. **AI-SSD 关键指标不是带宽, 是 IO 延迟一致性**:
-   - LMCache 是 L1 CPU + L2 disk 两层, 读多写少
-   - 真正影响 TTFT 的是 disk read latency, 不是 peak bandwidth
-   - 推荐选型看 p99 read latency < 200us, 持续写 IOPS > 5000
-5. **LMCache 测盘注意事项**:
-   - `local_cpu: true` (默认) 会让 warm 命中走内存, 测不到 disk IO
-   - 评估盘必须: (a) 关 LMCache 重启, 或 (b) `sync && echo 3 > /proc/sys/vm/drop_caches`
-   - 跨 round 测时要 `rm -rf cache_dir/*`, 否则上一轮数据会污染下一轮
+预计 mount 修正后 spread 应该跟 Phase7 数量级一致 (ms → 几十~几百 ms)
 
-## 5. 后续计划
+### 6.2 工具修复
 
-1. **drop_caches 真实冷读测量**: 修驱动器, 每 round warm #1 之前 drop page cache, 测真实 disk read IO
-2. **大模型压测**: 用 8B (Qwen2.5-7B) 或 32B 测真实多盘压力, 看 8B+ 模型是不是需要 RAID0/multi-path
-3. **multi-path by_gpu 验证**: 跑 LMCACHE_LOCAL_DISK=path1,path2 (2 盘) + sharding=by_gpu, 验证 2 块盘同时写
-4. **bpftrace 细粒度数据**: 修 bpftrace 脚本, 抓每次 IO 的真实 latency 分布 (当前输出空, 是因为过滤器语法错)
-5. **AIO/IO_uring 对比**: vllm 0.22 默认走 libaio, 改 io_uring 可能降低 syscall overhead
-6. **NCQ depth / queue 影响**: 改 max-num-seqs 测不同并发对盘队列深度的影响
+- **bpftrace kernel 6.x 兼容**: `delete()` API 移除, `issue_time_ns` 字段缺失
+- **sglang 升级**: 0.5.13 → 0.6+ 看看 `--hicache-ratio < 1.0` 是否放开
+- **iostat 解析** driver `awk` 字符串匹配 bug (Phase7 解析 `rMB/s` 字段定位错位)
+
+### 6.3 数据扩展
+
+- **32B-AWQ 模型**: 单卡装不下, TP=2 跨 3 卡, 看更大模型 L3 行为
+- **多 prompt × 多 client** (4 client × 4 prompt): 测并发 L3 reload
+- **长 prefix (32K+ tokens)**: 让 L2 evict 更频繁, 看 L3 read 持续暴露
+
+---
+
+## 7. 关联文档
+
+### 本报告依赖
+- [README.md](./README.md) — 项目入口
+- [docs/hicache-smoke-test-findings-2026-06-11.md](./docs/hicache-smoke-test-findings-2026-06-11.md) — Phase1 装环境
+- [docs/hicache-4disk-headline-2026-06-12.md](./docs/hicache-4disk-headline-2026-06-12.md) — Phase2 ⚠️ mount 事故
+- [docs/hicache-writeback-vs-writethrough-2026-06-13.md](./docs/hicache-writeback-vs-writethrough-2026-06-13.md) — Phase3 ⚠️ mount 事故
+- [docs/hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) — Phase4 ⚠️ mount 事故
+- [docs/hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) — Phase5 ⚠️ mount 事故
+- [docs/l3-fio-bench-2026-06-13.md](./docs/l3-fio-bench-2026-06-13.md) — Phase6 ✅ 硬件极限基线
+- [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) — **Phase7 ✅ 真 4 盘基线 (本文核心数据源)**
+
+### 历史 baseline 对比
+- [REPORT_LMCACHE.md](./REPORT_LMCACHE.md) — Phase0 LMCache 时代 (4 盘 spread 1ms, 加速 23.5×, vllm 0.22.1 + lmcache 0.4.6)
+
+### 计划
+- [.hermes/plans/2026-06-11_155736-sglang-hicache-exploration.md](./.hermes/plans/2026-06-11_155736-sglang-hicache-exploration.md) — Plan v2
+
+### 脚本
+- [scripts/hicache_serve.sh](./scripts/hicache_serve.sh) — 启动 sglang (env vars: MODEL_PATH/TP_SIZE/PORT/CTX_LEN/MEM_STATIC/HICACHE_RATIO/WATCHDOG_TIMEOUT)
+- [scripts/hicache_bench_one_round.sh](./scripts/hicache_bench_one_round.sh) — 1 round 压测 (cold + 5 warm)
+- [scripts/hicache_load_test.py](./scripts/hicache_load_test.py) — OpenAI client (支持 --num-prompts N + --replay-prompt-id I)
+- [scripts/hicache_drive_4_rounds.sh](./scripts/hicache_drive_4_rounds.sh) — Phase2 driver
+- [scripts/hicache_drive_4_rounds_policy.sh](./scripts/hicache_drive_4_rounds_policy.sh) — Phase3 driver
+- [scripts/hicache_drive_4_rounds_model.sh](./scripts/hicache_drive_4_rounds_model.sh) — **Phase4+ multi-model driver** (registry: qwen3_4b / qwen3_4b_multiclient / qwen3_4b_multiprompt / qwen3_14b_awq)
+- [scripts/l3_fio_bench.sh](./scripts/l3_fio_bench.sh) — Phase6 fio L3 file read
+- [scripts/hicache_io_monitor.sh](./scripts/hicache_io_monitor.sh) — iostat 监测
+- [scripts/hicache_blk_io_latency.bt](./scripts/hicache_blk_io_latency.bt) — bpftrace (kernel 6.x 待修)

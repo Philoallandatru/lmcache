@@ -1,54 +1,121 @@
-# lmcache
+# sglang HiCache × AI SSD 预研
 
-> vLLM + LMCache 真实 KV-Cache Offloading 在 4 块 NVMe 上的 IO 特征预研
+> **日期范围**: 2026-06-11 ~ 2026-06-14
+> **状态**: ✅ 完成 7 phases,L2-miss 路径盘差已暴露 (4 盘 spread 2.1s)
+> **覆盖**: sglang 0.5.13 + Qwen3-4B-Instruct-2507 + Qwen3-14B-AWQ × 4 块 NVMe
+> **核心交付**: AI-SSD 选型基线 + 已知坑位清单 + 端到端可复现脚本
 
 ## 目录
 
-- [REPORT.md](./REPORT.md) — 主报告 (方案 / 测量 / 启示 / 后续)
+- [REPORT.md](./REPORT.md) — 主报告 (TL;DR / 7 phase 时间线 / 选型推荐 / 后续)
+- [docs/](./docs/) — 各 phase 详细数据报告 (7 篇)
 - [scripts/](./scripts/) — 启动 / 压测 / IO 监测 / 驱动器
-- [results/](./results/) — 4 轮的 TTFT + 测点 JSONL
-- [logs/](./logs/) — iostat + 驱动器 + 压测 + bpftrace 原始输出
+- [results/](./results/) — 原始测试数据 (iostat / jsonl / cache_file_list / metrics)
 
-## 速览
+## 速览 (TL;DR)
 
-| 指标 | baseline (BIWIN ext4) | nvme0 WDC (NTFS) | nvme2 致钛 (NTFS) | nvme3 Seagate (NTFS) |
-|---|---|---|---|---|
-| cold TTFT | 0.785s | 0.787s | 0.788s | 0.787s |
-| warm TTFT | 0.033s | 0.034s | 0.034s | 0.034s |
-| 加速比 | 23.5× | 23.5× | 22.9× | 22.9× |
-| 写带宽峰值 | 977 MB/s | 643 MB/s | 684 MB/s | 648 MB/s |
-| w_await 峰值 | 10.69 ms | 1.10 ms | 0.20 ms | 17.00 ms |
-| util 峰值 | 13.5% | 30.5% | 20.4% | 16.1% |
+**4 块候选盘在 sglang HiCache L3 read 场景下的真实排名** (Phase7 multiprompt 触发 L2 evict):
 
-**结论**: 4 块盘均不是 IO 瓶颈。**致钛 nvme2** 写延迟最低 (0.20ms) + 高带宽 (684 MB/s)，是 AI-SSD 最优候选。
+| 排名 | 盘 | L2 hit (p1-p19) | L3 reload (replay_p0) | overhead |
+|---|---|---:|---:|---:|
+| 🥇 | **BIWIN X570 (ext4, system)** | 1.42s | **1.72s** | 1.20× |
+| 🥈 | ZHITAI Ti600 (NTFS) | 1.42s | 2.68s | 1.87× |
+| 🥉 | Seagate ZP1000GV30012 (NTFS) | 1.42s | 2.77s | 1.93× |
+| 4️⃣ | WDC WDS960G2G0C (NTFS) | 1.42s | **3.82s** | **2.66×** |
+
+**关键洞察**:
+- L2 host DRAM hit 时 4 盘 **完全无差异** (cold/warm spread < 5ms)
+- L2 miss → L3 读盘时 4 盘 spread **2.1 秒 (WDC vs BIWIN = 2.22×)**
+- NTFS 比 ext4 慢 1.6-2.2× (kernel 驱动开销)
+- WDC 不推荐做大 L3 部署
 
 ## 重现
 
 ```bash
-# 1) 装环境
-cd ~/llm && source .venv/bin/activate   # vllm 0.22.1 + lmcache 0.4.6 + torch 2.11
-# 2) 拉模型
+# 1) 装环境 (复用 vllm 时代的 ~/llm/.venv/)
+cd ~/llm && source .venv/bin/activate
+
+# 2) 拉模型 (4B 8G, 14B-AWQ 10G; ModelScope 自动)
 python -c "from modelscope import snapshot_download; snapshot_download('Qwen/Qwen3-4B-Instruct-2507', cache_dir='/home/ficus/llm/models')"
-# 3) 挂载候选盘
-sudo -n mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme0n1p2 /mnt/ai_ssd0
-sudo -n mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme2n1p3 /mnt/ai_ssd1
-sudo -n mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme3n1p2 /mnt/ai_ssd2
-# 4) 跑 4 轮
-bash scripts/drive_rounds.sh
+
+# 3) 挂载候选盘 (4 块 NVMe 都要 mount!)
+#    fstab 已持久化, 重启自动挂; 首次手动 mount:
+sudo -n mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme0n1p2 /mnt/ai_ssd0   # WDC
+sudo -n mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme2n1p3 /mnt/ai_ssd1   # Seagate
+sudo -n mount -t ntfs3 -o noatime,nodiratime,uid=1000,gid=1000 /dev/nvme3n1p2 /mnt/ai_ssd2   # ZHITAI
+#    /dev/nvme1n1p3 (BIWIN) 是系统盘, 根分区
+
+# 4) 跑 L2-miss baseline (Phase7, 20 prompts + replay)
+MODEL_KEY=qwen3_4b_multiprompt bash scripts/hicache_drive_4_rounds_model.sh
+
+# 5) 跑 L2-hit baseline (Phase2, 1 prompt × 6 rounds)
+MODEL_KEY=qwen3_4b bash scripts/hicache_drive_4_rounds.sh
+
+# 6) 跑 14B-AWQ baseline (Phase4)
+MODEL_KEY=qwen3_14b_awq bash scripts/hicache_drive_4_rounds_model.sh
 ```
 
 ## 关键依赖
 
-- vllm 0.22.1 (cu130)
-- lmcache 0.4.6
-- torch 2.11.0+cu130
-- transformers 5.10.2
-- sysstat 12.7.7 (iostat/pidstat)
-- bpftrace 0.25.0
+| 工具 | 版本 | 用途 |
+|---|---|---|
+| sglang | 0.5.13 | HiCache L3 file backend |
+| vllm | 0.22.1 | 历史 LMCache baseline 对比 (Phase0) |
+| lmcache | 0.4.6 | 历史 baseline |
+| torch | 2.11.0+cu130 | sglang/vllm 通用 |
+| transformers | 5.10.2 | Qwen3 tokenizer |
+| sysstat | 12.7.7 | iostat / pidstat |
+| bpftrace | 0.25.0 | block IO latency (⚠️ kernel 6.x 兼容待修) |
+| fio | (apt) | Phase6 L3 file read 硬件极限基线 |
+| ntfs-3g | (apt) | mount NTFS 候选盘 |
 
-## 注意事项
+## 注意事项 / 已知坑位
 
-- torch 2.12 与 vllm 0.22.1 ABI 不兼容, 必须用 2.11
-- torchvision 必须 0.26.0+cu130 (跟 torch 2.11 配)
-- NTFS 在 Linux O_DIRECT 行为不一致, 候选盘必须 `use_odirect: false`
-- LMCache `local_cpu: true` 会让 warm 命中走内存, 测盘要 drop_caches
+### mount 修正 (历史 Phase2-5 数据事故)
+**Phase2-5 跑测试时 3 块 NTFS 盘 (WDC/Seagate/ZHITAI) 实际未 mount**,`/mnt/ai_ssd{0,1,2}` 是 BIWIN 根分区上的空目录。
+**Phase7 起已修正**: `sudo mount -t ntfs3` + fstab 持久化 (`UUID=... ntfs-3g defaults,nofail,uid=1000,gid=1000 0 0`)。
+**Phase2-5 的"4 盘对比"数据是 BIWIN 重复 4 次**, 需用 Phase7 数据为准。
+详见 [REPORT.md §3 数据事故复盘](./REPORT.md) 和 [docs/hicache-multiprompt-l2fill-2026-06-14.md §🚨 重要发现](./docs/hicache-multiprompt-l2fill-2026-06-14.md)。
+
+### sglang 0.5.13 行为约束
+1. **L2 ≥ device** (--hicache-ratio ≥ 1.0): 0.5.13 硬约束, `ratio < 1.0` 启动期 `AssertionError: The host memory should be larger than the device memory`
+2. **L2 host 容量** = device pool × hicache-ratio (4B device pool 20480 tok, ratio 2 → L2 41024 tok)
+3. **CLI `--file-storage-path` 不生效**: 0.5.13 `hicache_storage.py::HiCacheFile.__init__` 只读 `SGLANG_HICACHE_FILE_BACKEND_STORAGE_DIR` 环境变量
+4. **device KV 上限** ~20K tokens (4B), 装不下 40K+ 大 prompt → ratio 调大也无效
+5. **page_size=64 固定**: sglang 0.5.13 强制 (不暴露 CLI), Qwen3-4B 1 page = 9.0 MB, 14B-AWQ 1 page = 5.0 MB
+6. **write_back 在 6 round 测试场景下完全失效**: L3 worker 还没启动就测完了
+
+### Page cache 屏蔽
+- sglang L2 host DRAM (4B = 41K tokens) 完全屏蔽 L3 读盘延迟
+- 即使 `drop_caches` 清 OS page cache, sglang pin_memory 自管 host buffer **不受影响**
+- 必须用 **多 prompt 累积** 触发 L2 evict 才能暴露 L3 读盘 (Phase7 方法)
+
+### 多卡异构
+- 测试用 2× RTX 5080 + 1× RTX 5060 Ti 16GB, sglang 启动时打 `Detected different devices` 警告
+- 建议加 `CUDA_DEVICE_ORDER=PCI_BUS_ID` 环境变量
+- TP=1 (4B) 自动选主卡, TP=2 (14B) 跨卡
+
+## 后续 / 未完成项
+
+- [ ] 重跑 Phase2/4/5 (mount 已修, 真 4 盘基线)
+- [ ] bpftrace kernel 6.x 兼容修复 (block_rq_issue 存 nsecs, `delete()` API 移除)
+- [ ] 32B-AWQ 模型 (更大压力, TP=2 跨 3 卡)
+- [ ] 多 prompt 累积场景下的 4 盘 vs 4 client × 4 prompt 对比 (核并发 reload)
+
+## 文档索引
+
+| 报告 | 描述 |
+|---|---|
+| [REPORT.md](./REPORT.md) | **主报告** — 7 phase 时间线 / 选型推荐 / 后续 / 数据事故复盘 |
+| [REPORT_LMCACHE.md](./REPORT_LMCACHE.md) | Phase 0 历史 baseline (vLLM + LMCache 时代, 4 盘 spread 1ms) |
+| [docs/hicache-smoke-test-findings-2026-06-11.md](./docs/hicache-smoke-test-findings-2026-06-11.md) | Phase 1 装环境 + 启动验证 |
+| [docs/hicache-4disk-headline-2026-06-12.md](./docs/hicache-4disk-headline-2026-06-12.md) | Phase 2 4B write_through 4 盘 baseline ⚠️ mount 事故 |
+| [docs/hicache-writeback-vs-writethrough-2026-06-13.md](./docs/hicache-writeback-vs-writethrough-2026-06-13.md) | Phase 3 write_through vs write_back 对比 ⚠️ mount 事故 |
+| [docs/hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) | Phase 4 14B-AWQ TP=2 4 盘 baseline ⚠️ mount 事故 |
+| [docs/hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) | Phase 5 4 client + drop_caches 每 round ⚠️ mount 事故 |
+| [docs/l3-fio-bench-2026-06-13.md](./docs/l3-fio-bench-2026-06-13.md) | Phase 6 fio 4 盘 L3 file read 硬件极限 |
+| [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) | **Phase 7 multiprompt + replay ✅ 真 4 盘基线 (选型依据)** |
+
+## 计划文档
+
+- [Plan v2](./.hermes/plans/2026-06-11_155736-sglang-hicache-exploration.md) — sglang hicache 探索 7 phase 计划
