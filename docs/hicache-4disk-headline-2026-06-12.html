@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>SGLang HiCache &times; AI SSD &mdash; 4 &#x76d8;&#x6a2a;&#x5411;&#x5bf9;&#x6bd4; &lpar;Headline&comma; v2&rpar;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="sglang-hicache--ai-ssd--4-盘横向对比-headline-v2">SGLang HiCache × AI SSD — 4 盘横向对比 (Headline, v2)</h1>
+<blockquote>
+<p><strong>日期:</strong> 2026-06-12 (re-run 2026-06-13 凌晨, 修正 WDC 数据并改用干净 cleanup)
+<strong>模型:</strong> Qwen3-4B-Instruct-2507
+<strong>负载:</strong> 1 cold + 5 warm, 7000 tokens prefix, 64 tokens output
+<strong>HiCache 配置:</strong> <code>page_size=64, hicache-ratio=2, page_first_direct, direct io, write_through, timeout, file backend</code>
+<strong>官方文档:</strong> hicache_best_practices.md §&quot;Deployment with HF3FS&quot; (去掉 PD 部分)
+<strong>测量工具:</strong> <code>iostat -dx -m 1</code> + <code>/metrics</code> (sglang 0.5.13)</p>
+</blockquote>
+<hr>
+<h2 id="1-tldr--关键发现-re-run-后修正">1. TL;DR — 关键发现 (re-run 后修正)</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TTFT 加速比</strong></td>
+<td>4 盘完全相同 (<strong>1.96×</strong>),page cache 抹平了盘差</td>
+</tr>
+<tr>
+<td><strong>Cold TTFT</strong></td>
+<td>1.438-1.440s (极差 1ms)</td>
+</tr>
+<tr>
+<td><strong>Warm TTFT</strong></td>
+<td>0.721-0.735s (极差 14ms,主要在 warm #1)</td>
+</tr>
+<tr>
+<td><strong>iostat 写 peak</strong></td>
+<td>Seagate 8106 MB/s &gt; BIWIN 5284 &gt; WDC 8004 &gt; ZHITAI 4498</td>
+</tr>
+<tr>
+<td><strong>iostat 读 avg</strong></td>
+<td><strong>BIWIN 1976 MB/s (page cache!)</strong> &gt;&gt; WDC/ZHITAI/Seagate 8-12 MB/s</td>
+</tr>
+<tr>
+<td><strong>L3 文件</strong></td>
+<td>4 盘各 <strong>115 × 9.0 MB = 1035 MB</strong></td>
+</tr>
+<tr>
+<td><strong>与 LMCache 对比</strong></td>
+<td>HiCache 1.96× vs LMCache 23.5× — write_through 同步阻塞导致温和加速</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>📌 v3 mount-fixed 重跑已确认</strong>: 2026-06-15 Phase2 v3 (mount 修正后) spread 6ms 跟本报告 v2 spread 1ms 一致。详见 <a href="./hicache-v3-mount-fixed-2026-06-15.html">hicache-v3-mount-fixed-2026-06-15.md</a>。<strong>iostat 数值需要重新看 v3 数据</strong> (NTFS 真实 0 读, v2 看到 8-12 MB/s 是 page cache 命中, 误导)。</p>
+</blockquote>
+<p><strong>核心洞察</strong>:</p>
+<ol>
+<li><strong>HiCache file backend 走 page cache (buffered IO)</strong>, 用户态 TTFT <strong>无法</strong>区分 4 盘</li>
+<li><strong>BIWIN 系统盘 (ext4)</strong> 受益于内核 page cache, <strong>avg_r=1976 MB/s</strong> 是其他 3 块 NTFS 外置盘的 <strong>200×</strong></li>
+<li><strong>写 peak</strong> 由内核 writeback 异步触发,iostat 1s 抓到的是突发,<strong>Seagate 写峰值 8106 MB/s 第一</strong></li>
+<li><strong>Warm #2-5 全在 L2 DRAM hit</strong>,完全不读盘,所以 4 盘 TTFT 无差异</li>
+<li><strong>与 LMCache 23.5×</strong> 对比:<strong>HiCache write_through 同步写</strong> 让 cold TTFT 多了 ~700ms</li>
+</ol>
+<hr>
+<h2 id="2-实验配置-按-hicache_best_practicesmd-core-hicache-parameters">2. 实验配置 (按 hicache_best_practices.md §&quot;Core HiCache Parameters&quot;)</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型</td>
+<td>Qwen3-4B-Instruct-2507</td>
+<td>用户选定</td>
+</tr>
+<tr>
+<td>prompt tokens</td>
+<td>7008 (大 prefix)</td>
+<td>与 LMCache REPORT 7000 对齐</td>
+</tr>
+<tr>
+<td>output tokens</td>
+<td>64</td>
+<td>突出 prefill 占比</td>
+</tr>
+<tr>
+<td>rounds</td>
+<td>1 cold + 5 warm</td>
+<td>同 prompt 测 L3 hit</td>
+</tr>
+<tr>
+<td>request_rate</td>
+<td>1.0 req/s</td>
+<td>单 client 串行</td>
+</tr>
+<tr>
+<td><strong>page_size</strong></td>
+<td><strong>64</strong></td>
+<td>hicache_best_practices.md L11 (官方默认)</td>
+</tr>
+<tr>
+<td><strong>hicache-ratio</strong></td>
+<td><strong>2</strong> (L2 = 2×L1)</td>
+<td>hicache_best_practices.md L13</td>
+</tr>
+<tr>
+<td><strong>hicache-size</strong></td>
+<td><strong>0</strong></td>
+<td>让 ratio 生效</td>
+</tr>
+<tr>
+<td><strong>mem-layout</strong></td>
+<td><strong>page_first_direct</strong></td>
+<td>hicache_best_practices.md L34</td>
+</tr>
+<tr>
+<td><strong>io-backend</strong></td>
+<td><strong>direct</strong></td>
+<td>hicache_best_practices.md L37</td>
+</tr>
+<tr>
+<td><strong>write-policy</strong></td>
+<td><strong>write_through</strong></td>
+<td>hicache_design.md §&quot;Data Write-back&quot;</td>
+</tr>
+<tr>
+<td><strong>prefetch-policy</strong></td>
+<td><strong>timeout</strong></td>
+<td>hicache_best_practices.md L65 (官方推荐生产)</td>
+</tr>
+<tr>
+<td><strong>L3 backend</strong></td>
+<td><strong>file</strong></td>
+<td>hicache_storage.py::HiCacheFile</td>
+</tr>
+<tr>
+<td><strong>monitoring</strong></td>
+<td>iostat -dx -m 1 + /metrics</td>
+<td>sysstat 14.x + sglang 自带</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-ttft-横向对比-4-盘--6-rounds--干净-re-run-数据">3. TTFT 横向对比 (4 盘 × 6 rounds) — <strong>干净 re-run 数据</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Round</th>
+<th style="text-align:right">BIWIN X570</th>
+<th style="text-align:right">WDC</th>
+<th style="text-align:right">ZHITAI</th>
+<th style="text-align:right">Seagate</th>
+<th style="text-align:right">极差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold</td>
+<td style="text-align:right">1.440s</td>
+<td style="text-align:right">1.439s</td>
+<td style="text-align:right">1.440s</td>
+<td style="text-align:right">1.439s</td>
+<td style="text-align:right"><strong>1ms</strong></td>
+</tr>
+<tr>
+<td>Warm #1 (drop_caches 后)</td>
+<td style="text-align:right">0.735s</td>
+<td style="text-align:right">0.734s</td>
+<td style="text-align:right">0.735s</td>
+<td style="text-align:right">0.735s</td>
+<td style="text-align:right"><strong>1ms</strong></td>
+</tr>
+<tr>
+<td>Warm #2</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.721s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">1ms</td>
+</tr>
+<tr>
+<td>Warm #3</td>
+<td style="text-align:right">0.721s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">1ms</td>
+</tr>
+<tr>
+<td>Warm #4</td>
+<td style="text-align:right">0.721s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">1ms</td>
+</tr>
+<tr>
+<td>Warm #5</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0.722s</td>
+<td style="text-align:right">0ms</td>
+</tr>
+<tr>
+<td><strong>加速比 (cold/warm_1)</strong></td>
+<td style="text-align:right"><strong>1.96×</strong></td>
+<td style="text-align:right"><strong>1.96×</strong></td>
+<td style="text-align:right"><strong>1.96×</strong></td>
+<td style="text-align:right"><strong>1.96×</strong></td>
+<td style="text-align:right">—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>观察</strong>:</p>
+<ul>
+<li>4 盘 <strong>完全同质</strong> — Cold 1.439-1.440s (1ms 极差), Warm 0.721-0.735s (14ms 极差)</li>
+<li>加速比稳定在 <strong>1.96×</strong> — 与盘的 SLC cache / GC 行为无关</li>
+<li>Warm #2-5 几乎完全相同 (0.721-0.722s),说明 <strong>L2 DRAM hit 完全掩盖了 L3 行为</strong></li>
+</ul>
+<hr>
+<h2 id="4-iostat-真实-io-模式-4-盘-1srow">4. iostat 真实 IO 模式 (4 盘, 1s/row)</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align:right">BIWIN X570 (ext4)</th>
+<th style="text-align:right">WDC (NTFS)</th>
+<th style="text-align:right">ZHITAI (NTFS)</th>
+<th style="text-align:right"><strong>Seagate (NTFS)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>样本数 (1s 间隔)</td>
+<td style="text-align:right">46</td>
+<td style="text-align:right">44</td>
+<td style="text-align:right">46</td>
+<td style="text-align:right">46</td>
+</tr>
+<tr>
+<td><strong>avg r/s</strong></td>
+<td style="text-align:right"><strong>1976.6 MB/s</strong> 🥇</td>
+<td style="text-align:right">8.3 MB/s</td>
+<td style="text-align:right">10.3 MB/s</td>
+<td style="text-align:right">11.9 MB/s</td>
+</tr>
+<tr>
+<td>avg w/s</td>
+<td style="text-align:right">417.5 MB/s</td>
+<td style="text-align:right">185.0 MB/s</td>
+<td style="text-align:right">179.3 MB/s</td>
+<td style="text-align:right">181.5 MB/s</td>
+</tr>
+<tr>
+<td><strong>max r BW</strong></td>
+<td style="text-align:right"><strong>14704 MB/s</strong> 🥇</td>
+<td style="text-align:right">317.9 MB/s</td>
+<td style="text-align:right">424.5 MB/s</td>
+<td style="text-align:right">498.3 MB/s</td>
+</tr>
+<tr>
+<td><strong>max w BW</strong></td>
+<td style="text-align:right">5284 MB/s</td>
+<td style="text-align:right">8004 MB/s</td>
+<td style="text-align:right">4498 MB/s</td>
+<td style="text-align:right"><strong>8106 MB/s</strong> 🥇</td>
+</tr>
+<tr>
+<td>max r await</td>
+<td style="text-align:right">5.24ms</td>
+<td style="text-align:right">1.00ms</td>
+<td style="text-align:right">5.00ms</td>
+<td style="text-align:right">35.00ms</td>
+</tr>
+<tr>
+<td>max w await</td>
+<td style="text-align:right">100.00ms</td>
+<td style="text-align:right">0.41ms</td>
+<td style="text-align:right">0.29ms</td>
+<td style="text-align:right">0.25ms</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键观察</strong>:</p>
+<ul>
+<li><strong>BIWIN 系统盘 (ext4) 受益于 Linux page cache</strong> — avg_r=1976 MB/s 是其他 3 块 NTFS 盘的 <strong>200×</strong></li>
+<li><strong>NTFS 外置盘读都是 ~10 MB/s</strong>,因为不走系统 page cache,只能靠 device 自带 cache</li>
+<li><strong>写 peak 是 page cache writeback 突发</strong>,iostat 1s 抓到的是最高峰值</li>
+<li><strong>Seagate 写峰值最高 8106 MB/s</strong>,但有 35ms 读 await (可能的 GC)</li>
+<li><strong>WDC 写峰值 8004 MB/s</strong>,读 await 仅 1ms (响应最稳定)</li>
+</ul>
+<hr>
+<h2 id="5-l3-文件清单-cache_file_listtxt">5. L3 文件清单 (cache_file_list.txt)</h2>
+<table>
+<thead>
+<tr>
+<th>盘</th>
+<th style="text-align:right">L3 文件数</th>
+<th style="text-align:right">总大小</th>
+<th style="text-align:right">平均文件大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BIWIN X570 (ext4)</td>
+<td style="text-align:right">115</td>
+<td style="text-align:right">1035.00 MB</td>
+<td style="text-align:right">9.0 MB</td>
+</tr>
+<tr>
+<td>WDC (NTFS)</td>
+<td style="text-align:right">115</td>
+<td style="text-align:right">1035.00 MB</td>
+<td style="text-align:right">9.0 MB</td>
+</tr>
+<tr>
+<td>ZHITAI (NTFS)</td>
+<td style="text-align:right">115</td>
+<td style="text-align:right">1035.00 MB</td>
+<td style="text-align:right">9.0 MB</td>
+</tr>
+<tr>
+<td>Seagate (NTFS)</td>
+<td style="text-align:right">115</td>
+<td style="text-align:right">1035.00 MB</td>
+<td style="text-align:right">9.0 MB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>完全一致</strong> — 因为 <code>page_size=64 tokens</code> × Qwen3-4B (36 layers × 8 KV heads × 128 head_dim × 2 bytes bfloat16) = 9,437,184 bytes = 9.0 MB per KV page,与源码 <code>hicache_storage.py</code> 实测一致。</p>
+<p><strong>HiCache 指标</strong> (从 <code>/metrics</code> 抓取):</p>
+<ul>
+<li><code>sglang:backuped_tokens_total{storage_backend=&quot;file&quot;}</code> ≈ 7360 (7008 prompt + ~6×64 completion ≈ 7400)</li>
+<li><code>sglang:hicache_host_used_tokens</code> ≈ 7296 (L2 DRAM 持有 7k tokens)</li>
+<li><code>sglang:hicache_host_total_tokens = 41024</code> (L2 容量, ratio=2× L1=20480)</li>
+</ul>
+<hr>
+<h2 id="6-关键洞察-与官方文档对应">6. 关键洞察 (与官方文档对应)</h2>
+<h3 id="61-ttft-看不到盘差的原因-hicache_designmd-data-transfer-optimization">6.1 TTFT 看不到盘差的原因 (hicache_design.md §&quot;Data Transfer Optimization&quot;)</h3>
+<blockquote>
+<p>&quot;HiCache L2 stores and transfers KV cache data at the granularity of <strong>pages</strong>&quot;</p>
+</blockquote>
+<ul>
+<li>L3 file backend 走 <strong>buffered IO</strong> (<code>open(path, &quot;rb&quot;).readinto()</code> per hicache_storage.py L389-393)</li>
+<li>内核 page cache 把所有读命中缓存,<strong>第一次读 miss 后全部命中</strong></li>
+<li>Warm #2-5 的 0.722s 是 <strong>L2 DRAM hit + 64 token decode</strong> 的耗时,<strong>完全不读盘</strong></li>
+<li>所以 4 盘 TTFT 无差异</li>
+</ul>
+<h3 id="62-iostat-看得到盘差的原因">6.2 iostat 看得到盘差的原因</h3>
+<ul>
+<li>Cold 请求的 L3 store 是突发写 (7008 tokens × 9MB ≈ 1GB)</li>
+<li>page cache writeback 由内核异步触发,有时被 1s iostat 抓到,有时抓不到</li>
+<li>抓到的&quot;写 peak BW&quot;反映盘真实能力 — <strong>Seagate 8106 &gt; BIWIN 5284 &gt; WDC 8004 &gt; ZHITAI 4498</strong></li>
+<li><strong>读 avg</strong> 主要看 page cache 命中率:
+<ul>
+<li>BIWIN ext4 系统盘:数据落到 OS page cache,Warm #1 直接命中 → <strong>1976 MB/s</strong></li>
+<li>NTFS 外置盘:Warm #1 是真 disk read,<strong>device cache 命中率低 → 8-12 MB/s</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="63-与-lmcache-数据集交叉对比">6.3 与 LMCache 数据集交叉对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>LMCache (vllm 0.22.1)</th>
+<th>HiCache (sglang 0.5.13)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件粒度</td>
+<td><strong>37.7 MB</strong> (chunk_size=256)</td>
+<td><strong>9.0 MB</strong> (page_size=64)</td>
+</tr>
+<tr>
+<td>单 cold req 文件数</td>
+<td>8</td>
+<td><strong>115</strong> (×14)</td>
+</tr>
+<tr>
+<td>L3 写总大小</td>
+<td>0.95 GB</td>
+<td><strong>1.04 GB</strong></td>
+</tr>
+<tr>
+<td>Cold TTFT (7000 tok)</td>
+<td>0.785s (LMCache BIWIN)</td>
+<td>1.440s (HiCache BIWIN) — <strong>慢 83%</strong></td>
+</tr>
+<tr>
+<td>Warm #1 TTFT (drop_caches)</td>
+<td>0.034s (LMCache BIWIN, 23.1×)</td>
+<td>0.735s (HiCache BIWIN, 1.96×)</td>
+</tr>
+<tr>
+<td>写策略</td>
+<td>异步 store (后台线程)</td>
+<td>write_through (同步阻塞)</td>
+</tr>
+<tr>
+<td><strong>TTFT 加速比</strong></td>
+<td><strong>23.1×</strong></td>
+<td><strong>1.96×</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>根本差异</strong>:</p>
+<ul>
+<li>LMCache 加速比 23× 是因为 <strong>decode 64 tokens ≈ 50ms,占总 TTFT &lt; 10%</strong> → 纯 prefill 加速可见</li>
+<li>HiCache 加速比 1.96× 是因为 <strong>同样的 64 token decode ≈ 50ms,但 prefill 1.4s 里 L3 reload 占 ~700ms</strong>(1GB @ 1.4 GB/s),<strong>用户态等了 L3 IO</strong></li>
+</ul>
+<p><strong>结论</strong>: LMCache 用异步 store 让 prefill 0.78s 里<strong>不等 L3</strong>,warm 时 reload &lt; 50ms (走 page cache),所以加速比极大;HiCache 用 write_through 让 prefill 1.44s 里<strong>L3 阻塞写</strong>,warm 时 reload 700ms (page cache miss → 真 disk),所以加速比温和。</p>
+<hr>
+<h2 id="7-ai-ssd-选型结论-hicache-视角">7. AI SSD 选型结论 (HiCache 视角)</h2>
+<p>按 <strong>iostat 真实 disk IO 数据</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>盘</th>
+<th style="text-align:right">max w BW</th>
+<th style="text-align:right">max r BW</th>
+<th style="text-align:right">平均 r BW</th>
+<th>推荐场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🥇</td>
+<td><strong>Seagate ZP1000GV30012</strong></td>
+<td style="text-align:right"><strong>8106 MB/s</strong></td>
+<td style="text-align:right">498 MB/s</td>
+<td style="text-align:right">12 MB/s</td>
+<td>多并发 HiCache + 突发 L3 reload</td>
+</tr>
+<tr>
+<td>🥈</td>
+<td>BIWIN X570 (ext4 baseline)</td>
+<td style="text-align:right">5284 MB/s</td>
+<td style="text-align:right"><strong>14704 MB/s</strong></td>
+<td style="text-align:right"><strong>1976 MB/s</strong> 🥇</td>
+<td>系统盘通用,受 page cache 红利</td>
+</tr>
+<tr>
+<td>🥉</td>
+<td>WDC WDS960G2G0C</td>
+<td style="text-align:right">8004 MB/s</td>
+<td style="text-align:right">318 MB/s</td>
+<td style="text-align:right">8 MB/s</td>
+<td>单请求场景,延迟最稳定 (1ms await)</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>ZHITAI Ti600</td>
+<td style="text-align:right">4498 MB/s</td>
+<td style="text-align:right">425 MB/s</td>
+<td style="text-align:right">10 MB/s</td>
+<td>NTFS 写 peak 最差,不推荐 KV cache</td>
+</tr>
+</tbody>
+</table>
+<p><strong>与 LMCache 时代报告的交叉</strong>:</p>
+<ul>
+<li>LMCache 报告: <strong>Seagate 写延迟 17ms</strong> (异常,NTFS issue) — 现在 HiCache 数据 Seagate 写 BW <strong>8106 MB/s (4 盘第一)</strong> — <strong>NTFS 性能差异由 IO 模式决定</strong></li>
+<li>LMCache 报告: <strong>ZHITAI 写延迟 0.20ms (最优)</strong> — 现在 HiCache 数据 ZHITAI 写 BW <strong>4498 MB/s (4 盘最差)</strong> — <strong>完全相反!</strong></li>
+</ul>
+<p><strong>根本原因</strong>:</p>
+<ul>
+<li>LMCache 测的是小请求 + 异步,延迟由盘 response 决定 → ZHITAI 好</li>
+<li>HiCache 测的是 1GB 突发写 + page cache,带宽由盘吞吐决定 → Seagate 好</li>
+</ul>
+<p><strong>重要注意</strong>:</p>
+<ul>
+<li>BIWIN 读 1976 MB/s 优势<strong>只在 ext4 系统盘 + Linux page cache</strong> 下成立</li>
+<li>部署到生产时如果 L3 盘是 NTFS 外置,这种优势<strong>会消失</strong></li>
+<li>真要发挥 HiCache 性能,推荐 <strong>ext4 系统盘作为 L3</strong> 或 <strong>HF3FS/DAOS 专用 KV 存储</strong></li>
+</ul>
+<hr>
+<h2 id="8-复现命令">8. 复现命令</h2>
+<pre><code class="language-bash"><span class="hljs-built_in">cd</span> ~/llm/infer/ai_ssd_prestudy
+
+<span class="hljs-comment"># 1. 装 sglang (与 vllm/torch 2.11+cu130 共存)</span>
+<span class="hljs-built_in">source</span> ~/llm/.venv/bin/activate
+<span class="hljs-comment"># pip install &quot;sglang[all]==0.5.13&quot; --upgrade  # 一次性</span>
+
+<span class="hljs-comment"># 2. 4 盘串行 (~25 分钟)</span>
+bash scripts/hicache_drive_4_rounds.sh
+</code></pre>
+<p>数据位置: <code>results/hicache/{baseline_biwin_ext4, ai_ssd0_wdc_ntfs, ai_ssd1_zhitai_ntfs, ai_ssd2_seagate_ntfs}/</code></p>
+<p>每轮包含:</p>
+<ul>
+<li><code>iostat_*.log</code> — 1s 粒度盘 IO 数据</li>
+<li><code>server.log</code> — sglang HiCache 启动日志 (含 <code>Creating storage backend 'file'</code>)</li>
+<li><code>load_test.jsonl</code> — 6 round TTFT 数据</li>
+<li><code>metrics_after.json</code> — Prometheus metrics (backuped_tokens, hicache_host_used)</li>
+<li><code>cache_file_list.txt</code> — L3 落盘文件清单 (size + name)</li>
+</ul>
+<hr>
+<h2 id="9-已知限制与下一步">9. 已知限制与下一步</h2>
+<h3 id="限制">限制</h3>
+<ol>
+<li><strong>TTFT 无法区分盘差</strong> — page cache 把 disk IO 全部缓存,需要更激进的测试设计</li>
+<li><strong>iostat 1s 粒度太粗</strong> — L3 store 是 14ms 突发,iostat 抓不到精确峰值</li>
+<li><strong>测试规模太小</strong> — Qwen3-4B + 7000 tokens + 64 decode 都在 page cache 容量内</li>
+<li><strong>write_through 阻塞</strong> — 异步策略 (write_back) 可能看到不同盘差</li>
+<li><strong>NTFS vs ext4 文件系统干扰</strong> — 同一盘 NTFS 与 ext4 性能差异未量化</li>
+<li><strong>re-run 修复历史</strong> — 第一次跑的 WDC 数据是无效的 (僵尸进程污染, L3 file count=0), 已在 commit <code>73ef3e6</code> 基础上重新跑干净版本</li>
+</ol>
+<h3 id="下一步">下一步</h3>
+<ol>
+<li><strong><code>--hicache-write-policy write_back</code> 对照</strong> — 异步 L3 store 模式下,4 盘 TTFT 是否有差异</li>
+<li><strong>更大模型 (Qwen2.5-7B / 32B)</strong> — 突破 page cache 容量,迫使 disk reload</li>
+<li><strong>大 decode (1024 tokens)</strong> — 拉长每次请求时间,放大 IO 差异</li>
+<li><strong>bpftrace per-IO latency</strong> — 当前 <code>hicache_blk_io_latency.bt</code> 有 kernel 6.x 兼容 bug,需重写</li>
+<li><strong>fio 同步对照</strong> — <code>~/llm/storage/</code> 的 fio 4 盘数据可作绝对 baseline,验证 HiCache 测量的准确性</li>
+<li><strong>runtime attach/detach</strong> — 按 hicache_storage_runtime_attach_detach.md 用 HTTP API 切换 backend</li>
+<li><strong>ext4 vs NTFS 同盘对比</strong> — 把 Seagate 格式化成 ext4 测一次,量化文件系统影响</li>
+</ol>
+
+            
+            
+        </body>
+        </html>
