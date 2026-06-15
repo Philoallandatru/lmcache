@@ -1,6 +1,6 @@
 # HELP sglang:time_to_first_token_seconds Histogram of time to first token in seconds.
 # TYPE sglang:time_to_first_token_seconds histogram
-sglang:time_to_first_token_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 27.951978347005934
+sglang:time_to_first_token_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 27.62463959500019
 sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="0.1",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
 sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="0.2",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
 sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="0.4",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
@@ -23,7 +23,7 @@ sglang:time_to_first_token_seconds_bucket{engine_type="unified",le="+Inf",model_
 sglang:time_to_first_token_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 22.0
 # HELP sglang:e2e_request_latency_seconds Histogram of End-to-end request latency in seconds
 # TYPE sglang:e2e_request_latency_seconds histogram
-sglang:e2e_request_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 31.333827338996343
+sglang:e2e_request_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 31.252070248989185
 sglang:e2e_request_latency_seconds_bucket{engine_type="unified",le="0.1",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
 sglang:e2e_request_latency_seconds_bucket{engine_type="unified",le="0.2",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
 sglang:e2e_request_latency_seconds_bucket{engine_type="unified",le="0.4",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 1.0
@@ -170,7 +170,7 @@ sglang:generation_tokens_histogram_bucket{engine_type="unified",le="+Inf",model_
 sglang:generation_tokens_histogram_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 22.0
 # HELP sglang:inter_token_latency_seconds Histogram of inter-token latency in seconds.
 # TYPE sglang:inter_token_latency_seconds histogram
-sglang:inter_token_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 3.3821005429999786
+sglang:inter_token_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 3.627682027996343
 sglang:inter_token_latency_seconds_bucket{engine_type="unified",le="0.002",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
 sglang:inter_token_latency_seconds_bucket{engine_type="unified",le="0.004",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
 sglang:inter_token_latency_seconds_bucket{engine_type="unified",le="0.006",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 0.0
@@ -198,10 +198,10 @@ sglang:inter_token_latency_seconds_bucket{engine_type="unified",le="+Inf",model_
 sglang:inter_token_latency_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507"} 294.0
 # HELP sglang:num_retracted_reqs The number of retracted requests.
 # TYPE sglang:num_retracted_reqs gauge
-sglang:num_retracted_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="73914",pp_rank="0",tp_rank="0"} 0.0
+sglang:num_retracted_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="76777",pp_rank="0",tp_rank="0"} 0.0
 # HELP sglang:num_paused_reqs The number of paused requests by async weight sync.
 # TYPE sglang:num_paused_reqs gauge
-sglang:num_paused_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="73914",pp_rank="0",tp_rank="0"} 0.0
+sglang:num_paused_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pid="76777",pp_rank="0",tp_rank="0"} 0.0
 # HELP sglang:cuda_graph_passes_total Total number of forward passes categorized by CUDA graph.
 # TYPE sglang:cuda_graph_passes_total counter
 sglang:cuda_graph_passes_total{engine_type="unified",mode="prefill_none",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 82.0
@@ -225,7 +225,7 @@ sglang:prefetched_tokens_total{attn_cp_rank="0",attn_cp_size="1",dp_rank="0",pp_
 sglang:load_back_tokens_total{cache_type="HiRadixCache"} 6976.0
 # HELP sglang:per_stage_req_latency_seconds The latency of each stage of requests.
 # TYPE sglang:per_stage_req_latency_seconds histogram
-sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 0.003894806999596767
+sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 0.003748458006157307
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 22.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0016200000000000001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 22.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0026244000000000007",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 22.0
@@ -258,7 +258,7 @@ sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="735.225238
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="1191.064887146242",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 22.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="+Inf",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 22.0
 sglang:per_stage_req_latency_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="request_process",tp_rank="0"} 22.0
-sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 13.697901326991996
+sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 13.720562779999455
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0016200000000000001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0026244000000000007",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 0.0
@@ -291,7 +291,7 @@ sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="735.225238
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="1191.064887146242",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 22.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="+Inf",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 22.0
 sglang:per_stage_req_latency_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="prefill_forward",tp_rank="0"} 22.0
-sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="chunked_prefill",tp_rank="0"} 11.655446605996985
+sglang:per_stage_req_latency_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="chunked_prefill",tp_rank="0"} 11.666992748003395
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="chunked_prefill",tp_rank="0"} 0.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0016200000000000001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="chunked_prefill",tp_rank="0"} 0.0
 sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="0.0026244000000000007",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="chunked_prefill",tp_rank="0"} 0.0
@@ -326,9 +326,9 @@ sglang:per_stage_req_latency_seconds_bucket{engine_type="unified",le="+Inf",mode
 sglang:per_stage_req_latency_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",stage="chunked_prefill",tp_rank="0"} 60.0
 # HELP sglang:queue_time_seconds Histogram of queueing time in seconds.
 # TYPE sglang:queue_time_seconds histogram
-sglang:queue_time_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 2.0681157800063374
+sglang:queue_time_seconds_sum{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 1.9211345610019634
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0
-sglang:queue_time_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 9.0
+sglang:queue_time_seconds_bucket{engine_type="unified",le="0.001",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 11.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.005",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.01",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.05",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
@@ -336,7 +336,7 @@ sglang:queue_time_seconds_bucket{engine_type="unified",le="0.1",model_name="/hom
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.2",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="0.5",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="1.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
-sglang:queue_time_seconds_bucket{engine_type="unified",le="2.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 21.0
+sglang:queue_time_seconds_bucket{engine_type="unified",le="2.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 22.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="3.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 22.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="4.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 22.0
 sglang:queue_time_seconds_bucket{engine_type="unified",le="5.0",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 22.0
@@ -371,17 +371,17 @@ sglang:queue_time_seconds_bucket{engine_type="unified",le="+Inf",model_name="/ho
 sglang:queue_time_seconds_count{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 22.0
 # HELP sglang:eviction_duration_seconds Time taken to evict memory from GPU to CPU in seconds.
 # TYPE sglang:eviction_duration_seconds histogram
-sglang:eviction_duration_seconds_sum{cache_type="HiRadixCache"} 3.4286390410088643
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.001"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.002"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.003"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.004"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.005"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.006"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.007"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.008"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.009"} 20.0
-sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.01"} 20.0
+sglang:eviction_duration_seconds_sum{cache_type="HiRadixCache"} 3.455775606988027
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.001"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.002"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.003"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.004"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.005"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.006"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.007"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.008"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.009"} 19.0
+sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.01"} 19.0
 sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.02"} 20.0
 sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.03"} 20.0
 sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="0.04"} 20.0
@@ -394,17 +394,17 @@ sglang:eviction_duration_seconds_bucket{cache_type="HiRadixCache",le="+Inf"} 39.
 sglang:eviction_duration_seconds_count{cache_type="HiRadixCache"} 39.0
 # HELP sglang:load_back_duration_seconds Time taken to load memory from CPU to GPU in seconds.
 # TYPE sglang:load_back_duration_seconds histogram
-sglang:load_back_duration_seconds_sum{cache_type="HiRadixCache"} 0.0005769660019723233
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.001"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.002"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.003"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.004"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.005"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.006"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.007"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.008"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.009"} 1.0
-sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.01"} 1.0
+sglang:load_back_duration_seconds_sum{cache_type="HiRadixCache"} 0.013572372998169158
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.001"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.002"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.003"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.004"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.005"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.006"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.007"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.008"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.009"} 0.0
+sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.01"} 0.0
 sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.02"} 1.0
 sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.03"} 1.0
 sglang:load_back_duration_seconds_bucket{cache_type="HiRadixCache",le="0.04"} 1.0
@@ -457,7 +457,7 @@ sglang:num_queue_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Q
 sglang:num_grammar_queue_reqs{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0
 # HELP sglang:gen_throughput The generation throughput (token/s).
 # TYPE sglang:gen_throughput gauge
-sglang:gen_throughput{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 7.182360274425623
+sglang:gen_throughput{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.5542915591229636
 # HELP sglang:cache_hit_rate The prefix cache hit rate.
 # TYPE sglang:cache_hit_rate gauge
 sglang:cache_hit_rate{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0
@@ -541,7 +541,7 @@ sglang:utilization{engine_type="unified",model_name="/home/ficus/llm/models/Qwen
 sglang:fwd_occupancy{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} NaN
 # HELP sglang:new_token_ratio The new token ratio.
 # TYPE sglang:new_token_ratio gauge
-sglang:new_token_ratio{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.098
+sglang:new_token_ratio{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.7
 # HELP sglang:is_cuda_graph Whether the batch is using CUDA graph.
 # TYPE sglang:is_cuda_graph gauge
 sglang:is_cuda_graph{engine_type="unified",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0
@@ -582,8 +582,8 @@ sglang:routing_key_all_req_count{engine_type="unified",gt="100",le="200",model_n
 sglang:routing_key_all_req_count{engine_type="unified",gt="200",le="+Inf",model_name="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",moe_ep_rank="0",pp_rank="0",tp_rank="0"} 0.0
 # HELP sglang:process_cpu_seconds_total Total CPU time consumed by this process (user + system)
 # TYPE sglang:process_cpu_seconds_total counter
-sglang:process_cpu_seconds_total{component="detokenizer"} 0.1499999999999997
-sglang:process_cpu_seconds_total{component="tokenizer"} 0.5500000000000009
+sglang:process_cpu_seconds_total{component="detokenizer"} 0.21000000000000008
+sglang:process_cpu_seconds_total{component="tokenizer"} 0.5300000000000002
 # HELP sglang:http_requests_total Total number of HTTP requests by endpoint and method
 # TYPE sglang:http_requests_total counter
 sglang:http_requests_total{endpoint="/v1/models",method="GET"} 1.0
