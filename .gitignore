@@ -49,3 +49,6 @@ sglang_repo/
 
 # sglang server 日志
 logs/sglang/
+
+# IO profiling plots (regenerate via python scripts/plot_io_data.py)
+results/plots/

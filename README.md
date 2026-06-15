@@ -11,6 +11,7 @@
 - [docs/](./docs/) — 各 phase 详细数据报告 (7 篇)
 - [scripts/](./scripts/) — 启动 / 压测 / IO 监测 / 驱动器
 - [results/](./results/) — 原始测试数据 (iostat / jsonl / cache_file_list / metrics)
+- [results/plots/](./results/plots/) — **10 张 IO profiling 可视化图** (PNG, `python scripts/plot_io_data.py` 一键生成)
 
 ## 速览 (TL;DR)
 
