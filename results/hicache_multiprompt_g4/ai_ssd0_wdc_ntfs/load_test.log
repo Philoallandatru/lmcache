@@ -1,0 +1,98 @@
+[hicache_load_test] endpoint=http://127.0.0.1:30014/v1/chat/completions
+[hicache_load_test] num_rounds=6 prompt_tokens=7000
+[hicache_load_test] output_tokens=64 rate=1.0
+[hicache_load_test] MULTI-PROMPT MODE: num_prompts=20 replay_id=0
+[hicache_load_test] generated 20 unique prompts+ 1 replay, each 7000 tokens
+
+[1/21] prompt_id=0 label=p0 request (clients=1)
+[p0] latency=1.436s prompt_tokens=7008 completion_tokens=64
+
+[2/21] prompt_id=1 label=p1 request (clients=1)
+[p1] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[3/21] prompt_id=2 label=p2 request (clients=1)
+[p2] latency=1.419s prompt_tokens=7008 completion_tokens=64
+
+[4/21] prompt_id=3 label=p3 request (clients=1)
+[p3] latency=1.423s prompt_tokens=7008 completion_tokens=64
+
+[5/21] prompt_id=4 label=p4 request (clients=1)
+[p4] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[6/21] prompt_id=5 label=p5 request (clients=1)
+[p5] latency=1.423s prompt_tokens=7008 completion_tokens=64
+
+[7/21] prompt_id=6 label=p6 request (clients=1)
+[p6] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[8/21] prompt_id=7 label=p7 request (clients=1)
+[p7] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[9/21] prompt_id=8 label=p8 request (clients=1)
+[p8] latency=1.424s prompt_tokens=7008 completion_tokens=64
+
+[10/21] prompt_id=9 label=p9 request (clients=1)
+[p9] latency=1.423s prompt_tokens=7008 completion_tokens=64
+
+[11/21] prompt_id=10 label=p10 request (clients=1)
+[p10] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[12/21] prompt_id=11 label=p11 request (clients=1)
+[p11] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[13/21] prompt_id=12 label=p12 request (clients=1)
+[p12] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[14/21] prompt_id=13 label=p13 request (clients=1)
+[p13] latency=1.423s prompt_tokens=7008 completion_tokens=64
+
+[15/21] prompt_id=14 label=p14 request (clients=1)
+[p14] latency=1.424s prompt_tokens=7008 completion_tokens=64
+
+[16/21] prompt_id=15 label=p15 request (clients=1)
+[p15] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[17/21] prompt_id=16 label=p16 request (clients=1)
+[p16] latency=1.422s prompt_tokens=7008 completion_tokens=64
+
+[18/21] prompt_id=17 label=p17 request (clients=1)
+[p17] latency=1.421s prompt_tokens=7008 completion_tokens=64
+
+[19/21] prompt_id=18 label=p18 request (clients=1)
+[p18] latency=1.430s prompt_tokens=7008 completion_tokens=64
+
+[20/21] prompt_id=19 label=p19 request (clients=1)
+[p19] latency=1.423s prompt_tokens=7008 completion_tokens=64
+
+[1/21] prompt_id=0 label=replay_p0 request (clients=1)
+[replay_p0] drop_caches...
+[replay_p0] latency=2.446s prompt_tokens=7008 completion_tokens=64
+
+========== Summary ==========
+  [1/21] p0: 1.436s
+  [2/21] p1: 1.422s
+  [3/21] p2: 1.419s
+  [4/21] p3: 1.423s
+  [5/21] p4: 1.422s
+  [6/21] p5: 1.423s
+  [7/21] p6: 1.422s
+  [8/21] p7: 1.422s
+  [9/21] p8: 1.424s
+  [10/21] p9: 1.423s
+  [11/21] p10: 1.422s
+  [12/21] p11: 1.422s
+  [13/21] p12: 1.422s
+  [14/21] p13: 1.423s
+  [15/21] p14: 1.424s
+  [16/21] p15: 1.422s
+  [17/21] p16: 1.422s
+  [18/21] p17: 1.421s
+  [19/21] p18: 1.430s
+  [20/21] p19: 1.423s
+  [21/21] replay_p0: 2.446s
+
+--- Multi-prompt analysis ---
+  p0 (cold fill):    1.436s
+  replay_0 (L2 miss→L3):  2.446s
+  replay/cold ratio: 1.70x  (1.0 = same; >1.0 = L3 reload 慢)
+Results written to: /home/ficus/llm/infer/ai_ssd_prestudy/results/hicache_multiprompt_g4/ai_ssd0_wdc_ntfs/load_test.jsonl
