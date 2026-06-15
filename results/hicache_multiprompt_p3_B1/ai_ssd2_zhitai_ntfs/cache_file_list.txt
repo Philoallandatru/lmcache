@@ -1,0 +1,2 @@
+0 0544b9da29a8afccf985571f455f3051c6d05f9961af51229db7d694c9203039_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+0 74c14c4cec3bab910a85dbb8c8a82f33c8d6e3f90ef7da8fde2363afeee48305_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
