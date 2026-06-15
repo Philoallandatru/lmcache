@@ -4,7 +4,6 @@
 9437184 0022adf9a459bb66cc8174376db6b2dd66de26d6cf1ca279c7105ac67d6a8c73_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0035f9ea8bb97c3b12691d24c25b79d8d459b058465adcc4e92984ea45e8a3e4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 006c7771ec642fe47d95e3c1b893a0c31bb662f3024f9ecba3636586ecb93a38_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 0070d70ae1c41a6edfdfe061e549eeec38c9d142873ad9bce210801bc864a32a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 008e0ebed5c9fde80608a8108750c53774e49a6eadfaeaeafb10c14328c0a812_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 009aa319946406b6b6233da2509ad1e4dc56d04addb44c1afb461b45e8307d41_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 00b9759d86efff0c1fd507c4e3b126cc0fc730c737c87c4993b0e7c1eabdd5ee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -19,9 +18,9 @@
 9437184 01afb9635abbe250a6764640679405877dc20642a66970696988b57494955d26_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 01bbcd2c5018b3d43e8284d8384ae9be57239816c40d3a33400c615882f4ece0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 01c418fb05db1bd39fb220d7ded53d97bb5edfb006eaf502ed91198aa4beeda9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 01c8db7dd605799ed55e271dbd15d8b37e0578e85a0f3fc5d05ab06ca02534de_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 01e605300335c847aeeb38ad0c8d1e644811978f7c23475af55b4a7c14466250_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 01fa0bcc32fc6c72759a2f9e4ec345350048c8bad6ddb87a6a2218b8299a3920_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 021d6478f6f085621371b603808397cb7aeba7d6703fad7e86cec569ac08dacf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 021ee1fbf423a81180a2a19840676f9e8337b3c765ece64552fbd632324659c3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 022027b88ba6d7b2d573c8b165ce620db8a3afd46f68931b585254322620f228_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 023df48dc77317ff50aa73cf379d6a4a259ceb5f4f6bf91ac3afd4bfb299cc0d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -72,7 +71,6 @@
 9437184 06fd5b0aee291380a79a79fb1eb3f7af25d25006b0496fa6854d442e985f6e56_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 07150b7d623cf812b94140af4de492ee01def8c0b417209d16361f70216d5c51_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 071f874f29b4f9b3f6c15ba2e03e0f755a2826b739555b2d72d3c8e88f0128f4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 07233e3135bc89134c2c1cdd12215cc4536fdeb671b359d7fbccb054584aba12_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 073b0d5a5e7966a38598e1653592d5239649daff7a0b446a21c39ec74a1503ce_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 079acae4611f2e2357ec205ba6570635110e8d0acdcad0f536726f7c18a7f961_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 081513d56c67cccc66176157dec5a675fede864eeb9f56014814edddc2c4a140_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -80,7 +78,6 @@
 9437184 08853ad9b607b5579c4114c376cd2f249a3025a5b705b2a9d8d16fc2e86dfd6e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 088a965702051b99cfa7fe8979b5d957547f5017ca0b108222731b6dbfe3b7a4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 088e9151063ab389360e478e5d173730b0525373bb36cee08b6d1aed6ed9c4a3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 08b3bccb9e83768153af92fb6e1e9bc41eb222019321ea9e66001e1f8c5c7063_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 08b9ee8050d8a890dbc07ed787f05564b1060e8759a02f1f02658ed0d6bfb911_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 08c741fbca9f3bde1d9d0f744006527a85fae635602cbb98f2a7da51a50e8b31_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 09041556a45f723de6b2420858e8eb1cb28fe387e2eb759970a19dacd1621045_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -115,19 +112,16 @@
 9437184 0bc95dc4a332d5413caeaf8adc359ce036da63fb6c957f937e23090fd142d7e3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0c59424505c34537aafe37eea474677b20e212bd160192008aa369efa9e8fae5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0cbd77fab2dd0b5c46f084c23ff4b5c4bb1d6b30aee64b6cfbc53ba46ab3ffce_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 0cd5973c66eb69118c088cc89c207938e8bf0c5e0ae4d1212a0c87f024c38864_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0ce8b2ec164bad9b9dc527a14dcb575edd1f8a1a06a4ed478ea412c91a2c385a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0cf369a7643b3a71ccd146741227da4f522a4591c44022b54b561dadd46acbb1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0d110881cce1a626dbba05c493087db82fcb72565468d8f430446f15c12edf14_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0d25f701f2e55268f6180c69fa246f2b899f923e6593d084442589fb5be54b74_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0d4bb824e7ab42fd5833dbf86d86242710ca8a12b7d3f157ef23fd07d735ca41_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0d770a5e03f3c08d57e154aa693a8e1a0ef305e18c9d067a86a04c5c1a11aa79_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 0d7ac3d50f7703737c0832276e188f711581e6936882c07d2e1adb4691185f1d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0d8da35863340c020a4c3de565f228bd849626bf1268e3db9361216d219ccb44_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0dbaad194fd7bd4f799f69ae2286026b94acb0e0cba277a441935e6ea25084c3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0dcc25a01db9686d8eca8662a3f571d3911899996c81a296206961be80d20ab7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0dcc68c9a14b4cfc57c516f3d3137b86215c98d44cfc143d4b742dab399aa631_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 0dd5cc97ab4b4adac574a22a5765f0575d36f14f659a30e1402568064afe9537_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0de1ffb8d219d33f29f5374e968edb3eef08b0ac7692b39c890f52276873ad95_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0dff7dfb46dbda8e16de7fbe7e34e63d47fb200c9355a649a1a1c3b2978eec40_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 0e03b0d6c2c9c91358c1c022a1e75e985bf0a4908848f6bdcd629f51262309d0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -151,6 +145,7 @@
 9437184 103c3684e68e812aed41d7bfdfaf30dd1c280eda7bc7deecabfa2f4e80e3c375_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 10472412aafb72987a325adce2cf0102031cf404ae6ec343f6a40516aaa48be6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 107048bf2dc95b845ec1846909182bcaeaa07da52e23838e766d5be495b8fb1f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 10a1ec5d7e2e0091d1331ac8a25f00ba654d8f3b40b97c26b5441a860f2115b0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 10a3c6f94a15ec7ea512a0464f76ed315f9a2ae30068e2feaaad60ead355d656_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 10b24580e5a35db8d19ef4d6156a32cda0ff08216397f37c9839858257d0bdcc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 10e3acee1a7210799e14e5a3bb2dc0de0b6efa171234197910a8c509c64e59d7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -209,10 +204,8 @@
 9437184 16bc1a8faa3309274be4973fe1fec846cd2e85fa56b5ac46b21108abbf981c33_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 16ebeeb1fd18fefbc10de704bb4f67fd06a27b3cd5d4b852060578206b828874_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 16f010579e1022ee17279feb5bf585a78b513771441180ab5402e799e12d82aa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 16f342ac92f58f80834fe046d4ec86d7f23a40aae4dad09783b07c7c7d9f86f0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 16f6eb1ea0fe4cf788cab50fbbb5539671adc2282015367ca40d8c79c523a5d0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 170b869c8ba2a9ed79d66948f5364c7a848cfd7dca80da819362bef1398c01ae_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 170c5ce27e741ab37aaed454d516b51cbb1e2697079deb97f9330964cc1d989a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 171b288cc05a176c2fac1fe659ce3bfaab29e0ccfe8230948cbd3c21b3e0b5b1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1729062b15e163180cbd76ff956ba2b457714cc2651dd063102072f8f760a859_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1734274a473f45634ab1ee72b2aeb6913c4446472b3803a25cbf1861030e73df_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -222,7 +215,6 @@
 9437184 17dbd8664885b3a6ea783db7a17664352ce5f4e766c09f53a65a3cb7da5e7519_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 17e0e8057efd9dc12e0e9d915f2ebd81c09992542122bdf431711861fabf155b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 17ee380150e2ccfca161ee2694d489b4ecbfc1959e6a796a3c8e5522018782b7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 18002c01855fa395ad0150107ea72edff454f0aec69681b2c4ea2f4d93a0fa89_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 180393590a2dd44b34613d42ad86b5d99237c4c55fd126b98f6813afff0ba417_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 180780b1583293a5d149e405be4654f31a6314d9e7c2946196690df4f3df32e1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 180c6ac2de1b8f431b6d80fb9cb006ea58b6e73195bfa58958ea12320cc3e8ad_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -269,7 +261,6 @@
 9437184 1c2bb550be89aacc964b845d030038adc04ce2866e8b092f742ac761a073ffa9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1c80b1b88dc3438e6beb3771fce0328b18eec20088ce3d26f4c2cf98f0eea2a7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1c867e90c4c274699bc5d5e63a367db10e675082215c32d3708dd9a0ddc8faca_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 1c987662c935e9db938199365d0918059e7c623f112fdd4d029896558755375d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1cb16619be28b2411dd98f7814bed524d5c2432aa7538e6654053d9babf96ecc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1cd1466d69b4534cd61a9ed254b5180d095727955dc61cda013c596aea9dfbe7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1ce81372faaef6c80ff41afb0aecd220128c2157c97c424020f2d108f4c2bce8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -294,23 +285,21 @@
 9437184 1f169cb5c90cf73bb8e4544a8760a9beca107346da99287d16795375c7aaf5ab_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f17c10bf619ff2957eea6c690d8fe5b6bae09ea6d04addcc8f93fc9a684b8a9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f26bfa001bc9abc46240e6e96d0c5eff9e78a3adbc8003333acc08d7e6aa4ac_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 1f2b8199fd570df0b87b66794ce277e570c026b21ce251fdefcd22b3f933a1c9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f570416459b0bcf4c70d5998b1990a13cbab1f36ec9f06d2983366d9aa40c27_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f6f27f3cfb858f7690b239fe95c03e650cf5e14a689ded7b105b6f353e3eb81_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f742de37f0146f099fae638d2697bbf4cbf9ee4ff493aacbe9f1f38bc331391_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f81a43dac978411bbd2f3ed5c27933433ec0a78157ed77c3f69e1fea6d763ff_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f8aaebac8167f50c3098f6aef759c2ecea2d6d36c601cd0490388de48823332_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1f905d28275cdbcab7931708e0680256a88970b0bc8c1378e74dee8c61c250ce_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 1f9ed1bb0b8d90c0fafebfa78ef8e3634debd6182008a4087188be816686ed46_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 1fff6627e5fda565186676ea2ac98194c5d16752e22677e19900e2dbf10e76ab_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 201b227becd541a71080257ae1ecae2ab696e39445af955fe9c91f7cefbeca8f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2036d79d7ea352867906a667625ce8fac6997d884292c88461ea904d27b0b4eb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 205a47e6da9dd18904297ea54d98240bd663057a1e7d1ec136c5557fea57f6aa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 206672b289866416964eb2a7fb39a805db5bf8fc238eca8381f4cbe911b276a1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 207c864e1d583a90c2b87cd96a4e2e7bbca6ba8b921ff5035d7c982a1207f685_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 20e9bac6b39ffd9569322408cdedc9187b229439f539add6a7d421c2af0b74a7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 211a38d327068e968e10e687eadd95940f2f8a7ea74d6293e4d3151da62bf2b7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 21291aced71e2d65db895e6480cdbe20ef6edb72e78e725173198bdcae2e3f4f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 21596d27618fe9ad121a8c5e31f50e086700991cb404d37bfb09f4e2a3e5be0f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 218b6b08abae558849a2d7cd4d92a448f8c27051546933079c22e012f5d73e8f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2198e9ba6f9e921e5d31c77112691910225da2ec80a38477607fd1ed778aeaa7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 21b56e958035f60c18022b5a137d50f040af036c4ff1a6c89e649cdbfe038ed3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -373,7 +362,6 @@
 9437184 27233cee1bd10fad77d985af231c83d17c4bc6bc1bff97975d61f510c6238192_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2728526eb20eab54a6079ca939ebab51949f132e00675deb64d3b8dcfbd8fdfa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2736c43b9c5ae4c2cb6c74a56ce007c3b86230e88211d8aa008b1494f9877f9e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 274d10deb83ecceb7ed7980af070aa3805227f28f683d9c8d513202aed05a614_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2785e8f4e6ae524c2dbdde2515c1f0906ca2fe19d4f873c630da7d6c365a3c7a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 278903e228eae720528699ed9c57a0f71efa459f70f58ca54c3bdb3d27e80e45_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 27a0f514cda249302edffa3e5b31a06f8091a0d07db20abc1d54fe0fa1f10a9f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -385,7 +373,6 @@
 9437184 280f1294af25a865ec7c26fb40fc5aecc488cc11eea37a1d739715d319f018b6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2816edaf06fcd76b60c231e2134abb146d2280534f3257bbf1d2e51c88654f1b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 285039bea6a82e4e93d0560dbf35f79de23ac603360d84ab5907f8c2505a113e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 28bfd9495ec49a9e46fe0e6e9d69f0555f0c2919f6f5d8a833b25529d6cea932_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 28cf048ef8d178ae4a7749a3ae1e8cf1bf1c9e7cb2631fafabbbd76f88d4da65_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2905e7baad6f01c3d56a56973b9549bf3a3b468405758b524f42f1049cf52491_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 295d7808549f91851634e2575b576005d7016be359f660ccf589203fff15000f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -394,6 +381,7 @@
 9437184 29e228a801c7a0816b831aecc0c5117854559f89f1e1c13632807b29224f6abd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2a23b6a5b2db521750422e976a46160e104d107ab1ac7bda0ff1745d68c7a0d7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2a850ca5424247b0574e4cbdfeae5bf47eb8619d332ccd93960d5be833046137_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 2aaafdb464ccc6e1c2b0997aa47242d61bbbe91063cdf12022f17b1e4770c24d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2ad7de966f4bc1037c910cb6795db3328f0175a4d4f97f0b00a589968e3376ff_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2b6bb0d590335aa7500cfbb30986c86fc6c1950d43bc04242b2a0dd3a215a9ca_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2bca6670d426dd1edb92fa0222bf35033c3bd7ff23fedf68628bf6eca8f75c69_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -416,14 +404,12 @@
 9437184 2eef00692bcdd8b182ba764a45f275f2bcfb54c8ea016f2b366157844c1067cf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2f0a8a579844288a10c31769f9ffcfb6338f12f6743bd86c201bc225c87f8c2b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2f0f8653ae1b0ee3cf7144f7cf70196d7a6391b261e9046591ffc137021c3052_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 2f0f93f22cde67867e7e1413197c1cc60a9bcb1b37b9ca85f4bf120faad9df5c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2f1bf8cddcc00e1f8ba79d47d0a002349bc8b07fb8c8081338fde5f010791fed_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2f6db5471345cf0067cfa3c9929d4e1304f7126adf04788d2935d5bc3234018f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2f9cbba91b3ac3a803e9520640e450e174651b02d942e674f2e8c73a7adffb9e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2fb987d8e68b5c6234d5a3210dfcdd3b4c19e5a133d1cc55c26f5b3c031959fd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2fc68103e097b027468c43648b8bbc564c79a4bc4e2c9b4f2df4ea9dbfdb4d4b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 2fd61518d96bd8e5399a92ce9e9b0588ca9ddbbca43e05b9364e3dc6a984d293_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 2ff1bb3d720fee53e301247c7f2a811619af79dc1fd7d2268150c7cc5cdb20f5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 30451f4f5ca913a6cd3216dd4094bfc97bf606a439c7f4a05917bddc07799817_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3056aa1f4effab88526d3484403d9fb75451ff55b28f86394b5198fe9b8f00e1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3098b5e726677118f605968756d082ea6a0dbaa03bccb0efebddc44c2d05ec2a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -443,12 +429,11 @@
 9437184 31e65a39f1c3da48f7c5eaf6e981b4ce1c5cd9c4d0ce7766d4efd9a48c6b2cf0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 31ea39a4ab1c4d8ae248744a5425e7da3a4459e010e20cd235416b66cbeb160a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 320178e93c21cf407b00dde5a6f0737277d1ae1b6948cfded77f7edf5994c248_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 324ac65522765d97069ec015e39eb6c51c158fdb71b542b8db093daa8d81b5b5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 324299d6e3ee6ebcfd3f6c5d9b3c8104eed8aa6f9175b0847fe7c99803f1a8f0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3263feed77ed668dc5c97790b30bfa18f052013c72038f71673bd92d9d949065_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 327067ff4206a1c8df9dd00948176f86407c87c804c24e202d3f176b3ffa5bef_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3272cbd572056a552a42a82398ec52a2aad7119dbc3ae144d7b5ceb419271fbd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 32f3b813c9db0c9e40737b841051bc1fcd2572b97064276fa00f6867402f5d40_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 3319f70d7463a1b140a615b40bb52c93e55489da4f8d8a254696ecb52ad7b321_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3323e3541928ddf854160417d81f885b36e13afeec4c605088b8ff2470877de5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 335a1243ce975d2e2c891447dae96564057469c0bc8fd2b9bb419882a0bd0fdd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 33681901411e2ff3d8a93613477d6cfbbf968bc8d44aaab98db1506a3ae126a9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -513,7 +498,6 @@
 9437184 3b0559dbd7278110bbb85fe0f0ec3d997a0b21607f56390fb35738a0b2513a18_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3b0a501db2a80e8a3a8252e8fe4337ffc01970fb940a246206314dfa5ee2946e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3b0de93458eacea28781401448e80a7856736c9f8f052c6ce60ba4c087c1d8cd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 3b2fcca5b930ceae0169ee23fd5ea4ed2c1db27a73b2c7e37d8138712f563f02_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3b57d856b573f28e0df1d49936d6839aefd6350ac8f08472984fb1b8c8c4e392_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3b5bb8e6fccebceb4dd0ade58f7ffd789141099f395d6eee4c394a8976aa559e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3b78375421c929426bcde3241610436ac29cc5276e65d8113f76dfecef524f3c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -540,7 +524,6 @@
 9437184 3e02ba18621417266a9f6871e9eeb94e6928dd7c8b3768697bf8cae6e3fff4fb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3e08432cf5e824e38cb0c051cf2e0cac9b6839519d0256a6ec9c2132ade6a329_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3e0c862fdd548e1a7a0e9178afef63a785310f55af2ed7307f769ff98d49036c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 3e4a946688944d83c3b24886ed11a03110061377a686e5241850b3520060e333_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3e6196d978aa54716458be43c4d8d9d5baf2714744f76258d308793652061a25_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3e725639c5b550beab58bed713ae5d47af64eeee294ff79f0a76cfc582be8691_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 3e86775fd5d42cadf36f734c8e6602030c8fec304a63b2eb2f6ad1d85c160a6d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -584,6 +567,7 @@
 9437184 41f55b861f42d5e1a5005c54d9b5d9b1d95c68ec7ca1c3fd90788684877c7bca_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 42255e13be8c863ca0f64a0244dab5046f95bc1a22a42748c6a5ba8f8fb65ebc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4246911030774b85317c7ae3038c59f0eb6caac379cb9e93b81271b09a5fe209_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 425931297d4248fc4c3c62e00eb2224bbfb1d5487070b1f847c8839af1dc15d4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4286785272b26a867f35ebcc79c9a01e5cdb627cf861ba7b28c4f91a37c75396_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 428750bc5b0a1fa0680c8d9091aacb29aa353240f58d9ab288b6953d95c0852d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4299400bf8be2b7e033967d201c042d35562d6066479cc9543ffaa2a8b7c8153_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -620,7 +604,6 @@
 9437184 469532d8e22dce5034c9ef68a262e1e179074db93a46e2cfc8aed8576617cabd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 46b39fb97af1f65baefc0a5c6e4eedc20fdd86a6341bc9c2581230ae371f629d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 46c7a923583aec29be9537f185fdbd1718b11d594cfe3bf3c0d535af7450b730_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 46c7b37ce850b31a2829de6b32ddd7273aca5673c47d76fb6d3e38b37be6d58c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 470074d39ba19730f5fddd907de7e63d0881fd1c3df260ada56d308bfb1912e9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 472a0924a8237e4d46837a131a1a3e15182c84078556d30e3e3a038558d4da2a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 474034394de4cee907a9b4ffcd03ed403d2f6737076f2d86d5b3f7689c43f7f9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -660,8 +643,6 @@
 9437184 4c670829f334c3a1c9bfca30d4c380b6d6d5e63411cf9f712d96193d9b5b792b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4c6df32bca4e7cdb62d20d7dfbf2270d967cac0dddc2497ced279975e0b75e90_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4c76cace4e82851baa411c16c58f3c04c64e311f67f270299e3ea0143dbf2465_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 4cae2fd27bcfad55a12e1dfa6c25d9e53f875b89ba068b8c2556b3be075f0ed9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 4cba6b6a3d47e43225a0b32c044a95e778d00fcb1d9d4c80af738fda2baec9f5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4cbf62710a81a2f02d10a31a7d29015a0f26da3341a4b8fede6950699ea99cd4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4cd1a3a3ffef9eed2ff0e549f45e7d301c92cd9ea15d6a30f4036c251a52d373_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4d27675d5115d257049feded10bb0f8609d16eb59bfe8397faadbfd41f1c304d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -671,6 +652,7 @@
 9437184 4d7627c5a3881eaf86fe5ae2249013cb4eda80007c26df00e5f94c7ed2968f97_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4da17b30bfdf076dbbde33f855945a6814cee1aa4aeeb29ccb0382a0ce92f34f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4daaec525434ee8fdb59de3d799f34845735998bbf62e6f9c4a767f8b78be455_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 4dae7fd0c0773b99a6688e7e7da94001cf8a79c5f87281e53dba2bf843b71b93_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4dbd6fbf0f6e9e770c517041a31369ef8ef69fd6230183f008539166b88f3755_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4dccd77182e7ef8730daa0a58528741f61507ff8b4996fd306db864fac716733_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4dd93b5e3ab7ff18df3f70398fd2e692d0dcc147e5d2cf9a2a5428999335a7f2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -696,7 +678,6 @@
 9437184 4f9eb2636916ae8fbcc82242e01152db2574fde1d8d522909af66da18627661b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4fea3d212ddef8f380d9fb524bd7b460f6719d72e7a9920b66f38287f1b03f07_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 4ff2820488e3da08a50e42037013fdabbcdc4bd0f9e10ed19041b1f24231560e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 5068e8dbed19cdd653fff99eb7910772c359d6fb77ce462edc71ef049baa10f3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 506a619421eced4bb665098922094acd43d1df3a14936faea47e595b2ae69056_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 506e509d2e03c594efaa2e9b0269be578557b9c2edf7a2d6bb8a53477ba03e36_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 506f670d3ffbf37e39d305dccfec8d87cc08b2225e031a0778f22d7c14cef29b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -715,14 +696,12 @@
 9437184 51d3bc6b9ec99b8ba3544fc171eba800c59b001685059bb8c0c42c81b049c27a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 51dd6b8909d6f144edd34f986d81465e68b977e2d9399ae53f261c0516e57d62_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 51e667b564cc01f35f1e162a174242ba4781cc69794c112229175283e21db740_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 52310fb3a8d48a902ee9c6665b801cf56f752c6b1a79f85382e976cb63a03787_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 523e723eaad40e703743cb8af65b5599dc00ec99c8a9ab44e90052175f2af4de_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 524d3ee4a7dfbcc47d7a912573540c0c4ed9e729f7a43844ef25575d04193887_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 52624233b3d4617850aba7cf3d2c068c39e71e69c625e05e3caf5141bde5bcbd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 52c45a0cb5d3d0f19921461695b972e1c074168d6ef6f73ef4189b8f6a67d6e8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 52e57cf6afc5f7483bdbfad8354d2f546dff8605bddeb828c9791ffeeffb87c9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 53180a4c152da02ead73baa95c1487250750abd2665bf44e5470e27b615f503f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 531cb7adb70e6649b8159bbb2dca6eeab66b5ee40edc68616baab0137bbc9345_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5351a2b3c3f76600ab73c2e770036eeaef67939134537c95eed63d4f97956657_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5352f1fa5712be40da543b5671188676b15dd6b1665c77f6ac294b26a53cf3ba_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 53606042131bd04e4d4a01d4f9325995e7e7e2adde3aa21f876e66aefba18fde_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -733,7 +712,6 @@
 9437184 54200b83bc88a773be1269ff25bded1a6c8aa786353690667e0dba5963b7a973_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5437e18b9435e48e627848b6c08de8f61b35da7d1caff86004c031ca5790528b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5440213b77ef7091c57bbe8977b0ee7b5cefc67cf2e5c95331c0add70d323c62_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 5443f9b0b1c4f55adc11545181e04b1769f290dc754ebb493187be50d7dfced9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5449eb6573a49d4f009e78326e4c70875270432229a0607b60cea364771d8d81_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5452387633d47f4a1ee0f3f911960ace0bb0f77a64c866796dc0a21109314641_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 546b7a92269e3496d3b5a13431c7f0f64a6bc7a2688dd18433331e4cc8fc881e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -765,13 +743,13 @@
 9437184 580810a666b4dbf3718568ef85cdfd06017369cef2a995ac70f88676251be026_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 581a3b7626aa1b898ef393cbacac03894de3481de874dcefc3ba545800d673de_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 582363184487aca21365aa50d3683ce4a32cb73a4da767787904d09db30966e8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 5824bcb8db268180e0727dcdc5d1eb3dabfc5736f149a85e194ffeec0b7799ef_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5829e8f7579ee813f1851e99d36adf55d0c30f3d36edbcac102ab0329c39d894_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 583ce6278342bdf4011c89837a7f5ba06ea0f01706998ef2b1b201e608cd678f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5841cc3f551af958b668d74ceeff119b4d3fbcd6194456c792fd77d6eb758a66_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 584490161c99447664587dc248c4a5402a4b27fe47b551d4d5a148298ee76276_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 58a9b2dfc7c5e6dc982586261c3bee4173348f3c3c89e6be45534ed1647bc4b7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 58b25aa272bc575fb3b0a5f225556b1368b05b53447fac63bfc242449a42e50e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 592bffb743cdef19e09a069a9ba06cd285fc195b804d4d13a0cb7458d8682b11_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 592dc684134ca077e049d02f6ee56274433a246561488cee09356b7eb09741bf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 594f1dff378721297c6c94b4a4cac433703ff586e84d8f95972c652683f2527e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 59603f42818257fdad35e22f0b01f69e17874995029700442062b3c17db362fe_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -787,7 +765,6 @@
 9437184 5af1173c289f8450bb4387868f82c36247794da342832c0df332ee286f52ebc8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5b0224af9aceefa17d03d25895a67c3965d7e55e6207be6ed6569cbc3fe6dc14_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5b3d4ec32057680335524a8978d60a6a26c05b6cf973e91a36bf1e6212055c02_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 5b5e34081b04f76ac8b52fa17ba403d5b94a284f68e8e2bfdbb65d103df47a5d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5b63424f70cd8e8b9c4d425d1a3e4b289c2e429adbb0ca9bd2ee94ecc62a2199_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5b7689232cb4c7bf360bf05c4e801e9944d3efd6becba7dc61fc550d21d35356_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5b90c8ef4047ac360ed0390ea2b9d2d3d1b188bea00163a912ec61ded90f2518_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -813,7 +790,6 @@
 9437184 5e52da0994407a8ac3734bcc36bade13ddb4a967d2af3c59677cd54b209349c5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5e58337e753a79d0cbf5af989bd9ab4e566bac4135a7f7b8e1ff884ef20d4a2a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5e87c44e9d9cc71ce788bf1dc6c8eaf0c3e065ca925cc54aedd0a0538c804018_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 5e8a7ee805d0f5f0ac9f11272705d76b83df8a5a155692e292926472f448bfc7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5eb199f07c5fdd46e7990aac753aa3d750f066a4923cc30118002f75435734be_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5f07f0a4d532142f1a665de37e307f188cb65930e4421f2d0e77a38a3cdef29f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5f0893478eb87da3cce1221e2b3ade04d63058ec9a574814565c54bef565a1d7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -825,7 +801,6 @@
 9437184 5fab75024dce59974cdd220ca9676c32de88374682045a2128e9586020859ab6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5fb2e096f4024d6e8043c62100d2341de9cc5673665cba92234f59ed90e96276_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 5fc80244d304e1689c46803bc899e11ed4f729b45734e60ce677d141ed474d30_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 5fd2876f482859395a5e7a1fc9e27c800ae52796b515201c7ba81216789f18c4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 603b2b61cd8711a8830cca460be4e96444f2d99e6932bc42dff792bb8a17412b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 603c6dad0703649219dddd8ea1c2b93b8048d34105f78aa87f6e95200c525785_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 60530f64499916cae196c78ae2e2be04d520044b8c274a953b9c191e1b2b5f6b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -851,6 +826,7 @@
 9437184 6188c0597f7143d86f875d11f3935652e7bb9dd7f76e7792d0415b4b315c6f29_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 620d3be72a3acbacb70fc50f056f023f45c10a8527c625fed8e88c4a98ae9dee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6227cd4f65160b9dae91597e6206278cb16c888931622e133224b68584507751_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 6228633e4d11faf0d4876affb2f4c7909bd04042e20a3dd8db73d5de8a8e3db0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 622aba18745194207e80920e763e9610a237fe8016d2f73f72a131a034a70f43_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 624f97d551fb5ccaaf6dbb975a87d2e6905f2153be4f401f89bf9cba6f438a04_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 627420b591f2046a5966b00cd4d23b06857fbcf190ebad22443c1b9df7419cf8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -876,7 +852,6 @@
 9437184 64300e3aff9bf8b4c6a0f8294d5c646925ffba33790b9d2029cc225101b07111_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 646a5ad29cd4d7263f802c8a3a5dbced91198a00b4dfdae5b19075159b39c65a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 64b2af1584db526d845de10c85ae2495539bb79e049a9298dcec3feefa19ee09_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 64b4e7b90d20f5d590e5391735cbaffc50461a59d53b9780db519f1281b48c40_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 651058c5e5cdfc3d031ef74b93aa420c46fc966a7feb4692a470745702ae6b24_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6519483ab788e3b5d8e5b67cc819de7ded339e080fa7d693a97fdf71e2d06646_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 65449880e3c3bed5924105c52cd41831216d7fde349e784d9ff93bbf01bb9ecf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -886,7 +861,6 @@
 9437184 65ff8ce106246bc2afd8253b9d016210d265cd59847a891dcf19de51277ef404_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6613ce3f7430b9e74609df10a15d48277f30507dbaf4d79eec6ef00d16a1ab4d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 665e5bd315258a795c995d03652956401db30b54c1cc871488be5d67c217c53e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 667f04c8cb0eb4febf1509dd7c99593367af2b8cc823e8b4d1d61ab61adf7f6d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 668454bee7030ae1bd039c03292820f49f53edbd20f024a74ba1b015e9bb8fb6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 66aefffb8d1b76ab629143091d871a38a36196f434113f005cb8118aacc7ed5a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 67077e1e682e1ad3ee0a3761fbe9dc766ed31f4007ad8ac2986821184e6105db_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -921,6 +895,7 @@
 9437184 6a00ab037a541cfea7a87c169fffb5d2b7b4a075a968e2bac9e9b0187c40bd9b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6a052716bd30a29bb75c6521f4ef1eec7fa5624b0d08fb0fe67ccdc4b57b2c63_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6a190d3ad236f16d8385ddb1e6bd84f0311e5698411b8c6ee6c178ae6dbf4c64_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 6a1efa02206f3d7aeb17fbd6b7d47215fbe25699cedfccf7019c7716c70ab892_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6a8d1330e2c968180ac10ba46609c8bc40c4f3e3b100d277a23cb4828515451e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6a9e68080b80b574d6d70a083722c55d5e3d5e227ca22e3863a4bb2975ca8ef0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6abaa77dbf8ef6f807aa9d095bc9180f816836920cdd62767561be4d185dae9f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -940,7 +915,6 @@
 9437184 6d4dfa56a83effe8e785a77492b08ef4401f64d12e9d9455848990a9299387de_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6d4f50365d1508a26bddc78cb02d68049e3e34734a254aead275337737c8e091_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6d8773c3839b63f3f3f3ed7ea776a8313f6759af3efea83905341f7f137c7e44_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 6d96d9dacca9cfa90c646954fa2e2100627282d75384c33918ca27b48367b3d5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6da009cec8cbfcbbe0ac99c26757029921b1d21cb09dbe481d4792d49e458e46_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6dba3fd48c504f0ccf3efed53ff6129d2f61f14271c3cf350dd99c94bf5aef3c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6e14576987c1c8decaff6f1d9435cf16f05073db897e02348bcb19d4fd1a8e7a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -953,7 +927,6 @@
 9437184 6ec9f95848c1ce961a40721a0416905732bdebd167b9e911d180d3062166fb7b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6ef675e1253630d08b919e3e48a76f08be79b395cc049a910ef69145413e6e15_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6f1b776d10ef3189702b91f2fe5c41f0e1f2f77ab8428d2150cd2387393ca8e8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 6f246271990a0d14958fb2032bf9870217c5241713d30e95d74d523c0f43ebca_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6f3b9640533390735dc16b44420839fef09a073e1e39c282b1d853a735e3e25f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6f7eb8c00666a41cb87de41c0b20909214afefbb38117e54c766966cba7fca22_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 6f99dbe97920286e37280bc362206dc371569172ab77f39a676a209940dee0ee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1018,7 +991,6 @@
 9437184 758218472e64e400764fbd4a92f6ac8dd8f0a8458a7621388c1f02462430f151_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 758de33dc425c7c94bf76784dedebbf69ab4a67d34f7a53e3a6b2d9e549dfd41_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 75e155de4fd0125125352e8153cd628f181a2425163f653a6584cb021a425da8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 75f8d98a200da30065cb3194183d6cffa70e1122585488f41f4adfbc81bc3c73_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 761cec5f57825272a41bc5045edf0daa0b02e1a78f9e45ac02514284c926fe41_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 76357b2fdc638ba8199c2157a2313548fe373ef0c41c098498cfff84c14d301e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 76583cae6fe26f4d7f39b6c1b449776bdbabc6303850efccc13df3a1881a99ee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1031,7 +1003,6 @@
 9437184 76d1615a69fbb55673c3e48dfdafb39f1a2cc8a44ff86d0c1965f0c74d003486_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 76e86290a864ddca18782cba5688b99d02ed78ad67e2f4f82f0f3bcbab51f451_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 76feb77177de473bf90bc528e23f9568f0d665cc977b330451262dcd845f31b4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 7718a7af705cac22013b64eeec3c0456115db0a8cb64fdf686c86b9da1c796ac_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 771ae8bcc156cbd1d26c693d12ca0b721fe6a6764550429dd9b2c29d37273981_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 773cfbf92a1c73e0d7c734f0a08be0c15ba65514dfefb9c3d756756c2288bd62_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7743a848ce089fc64fdf68b232a0af1cd39de575a671be0ae278c6ef32359a34_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1043,7 +1014,6 @@
 9437184 77f6312ebc03c60066a769466917d9a0e37132a10f396d55afdf34ebb01eafa2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 77f79ef51a9f1e52843ca0812531f4556581d524b11c6773e93c534db0bf5479_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 780cde0fe6d748114ed07f014c82288e873d8cd96478d4e9fd60340175e2b68c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 7826e10206a6fb4b173b3f4fc1756ecc6218ed44af8aedc47cbd5cbaeb950b58_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 78406fe05628281a49cede70c8f639e582824dc26562ae78db80aeb97f1f6699_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 784f41ade12e4737e331562d40f9225d9fb8bee15e3bce18e057749b54ec9fbd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 786a34f658e64f30fff04ced5e9c4c38e1d95fc739e3e40bb401ca4f91a7e077_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1060,7 +1030,6 @@
 9437184 7a0b55cce8dfa12b10c57e62725ebc257ad84e4c62acd4b17f1fb6939e4346d0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7aab528be1a439679779d0c780dc050cf96790ae1d6dd690dfd4ca11cc9de7ea_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7afcab79c480129ec039435463fd375e82a968023337bb3cdad8b72e20fdf1c4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 7b0a7d064f40df6b5a9801216bd34ec01f0a62e29b9d30d3503550fd10b478f4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7b1e1650e6561ca45d6b43a576efde3e5bbcce8e1e7c9a3903fdc6dde97122fa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7b47ef8b52a3e4100bb338ea7604419335c0e8201067ffe4d87d259c6fc0817a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7b7cd404f2f39e2f6776a3d1752b11ee3d0c4928938dbc05437bf016a365d195_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1079,7 +1048,6 @@
 9437184 7ce985333b0d3b82b5770d68fdd7adad764b0e646155c92bf72b58bcc26ba583_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7cfc217351774292eb9c18c3720acf494bea57e2d11f256e4b00685ddf6e4e9a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7d00aa80005da3119ae5df83acd6d25a000c351a2fff2285ce2bbe3eda564d1c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 7d14b52033f80dfcd2f2ff35a9270eeb97a1fbc415083854a313644824b2950d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7d2c164551379d8fb5a6ee13c52e9125f6fc737c206401914df768ca651bd874_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7d3034b6e65f127b02862e0445bbfc32edb0707ecda98c73aaccd2ca9e570855_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7de20bc5cfd9d62530f66b19158bd165486f939c29e392af0bc20b2a6a897a8f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1092,9 +1060,7 @@
 9437184 7e9513bb33d60bd18b2efa2aec6a3bf376900ab314c931771219b324e0e7fa7a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7ea12ee946fccb2afbbe838011bf71531ecddcd947c7829857e213b565cfca9c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7efb24fabbf90f1fe4923bbb1d27d1da6aee5364b769bed225b9a507d6b5e04b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 7f1a1850ba6f66309b96fd2014bba12d17d8140ff56d9a77551d6470a79c6f42_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7f279fbc933723f96cd27832b7c083ce524e85ab7686b0d40b91e6aa79f0380a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 7f37178847c0675c87d3f8dd7150b33fa7eeb9dd61cb87e6065a16f986e6ec9b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7f3c1dcb3c51660d0e264783480d614fa6276cc4a8456518dbdacbfbed85dd60_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7fa13cea9242d8f14627b4e0bbaf8b3d106094699c410351f2a6d6613d344ad6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 7fccbeb1893c8105dd32b2a4d0edee971c1e18a58f75edcd3168d9af9715c27c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1104,6 +1070,7 @@
 9437184 802a6fe8f6645cf9d4f49c43258802caa4e1f737958117297dd7f0663de0477e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 80641ad776f0f3ed97679036c46ecaa6be368db56ea2d4e094a66bbfcce0e261_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 807d012e89f26902c691244e281f51ec041297ebe832fb6d76c3e60f82cde3a9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 8089cf8e1e11837fa1fe4d3bbf58f510459b1ec072e69127318b16837d7a10df_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 80a1259a2bf81c2c325309c7be8a1daa47cebc75f5804678bdb6d24bb26940fe_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 80d5e1169e298f2f392f37e2756513b31d6eb15ce6d5e31309a2bbb6c9928143_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 80e39516b50c82dc747b5598dd3c85d442c4916bd849497db25ea806b117c3d4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1130,7 +1097,6 @@
 9437184 831fbfada8383c41e75e310f769432aaf49745703a276bb0bd1bb3bde76196c4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 832f03bb29ed5afea3c9b8fbaef05fc686ff9ba42787d1c706ca05e730965e9b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 835656d53b19c375e3a26c40de0126ecc39197e2201cdba322f61ae0a5a17d40_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 83586a2f048aaf7d6e5be625fde9b509b018227f506c14941411dba3b282e175_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 83c0c7e426e6fa4ee1769983c553df51a73c808adeb6b7096b67621c23c5f225_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 83d52ea8d8d06f34fd78c02aab5e4a70f5cef9a56dcfaba2a7bf14a6dbaa41ac_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8412b303be3c848753a9a423c8ad64dfb182eefe56d60e0a51d5ee10d7664a2f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1149,13 +1115,11 @@
 9437184 852e42ac2ad295f05486b205ec756452c5b3f91c1617820bdea4b6c20308f1fe_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 853b2558819bd3e5850daa4416357d1d46f2cb8622df0b3a2157a8dc3ea774c9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 85589d6b3ff240ac1ba9e2c2c85957a8e032c9d1d608cba6c9b52c50143bd424_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 8566202e12f021c2b92e071b4fbb1cd45efe751c045776becb9245fbe50a50bb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 85c193dac8cd6b48645b6db5edd9ece6fd19631f0115853187e0c284f41d1332_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 85f93de61dd001652c0af47db80dcba3cb336e743b866090cb7f3ea417a5b30c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 861f8d48268191c09a0b10aa4f77dc8aba358b70ad760bfe0e2b40e0b1aac8a6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 8626c9eaeaadf7b37d72acc9930c325f14a1c9869055269d4a82857da7018f49_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 871b3910800b6cc33292327cecd8301a2a64a990347461e47c9feedc7c42caa3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 872c6ce7cf58b41cb68664e6208c787a00ccfd680369b4d0e769fa4829d652bb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 87603ce093a25ea0b2b3299c9944c760dfac0931a834bc008ace1f0f4d10505f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 876b8dceea69c9164f5a2c66ff67fa7a0ff5c21fb4ea11410c406842524072b8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 87828830a8ea38704f596acb27e38fc654e09daf2faf8da44753e1833463eca0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 878a1d0a7c031cfabdda2faf7e3777910aa47cdcd35b91442326f2b9ff972732_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1197,7 +1161,6 @@
 9437184 8a97096f02a412ae92a23bcc52dfbf88188d3233e5dc550281fbe39085b38fc3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8ab9db80fcf1332e23e9a22c03e280ca67a9fdc8f7322e584f266611c76865dd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8acab96dabad2277777c86ecbf67074eb00e0937b592b4d0d9e4eef138441bd9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 8ad53613675fa149b9c29095f2536a2e35cb74fe61a25134aff608c38c7ebe07_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8ad59d12ca30cb8457d899a1598085e98b8ffef88aecf1edefe74ffdbe60dbfb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8b016f02eb4dd83e1b43d6478aad0a9ee3d40c4d2f4edc5346a51af098308d8c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8b1675989838ca36f66753e6f51caac4dba00bc9b1e4c03e8e1de6d78e54d28b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1212,26 +1175,22 @@
 9437184 8c84bbd21feb3cf9cab50d613d05b16917cec61ae03ea884243a68631cc5882b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8c9d44b2fe48bfa5ce8e368eb97bcc692881face1d7c6debfc1cf3700eb31085_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8c9f5fc5f768fd0685abf12d9f746ebc841e78c025a70426f1b074de1a349f94_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 8ca2139a30e26f3003834e05560081450add64881af5e543ec0b522093620171_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8caa83c3e162902fc8b0e4d4fed53bdd6741cc387db16be7245a9e5c539968e6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8cd7a3b6dabed64f11e6898d886259f935d13a7db9381f0a12b8444344f38cca_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8cdf8b830a4861295db854d4bec0fe02f124f14f450d3744448857afa248d30a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8ce66745f11d69a1a2d7574c5b3515ea57a20373cfee64a64c485053a25adf35_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 8cfe9d0b0f7e5679321e53b45dd3674697eaa89c70823ad72c672f6544cffd32_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8d396b978353fd6c6aa0da1e5514c8807579cbc4f555c9ce7d6281e050acbf58_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8d739e0d11f4b83189a3e01ac8794869bbb27a90e3b97c7a28faa8d807e505cb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8d94c205c61e6998d80560297f40e864646137dc7a2dc3938cefe508eddb5e3d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8db60039991ef4d88fa81a7cc3dbb093f90b5c52935a7661fcd430e85a69ba0d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8dd0cd1d5fb1e3e0175ad9f3a9d1494fd02caa1c6fe87c2d96def2737e66c58e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8dd3e7419c1be7fbc561a0b9d0302d44f76052ad0106864a65d81ebc4a414e3b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 8df3b1cdbe5b1f14fa6f91c0a69f121985d72e2416b34e0635b723d379d2b8f3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8df4c0cf767c24338e4eba28cb067054d630abf9e3330e5f38745144b40b92ba_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8df5ea923f36cc151fa9859a4e2bf44281cc2db4a07c900f90f071a610610cb8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8e2b1ad5eabdc9634bd25b25a8775244e8d37182a112409ad46bbd7c3d78eadd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8e31669ec1034b21aa984a8b0b6a2d8bd3dc17c9440d82b4b67e98fd26137028_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8e66611dce1342a7586519dfcbf2f0249ff51ee93531318c0db6e4669aa9e896_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8e6f7240ca0afe1ced9ca9048e371b30ee5c11171d146b932b6c0409fc680694_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 8ea74567c6a7f0c3a544cc71ff36f0a5b2c36baa0feb847c0f85bcc069a02872_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8eabdb9ea75d2de5e3951e057be5a53e8c3cbd0b4da3076706c715574dc177d8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8ec60fce440164dd475ca0da93c3e95d7e682b7e386ca974d5ea0f9a4a1e9b94_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 8ef59816d1d079a3b24e19303015b09e66a1467fd2f8631877bc3afa79cced47_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1254,7 +1213,6 @@
 9437184 91215c7a7a9487ac2a88bd588f3475ccfba7a95b7b104a20e76e00b834e16d19_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9161873585845cacd74da91d1308d79ce1900ff5a75cf2adf14564f5d9665694_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 919515a0c5a1f722b2defb6061ed1fb824ca3ffa004df667577ecebc03a9a108_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 91c177e1838b049a1fba9af484ac23f197d1105b5bb9a78d280e0b262a10fb3f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 91d0046beb01a7d0e8633c6306b78cbf61321cf8120a2035aaec63e6f70f7ad3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 92063928bed3cf5ed3fe1fa973d5f46878fe664470a024af726c5fb1d8cf3cce_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 921afadff6e763c3444358317ffcc5acab65790ee96576b3b621c2ea4b038b14_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1274,6 +1232,7 @@
 9437184 94407ba96103ae3b35d2afe0193d82e6f66292df2cc5c9c1fdc86b9e8f1e5764_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9446a56bcbe87408ecbffe19988f66e828cb28cb114f02ae367356e0aa305dc9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 947f8fcaab14b2ac09ec282d28738c0ac4ed75c97031623472c032db2b02573a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 94cc64e93ec7bed2bfa9bed50add1408235cb728d408360f0165801776bac186_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 94e8e2633d557023c719f7682261a51a4cedc612251df756cb1f3e8b8374121b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 94eeb4c681d8414da115ec94dd3488a09617ca67f653267dd0efa6fc85aafa4c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 951abad01b4d1f748e8c37037350f13e052359e6bbe58827baf55e0910681367_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1287,8 +1246,6 @@
 9437184 95e774f8e92b6261712bf815d21b32c5bdb12e86bc1356a6b63066c6e32ad8bf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 961c6d914dfcb9687cbce55ecd02346a4b7df32cf5310fc72627d0ac757296db_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 962b65bb33003ff987d2ea1eeb335c508b6afc4792819e4accf2a707c33232b5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 9630bfc1d90a380e761ef5c190ff0d83b236565296c08cab506a3ca760f61a7a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 96a84f49f6e2a5f4dce9f91c5233b6ae655c241cd82caedb9b8af8a4056280c1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 96aee8d5a0416233520a3d998d03b7a778e4f689fbb1d058ca32d6b18c373fc2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 96d3a0613182fc233545e55ed2901a0dea4c04e72c78ef29ef63ea372e06c7eb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 97184e5d02d0b2f1b60db628c099799a24f41591efb79a04475a95971fdfe14d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1309,7 +1266,6 @@
 9437184 98f79f92a13b8f0c153485200a583fce1fd57262ec9e9cce85ffeb16a623114b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 991d05c3c6831a995cbf5386c6099b6af5dc67449156753e2584843c59d4de55_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 992a47d29930a305a4f7179e7bb912d004b78fa7a1ac7de6aa0e84f8faad3de1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 9940180ce3fc4b5400640e30950b663603d84999c60c5cc4dd11d1c106c62fee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9979bfbf5493593c16e99f71b8a59bca3f37efaa495e1fd002f99bce561a6fa7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 99a5edd417a0a0c03260fa5435a4c528501686ae1f5843e1e329514b06c19fe4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 99b1fad6cf1e44cd4b91ebc576542d923bd36569d2413b3588e38de211ac523a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1321,6 +1277,7 @@
 9437184 9a296fd1a6df191f7cda8d7448438c8566d250db9e405f363a7aceeb2bdf7071_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9a2e1fe5c7534445990c274446e923239afb56fb5f2fffc6aca7430fdcbe8ac0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9a45eda10eafc48e7019c7e8da13523413ceb229d4501fd9d786027bccb40998_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 9a69754f8f0351d7b6f15589e2809e26e4a69086e38ef0cb1b671860691436ed_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9a7429fa19d2105cffc7f290727380fd27de176dd65e441e9d9ec6ef6f20584e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9a8e242ed0a8f992f7bb99851738452df0bf0ce09c5a17121625093658de50a1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9aad6cc24602a14e5f81edcd92bfebc1f8984a34e510779d314314ec09c784a8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1364,7 +1321,6 @@
 9437184 9e2da9bc8d6ae87c5dacccdcdafb7e9f15b93def1a0185c2dbc07df1655d41f1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9e60cb4e46ef3ab17139af00130389d3f7542450c4aada245fc9e4cf2b505a32_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9e6f7a76fd84e611e06b948d3dfaf74cbdb925632415d4736a39ea6a1cc89768_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 9e77fd6206a7e56e8890c1cc06dcb52b29b2a8b1ded34382bad29223b92a301d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9e9c6f36b8e27f88523ab4cf34611e5b0344b330e27db133ea0c22d19072f718_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9ef236b2d78e587af939d4350756509733bcfe7420bdd201e2e106c3596a163c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 9efbf8da817ba6535499dbb1de35528da2c8662bfd8f2039d26e8125855cb25e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1386,9 +1342,7 @@
 9437184 a13763ec57a5c110d2efac2311bcaa3d5dfd83ee5419b1d29c7fa3ee5f8b2e35_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a1a6db4b45443fcce0f25eb55e73f6a50362b5e6dbfc6a1c4ac1d23f08cbc903_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a1ae34c3c582b3b4e27c6082d2e9162b5a775c226b833ebd8371f8a8babc1667_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 a1b926cbe3aacb41725391be27db7bb868f0af0e0b9eaecbb4d1bedfbef6b021_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a1bcfc09efcec5b8335877b464252f3444de9425effdcd9a3d949bc351e7760f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 a1bfc62e04c5e27c0a139cb0a4ff41b816184a68478cdb61dc989f5beeec37a0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a1d0a8d26a88ebd551e0e2bf281558d59952ba56c7fea5e0436f397ea6ecffc7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a1dfe1e33b04ec8d6a5fd82187051647aadc9b7c1d0bc1c5f96ea7771c881069_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a2002ac76c5df2d369f02a9591bc0a7cb72293102a9eb3ed8742b6d068531685_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1404,11 +1358,9 @@
 9437184 a2efc1f5a7400ee9189bf414af12aeca01b6aba0deb7d0c10f647a78ed0acaf3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a2fcc975dcdd43f5ee8d77ec697468201d579ba000b8d6bc39cc273435020c21_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a316b251b7222c8ebaf36b99549006bcea7a9a77af4072410c0e476f003745b3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 a35ede707679c86e775ff35a737d18900254aae6a684ef7f1996efa5527a5f29_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a36a82545d590bf79a9c9f54137d8ff7aae244d5f6fdf711742db4ae9019b4b7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a38afddb8e2afb2fead6cb7a76ac97a78460321028cfa1d3cdfb56d08421b5a3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a3958267ac8329e418e3b9a2eed75474af9b9aeb178f965fd1d2cadaa088c089_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 a3b0f044e71f12fe2d755983cc8c0849a6d86efdeefdf63936ce577f55684814_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a3bd721fa7c31f453239009d22824afa80154e52385de5cb8858d74ba3d09d7b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a3d16c02f9773c41a05adea3660ee9b0df86a1975caba189663a41be742d34ec_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a4355058ce8a4d35f86bd2415ce814452c611ac23b5c7d9bf61e63a9dee8fdda_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1431,7 +1383,6 @@
 9437184 a73b755f3185545aa9caa21e3f7f4164ae400185cf6980622e3b28509e5b54c2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a75c69a9d1308b1bf22a211695f6561041e799ca95da67b3807d00d4b20fe845_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a786129712806dd689882fcc2be5c37f430b58189ad7f42f13d5e929c7668e44_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 a7a19d5e862c49e50b041a4e78be1547f83f397ad412b47b4cdb033ad11c4bb2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a80afb8b15ba2af60e72703d17f7b551f80074f56416c0e9bc5090b138dc945e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a87da0be60f358677f72862c386c676ddea6358ea2fc3a9b3a8661de2e5ad019_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a8831522481a97eee827111a326a6e355cc728fdb8d2f8215ebe9b91578072ad_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1442,12 +1393,10 @@
 9437184 a96e454378cc946264fe9377a379f920fa6d764ad51661c977b6a3123f17a35c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a99a1172300b267f8f1629021213f31bd2ca95089dffda4c23fda0d979c6355f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 a9f6f2fdb6bafd115f8f1c9fb6f0c03ec4e6b63d61bab65eb6b6e402fc5d5387_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 a9fae1ca3968725b52de645e8c141d3050b2649559c81d2efbfe8ec8ca77479d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aa1738bda0982ef93626a25e70f58c304208cb0d29d3226472acecb8217f55bb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aa50a57c28804e06c82dd205f59ef1055538faaac98e108dadb1848f27af2e78_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aa6eddbf664165eba4dff49c83db400f41d651839fa5e1728b2ec64b45a3c668_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aaa16a7876b5232a88c4a422e518029c9307bfd6703b03c97246789f3fd872d7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 aaa430df7033295c0271de81e775860357f396f49143353b3e1ec48e57215891_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aaaa82a0d75e0828bcd9a2614f358ef29ca316dd3e2c447619aa8197e2138cfe_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aaed95816784322e4c7ff2ba2814289b2b98d4aa0723474d9994225bfa520430_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ab1f33dafe991775752fd2e16eee24409472aaca96ba26093a1447033859de78_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1462,6 +1411,7 @@
 9437184 abd5abe1f4a4a0f02959329bfe78bf6c94f896233960619fe7e3c11bf7993f8a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 abef98f7e0bebba0f14a43d3bbc9a4b3724b52469422ffbd1c89190933eae5cc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 abffbe0587b99f3b134e0f01eea54fe7390ddcfaf35d1e6683984a038c79925c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 ac0018e12a4b1aadc6d971eeb27f358299da6b62fbd60459d55f4b090cafb5a9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ac269d65fd477ab9948569c9431483038f5f019ea1600f8630bef6fa743e4afb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ac29435523f44e2cf58d26682f2dbfb4eed942768041ae73de2f2245261951f9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ac819fe94f4ab7a0b78f553a65ca50e9e6321e0d5a17f2fc68e7436a128b68a6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1491,7 +1441,6 @@
 9437184 aec6d0a8680a5e80c2faa2aed344067487b9621c53da9a761735674830854460_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 aece882cf7cb902516cb959c8a70ed49916a8bc986c7f5ff112584c610db4e94_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 af072556a3d71cc71cae24535314485603ada27f2e718c54756a5739377f2a79_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 af5189834aea8e405bcbf66437aa84482cc76cd892de385397f556f087ce3b80_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 af9031e5d531bdba1ef63af33caf202a01c4978ea4671a6f8d7308029e893d1a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 afa9763b15530e978152fbe3e12a490e430ff0acb72a8ebd8293bf1e21b5c1d6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b02f31f12e8d77eddcabd665d572c21b7b3766ab67c5df51e720677ea26f5020_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1505,18 +1454,14 @@
 9437184 b17bf0cfa32b63f8d15175a1455672e726b3dea472fdaa79332484d205589886_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b190bfab55df93a0d9267c2fdc6ca5eacf21c0201dd11f6a9fa4781ca80539f6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b19be5dee153144c2466830b322a8092d44f6ba80716d27a36d2a0eeba68bfc0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b1bb1c5a04e3a6a0714e98ed17eb318fae05697d9e0f348930f39966fb42f12e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b1bfb0cfced3d7aaa87b0af927004176001772cf67e276e7d82f5bdba3ee3b9c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b1e8de4cd04b1b0ad1322c1e1ee90031212e93ee6041474700ea9d2f50cb7957_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b1edfa34c0ebf00c844ff9028f555493edf67c013d479da55c3d85f1252d5554_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b1f6345ba24eecbeae47e3633296e1c298e75fbe3ce7e17e468b5f177057fbfa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b254e0aff145574cd697c6309d342f85e986f3531d50ac10d8312e9158e38048_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b28bc503d44c526af36d6bd332af42d616572d9eaea5d85ab9131ccc9be13e05_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b2b3d5d1c254e9f302535959ae2ef4689e86ace2a4dc36a803f36a844124e050_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b2d0151eecefe419df09412c6c5e199f025cb4f999956d2da6731aaa7648677f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b2fcb054cdc5af6ebd83b3278b2f31e436aa843718070e5392dd2b4083bd6889_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b2fe28eb2ccfe1be1cd9e1950e56931e231937d031674afde20f5249e055dcc2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b3012b4a3efe5cb5e4cf2d60cb518898ee5a79d883d6a4af964f6e0eb8bc9d2b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b30b427e38e5d3e5a62070d9a297e423f8ec9364f225d5d79cdd489080a6e825_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b3114fb55881a0dbc8bd20fd05f4a0a5866ee9c8a9836763f49759583cd487c8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b32e86d6ea537514edf410b375c8ebb6de77b5f52320462a4add7db478e9af2f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1535,6 +1480,7 @@
 9437184 b4c9ef084ec6eb79022f05acbb8651f4c5bbaf5ae3cb4d26888e495d0a3a77b6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b4e17f8de6becdeae675defc2141a8bb3fd99cf938f1e7f047693794b07801cb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b50e87da0ecb841070ea58a6e232907902b7614c21a43398553b7254cc35688f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 b51d97257478b7dac97e7415e2d5a60e5e5684fe4afe3a9cec9334ddf1973f73_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b55548a41e0f141929bcfa845cfe0e949a99cfddca5872357fcbc8d061803825_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b5724bcda3affc3eb8568ab729b6dbd11fe796232bc47dfd0be30195d9fcd5a1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b57e9d4c028ec8872e09a05e884a0d83739defae35c10fae29d5e081e36c0b10_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1544,14 +1490,12 @@
 9437184 b5a959a17415aad441074582369a7d9c2ef2dac65fb7fd9d579736fdfcea3e97_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b5e71ecb31779e9b171d3604ba6f1c33dba4608235f5ad8e192a795925304d90_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b631f5ed5dcb871e197179dcdf0889d855000474fa80be74950f716cb7b3c44b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b670842b387f72de6174525e44d3269a687a91d247b36b556cdb5d53b9768d61_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b69c4ab3c7e711737b2264a6e124f868b8bcaed27feaf5cf419eb0ae510ee091_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b6a8ad01e56c9deb2b2f97cfd4cdc7898e4b381b149baf0fa4c2f741118530a2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b6bf5b1f5d82a0f1d92c4122872d630962c4f1abac143f63238afdf3f3aca6a3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b6c504e920105e7cb42a5abb065c24030e91c1599babaf54a31c1889e898a698_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b707089a31241a80e4717b2ab19b6fe61db6ecea1359c7f5abbe4c0efea74639_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b7071573f3111457c6112a7592a2354e4f50906522264d8b29fca1b1131d7fb9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b71484af47f887d164234da8acf80723a8c2fa95fe9614cfa3abc06b53aec9d9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b72743e0f524b519d7c1fe67eab5e71ad98249c8363bbbaad4f75df53a59003b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b7276a3fa1031600bfdd4971cdbc17d3697575240f4936ee2ab9cc0ce839d1bf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b72ff3a78d60b304ab35b9a6360d0ff1e8ff001031bd788d618b7fda201e9273_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1560,11 +1504,9 @@
 9437184 b76e2be5b076aaac1b5227535b7f0b4dcee8d3ab05f587e3ccc592aad4f7fbd6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b7bd897f545c7125fe4623d2eb03362cca4e72fbea09a01b3677fd8157dbec8a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b7ecd3ffb53651d60b4c99cf8b77d39aea3d662fcdb7ed5135f1973988532651_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b81597100edabfc020d98d6f2ff09786184c8e6a3003b17ef86785da139b684e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b81da27dd8da82b9591862e9cfd2b2b75f8107503604910ed6e70e9202ebd317_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b81e9041698a51ce4c181b5be3836f7da8c1459d05de9aa7787d847762b26202_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b877940600ca810df344f770e0494a8f01f4b86da40d519fc1a723b04cd63bc5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 b89ebaa2dc8f73eb5a982ffc572eaa45b8dc5dff50bacd631680d4429ac63c7c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b8c3766aef9c129b0de296866863975a37044d776b89482b21acebae67cb10ea_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b8c7e37da1586a868619423831f7c9854d9417dc7d401a74085acb63401bd243_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 b8d428ead2408feef64e959c94938651f676115b4c560f0e2be9b79376ca585b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1609,10 +1551,7 @@
 9437184 bcc67112e257a3756ab598bf5812cd2ca60708bcff7932bba9703b2ad4345175_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bccf39779cdc141f417f9612b41aaee12abe3f4855d727e006761da66d30743d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bcd09d7960976b0e12fa0d79e1c309b24a576f7ac66b7b3db020c902f7c8d5f5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 bcf3f97444c6062712ff0405e1a66ccd5839b8d1e51b169f1e373185f5c721bf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 bcfe28efe53a2d48bda245f396cf5cabad58d310548b506eb07192fcea0aadb6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bd49b35da4d0442c2398ebdef9c27550ab5bdf0bf4f3f057e402c1df7dcfac01_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 bd502924fd0a58296c8cbd751f90e4abf8dcf4e69cc0477d37c8dc3d3fef2f3c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bd55cfb06215bdea1e906dbcbfdc09492718fc438d6de778bdf537861c7d98c1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bd75f5779d6921e25561a5ab7fad6ed75ab91a8a84119eb398d78eb807d7f605_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bd9055826c0216511295e89f209bad83dfe774dc1b12f4348806822167711edf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1632,11 +1571,9 @@
 9437184 bf45ac5d3ab9ee007a186952ac21175b2315afd37e1b47ab982f86d0f2a607ab_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bf524928b12c95c4cd19f5ed520868642999d585c1710e35d725447022327c9e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bf5d4f8ca856dffc07b12292adce76d7b2b20ea1361876d811252b7bb3b2d6f6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 bf6ea2a8d1033d12ebef05b6891db54dbc72be73e6c635c4d71bfc4cdcd88b45_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bfd9a4cf313f6ce7dcb8b4803107f4b6f0d6f6a84b9ce3e72ab4a140783860f5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 bfe19cee006d8c55bc0e5ae621eeaca0af26ee741ae9bc85d3760bef8771abfa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c005f1d425911c6d38accd49e5196a37fadffd0327ae5162526c966ab3f1eddb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 c00df095ab0692791cd97d0916c8162643f630a45ed4cac132596633479bce3e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c01d037bb549dbfb3c494387f0007c1cf4b2b148d5ea4b6ffb9a84abe3956f5c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c0310934d008c8d9c707bfbc7ea5c814ec8a8db484cf1ecfe1462e7322294d7a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c04db19c55e6350e832b1f0e58961f9c5447fc6f7bedf1b07f20d3348e1be805_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1653,6 +1590,7 @@
 9437184 c180804ca5f7b8f98e31064c6d3cbc935887913bf4900d59584c32fcf9f04280_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c1892a2b5427b828bb0683ad7cec7b4a95cecccaf6b2ff41bc26b67212399dd9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c18f412beed2086149501c5ecfc001a1e695fb4a53cdd9b20549b1b0f6196ca5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 c1c0a5e16f116bd24d02d9ead89f594fcedd32dd59927bd4494f24d56b825109_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c1dae2a7709d41f55e7272d6dab74c7b110355dabf96972289b80174167ccf50_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c219c5eb9b1b9e8d2ad989e2a019375cacaffda5f29cbbd760a5420431150f01_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c223784d8c13956ca24457409248969e51796d931aba1a55b2800fa30185564d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1672,7 +1610,6 @@
 9437184 c3dbcf3fec80fefd240b23ba42e85d08c2514ed1a9ed4fa3d11edd8893cb3573_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c3fc279efa76892220ee25ae9eec0a73f757cf39debe547c54d494c68a7bc5d3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c42a1fe29bbcd03b3438b88468ac92af13b0423e9cf1f1f121c3c9c7f78f064c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 c4471c025ad28faaeb66a8eafb93a35f3fd9b0a6bed200650ec066faf0e6f346_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c4499fd406a57b34ffa241b8eea3842e90c979e8aa92e964183ad5ee3df2287c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c4512afa351bd651c5ab1ce4438e9498798d785a66aea66559208296b50f7901_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c4519420e01eb2d3e88a1177565cb00d64a0e6acd1165bb67da66e880456d79d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1700,11 +1637,11 @@
 9437184 c6ff85863975f34293ea4626a15e2e8ab3d2c5ec0c286b7255aa394078c523f0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c70afc4a4ab67c0cdaba786efc95c1940134e7d5d54f5c84610beda4b52d55fb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c72b445a404fcc4ef52425e65780ff87936e7a0883a687df34f68c3c583743a0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 c759e96f1d4c076a94e7704b72b9eac544a44e829b8ecea5b59edf7685891f94_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c76215acd02a13a91387a99828ed1f293dea9687e3dd81f1fa136efea9453a6d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c76276b8763a1ea37fe9a454b2b3f82e3960b145da523df41aa401e58312dd08_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c76d7499fb77e365706bc223ccbce040c1900ad74723ac889e51cc3b018bdff0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c79c6bee06ab0effdf1f2bc62f0ec40e56557522bc8cd3cb21134aa77f00b5c7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 c7a1372b53c7456f0ca8a32cdee606797748b33a18960e2bb92711a2bd3d7687_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c7bce738ad5cd8f6042a1e0d6667d4ea306ee9f1dcb28c9bc3fb51991d3ac4c9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c7c34956d0b5399bd10601fa14dd584105fcd58922ba4886e6f220ae9bf050ed_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c7d29da5b0d2f0eca93a1110b6942698e3f12e702a22899ceb1900f1b8f87d08_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1721,10 +1658,8 @@
 9437184 c94d7526c2a7d6435718dda5f737e2eed682f2b4b6bc15cce7cb0f37ba657a26_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c956f9275f9e6115a0a2d471141eed05359f1c9bb53c612170c88ba903c68689_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c96fb0a09035302a4c0fdcba5ce076435313577da32f69233f9371bebc734df0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 c9752cf8bb4a8028007d529f8122991796eb8e05e6fdc89cb955db2878d9972a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 c9a40cf040cdc9e609f6533f128146ef599bb341274eaaf3b5b24556a1ec9bd7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ca265ab79e7e4d449d89a1b9e732525de5891f5c73306920e5044bacafb13dc9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 ca52c7b6ab9f46ed4c72edd87d1c645a0af77fcd9043405c5ad98dd1315e8c68_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ca56a334e292d0457694952599973378aaabe90f08787ee23dce4adc414734fc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ca56c7d08181990e7f7b49cb0182ddeecbe2a0aaf5945a91ce541a4554f0874e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ca7855d8f0ff9748461c04f958d9963e47e178bbea8fb76ce1abab0f210bbeaf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1741,7 +1676,6 @@
 9437184 cb41a0562a6ea314b7b2d1c603a216a23ee972bed2ac4dd4e74a420861429411_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cb494233460525588f70c43ba653d0931a01508a125b9aa8b02b8e8ef5556c6f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cb5f88a7c63676b4a5d994a536e4dd7a7762de526f0284b479b5463c9912bf58_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 cb9de125dfb909b2eaad57abc39afeb52fa34ca639946cf238620b829ae0057e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cbce32bdf002bcfa52b1136b8a22b277ab0b773386d40c3c6f6ab4c17442c3ba_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cbd840c4438d415859c2fad0f124fc1dcc5690477a4f71a3eba38ffd3f534d31_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cbf2b547a1c28713c290c06382d83091842fe731e33a650d32895377591f02ef_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1776,10 +1710,8 @@
 9437184 cf705108bea35cfb2da02ba7cd1c372a2650fdd7c4a4a55ba1572ed9135350ce_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cf7ab7d118f84065477b4243b018a62a8215bd95bbffff7963992a56dde50ade_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cfa2f54acefc03f2f18307a83cac1b359302b9baed4235f90e280077c7ca42de_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 cfab605fe590da7cf97ba2009028c7b16adfbf7b6b445394e75c68551bd9b246_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cfb356633ec1869999136688fba13f772b451ea503588f3f5bded8d582d8d610_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 cfdda0b239624ae4cf6cf4da83613e3fb0efd92385f0470b315c31eb557d3c6d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 d04c7c2bb55ab805ff83442a19845c0c8d93fcd68908c51a2716c65d5fb00052_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d04f864f3f647802a2ebb2c3257eb790efcff6d7029163be59d3cf76c715805f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d0584fcb4e1bf41934c1e83a924132c2a5579bebfb4c6f62eb29420b9d89383c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d05faacc38856d2fc9f76b1e801b1090c3357ea22e27b533fac093e8f37f88b3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1803,7 +1735,6 @@
 9437184 d24fe0f49b314b9412cbd91ff82adf3521d0f6a4383ae8afa2cc51a2e6d8671b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d27503c9bda7c8d36359eb8659dce96c272090953ebdb951e4edc877202ab991_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d2b1dfbe74d03b490fff956a3cd9d69f965a107633b5ba518cf5d977711ed591_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 d2bdee7b4fd51b63997632e643b502c5ead6fe14f56fdd9e79638d26d96d49b8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d3271dd443143524b45f8b14bc5fb9b0477be9d35feae0830647de0dc8cb97e1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d3351bf463656a11f3175d43ffc71cac77ac411455e1a1ad849c0b85bc272707_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d34891b42c980e564f59c1272584fcd8343c59292c4e8b5670b56ce4b79fd7e2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1820,7 +1751,6 @@
 9437184 d45a425479b11f411b45b751b82d7f088d19e4c8ac7046b0b4bf2b23d07e2475_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d45badd53830ce2ec45d33e689f7640ae8523210b0387987dcc4b9749f38d559_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d4848c00254a6f3291e902d4089789ac790e9b67e7474ea287897fc21dcac38e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 d4b484de14dd111308813e9bf51b53a762d37580ab2524c3cad5a88a4913a570_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d4d57c4310a2fa2075d3bd6920b787646e270c636f1b9378aea6704c672e89cf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d4e98d0b07b7b582bb0d87dbdf94fd8b0ec1d83ab3de8ae4c448853c920fcfef_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d52e46fe2d396c7f4b236ad745c80d55add5e2d3768574d11560f5a17d215ee7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1852,7 +1782,6 @@
 9437184 d8b6d791b580f752f49b92e8bdcc5cbc73fe1f32e13277bbaccb1edb6ebd4da3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d8dfc09a19ae9d863d33ef5b88722a1670fed990ac109f3bb829437720bc0d49_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d8fc6eb460a7f09b73aabadd914837c588d5ffbed41a56fe739b0829d072883a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 d915e35ce67b3a14a935a59763b12a0348dd8700f7d56cbfefc7cc4b300176e4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d94f204038c385ecf1dc3900ab9c5bd5feb22142f2ac25b8738934c6aff1855f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d94fa74f7f7f5f3fc8bb78c69e77302e4a38242ac4fd546499bb6f014c3e9e39_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 d9644196fd3c1d4c4ef1147d423da709dcc46c3e9e3bb47d8d71713a2c3effaa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1871,7 +1800,6 @@
 9437184 db5c215cd5d59af1e3419a1979aed16bf7ef8c6b99aa48b534ce34ea97e76e52_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 db6a51fce1cfd11303a9e51d934f786914dea2b9d8cb0adf5a223dd040f3c131_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 db6d4a7cb5bcafa953f60c10e2d579bdc82cdb18aa11e56d485c0de057fe8359_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 dba3d371f1e2c157cf80bc36712d75fa10d277219f4307f318d0876a31754f16_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 dbcf5813725aa7818d861e628e23b83684d78963c5893d06c718999898d89b27_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 dbf84b4d8325347ebe4e6ae40be84e64d23e66457f6e3caf48474601300728bc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 dc0e737d8ee13d3f1f1f92aac84e9193f6ecdcd376e0dc57493c07af2e009530_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1886,7 +1814,6 @@
 9437184 dd9a93550889684395fa4ce9b34696ca668963c2eed434032cdb1123c0029902_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 dde5dadb670980f06dbe13928403ede9eb82dafe833cb8e27ce8d7653824ee5a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 de0abe479768c936e9c9818d601d0ebdfc0bb7e898045414011b342f2709c344_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 de0f7b977d03a926ca6dd4097d5c1731b2012dddf2a58f511491dc1ee7effa2e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 de4ee74e8aaba94d0eef460a0e3d3a5f595f9f81c724774333b64a3d12889df1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 de605f052c40a2ee29a6fecd32ead715b2442286b1c1b533bfb58e3659cf2191_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 de79d7e5950898b544ce37656769b3671ebb20698cfb806debb3cf1f9fbcbab0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -1993,8 +1920,8 @@
 9437184 eb744592f2085d8053e07b13d32fd27a7186b93e10385265463970e2b0be8971_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 eb789575208c23adc9e17a1addfd3b4370a0aa0785e7c4a7b2e19cfd87bf4e26_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 eb7b43a66d8f0b9ce8a5243a4894f93fe27fce424e3e293526a1469a283a76a3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 eb88904df128d3d6cd467a46b4cdc6792d58fa25c1c3c332f6dee34d4fd29044_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 eb95313e01477ff20a3de4d75a5e7896b4863e6a4e0c78b1372bb848c0a7cd63_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 ebae9764e3fe3fafe11b50b33b41119990922a083886ddbacadbe74f2353aac5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ebbdf31bf7c375bec0d9c2a1da87b5aad585dddd3344a4b0824984d78109ec44_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ebdbc7b41c9a07b8dfe595f7dbac19255f0a59bbf857b615c48eedceadea3097_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 ebf0136abf32d0979bdadee6cab60de93238bf6fc164e15d17dcf5a4a2f41974_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -2072,7 +1999,6 @@
 9437184 f2f993bed38527f5d1782282a2b097d95372009750d8d94d0b2e7ed3336c5cb0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f30a0d8c02f0be72b273d2100bd73aeac0ed2be7617208e15a4b6c8f4563a6e6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f35740ec2055393680fd079e4c7c3f7e2e9c41c344855515993e6985f4b9f2c1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 f364829ceb7872c84eec5a27ed656db8b74dccb449bdd0aa4772cb81dfa52746_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f36547c8a6cc288e7f89db249202f13850b6ac2b854a2536d68ee0508c58f4cb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f36ec6157061cc25cc1a0ca14525b126c2bdbae511713c60ed2381c07e0dcb02_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f36ff8e46e3b4df18ca3b3c5a17e92a24a8774effbc3b8a335728274f25af922_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -2080,6 +2006,7 @@
 9437184 f39250e8dd2c9afecade34818b31c05d0665793eefd746681c7bf657b10dbf17_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f3a258f805a2fd3405e483a4727188a7045b384df1db6a927bceba8596f817ea_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f3a3817b97f60dcdd5bfc763cf633c504a58d9318c1841ba921f5a66b5307d41_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
+9437184 f3ab8ef492bb5b2645c2c91f95d0f7e19b36edac24964c7d318e5a5f7591a02d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f3b9d4fce8dc01d14999f312a0e320a6795acdfa02eedb8274349d1448e0d222_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f3bd4ef525c396ffe1569235bb84b183c8d75506ce0c1536caba0aec5efc682d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f3caa13dde024f8a8106948e20dceeea0b1aa030febbd01a89e4eba02af478b6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -2128,7 +2055,6 @@
 9437184 f8cd4379968004014b31f70b226ea189e3129c85035b81fb214fb43982914ad3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f8d1f25bc8148fb4a3ec25cf561ab3a3184a7fc9f033a20be1d417f1d7c434d6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f8e78fdaf2ad436df37a253f2a5d8a95b0403463fad52c8e1be413a7ed3b848e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 f8fdca5aabe0e4a5c8fdc5c997c96165ce7bbd7b1f4b5cb6d8bf27108b22c6db_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f9380b514d836731262e6a1f8d14fe84ea8d418e1db123ee251c55f8056b9a48_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f94161b79d9d4e7d6a3e74daa3545468c00006d5d7adae2a8cde6d9523c84680_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 f950f0736876d8e6c4a7dc51094ee978c46636abb560cdcaf4e0d40fbe744aae_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -2160,18 +2086,15 @@
 9437184 fbdca154dfcecf904e132bc20b13cd2fdc5c8ae6d5d6b6e5906f07df0aedf1cf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fbe226ae9a9b3467c8cdae7b0656bada5d7d2a312c93db7ffa3c671066541a9c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc00be86e5be022c0554d5949ba1ad64d0c2c09a64bded51b323a1302f327fe6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 fc106e4564950a53e66719caa440863e0de7ca5f02dbbd3d470c62283b4d8810_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc1252f55e1f7932ee4f4e0fd616836601584e8a0f6b73ae10ceb40452c1f666_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc2000284cf3c07e6c3b3a721878a393a59e493883e890ef4738521497051f84_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc2ac5b36d3ff423d9c056afb081da0f801cb218ebf752dc9223c4dd0c1ae61e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc372e68ff1135237078ed6817e05ec34c7103af0498efa1aeda9e69f53412ef_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 fc60f5208c2e514eb586d6c96e7b74c25d9ed26cde0c6c8db10708ed45e146fb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc739029172a0755941bfe8dbf6b97b881c8a1025dd7fbebe575acaf2d060623_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fc900d92b4946db82c9dc77715896c993da10facc220a98f47d0ac8802480383_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fcea1a033f2339935d2b0fc0633f0f3e73d5d19d824090b3850f7aaa26dd4991_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fd12a68e90c81cc42d634b609549b9cbfbc6502b1e8b05a55db5d1a20c54faf2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fd211ce8c5d67dd9ec20749bbe33504451b1acbadf8fac4263fe43f9f4884fa0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 fd2523ce1f15a5b6db95bcbfd1ba1a663ebbe623c5e5e3238e47cd326f4a1614_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fd4da2407f39e114b3ede561bab3df42a994caf3feef93db2cf2e758b4a2ecc1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fd8fa974a2cb7a51f731bbc80a00f185970283e2ea25feb2dfc6a9459c71fec6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fda5f4db07ee8609a474302ee13cd7e274e352afd70570f357617d596a1c9714_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
@@ -2187,7 +2110,6 @@
 9437184 fe749d5849cf8ae16a65b36a0f3a15e178871dd61d51844569741cff33b5fddc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fe7ab7ba68730e7f18a95224c4cb735babe70959423b65bdc2b35306589dfd52_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fe7ac031d68f8f50c9fe98481f5e4b90bc9a19ab56f50787617b6bd0c96ec285_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
-9437184 fe8247213cd0e618197e12989a307a50fb36cc633a4abfcbce07df12b301d77d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fe95656dca8d3abb3aa5a07e63637f46fb4f6a0c648fc9206641234639f1cf83_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fee0a8dc48580dd296be5cfeb871782c4e0fce3ffdc51169ce91e9eba82b2aa8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin
 9437184 fef45a1ed46430503ded00869886a1a91b35effdc685f37dc2189eec61521478_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1.bin

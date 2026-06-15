@@ -81,6 +81,8 @@ case "$MODEL_KEY" in
         export WATCHDOG_TIMEOUT=1800
         export PORT=30004
         export HICACHE_RATIO=2
+        export NUM_PROMPTS=${NUM_PROMPTS:-20}
+        export REPLAY_PROMPT_ID=${REPLAY_PROMPT_ID:-0}
         SUBDIR=hicache_multiprompt
         CACHE_SUBDIR=cache_multiprompt
         ;;
@@ -114,9 +116,10 @@ echo "########################################################"
 # round_name : device : cache_dir
 # CACHE_SUBDIR 跟 4B 数据隔离(避免 14B L3 写到 4B 测试用的 cache_hicache 目录)
 # v3 (mount-fixed): 盘映射修正 (nvme2n1=Seagate, nvme3n1=ZHITAI), v3 cache_dir 隔离 v2 老数据
+# 实际盘位 (2026-06-15 lsblk 验证): nvme0n1=BIWIN, nvme1n1=WDC, nvme2n1=Seagate, nvme3n1=ZHITAI
 declare -a ROUNDS=(
-    "baseline_biwin_ext4:nvme1n1:cache/${CACHE_SUBDIR}_v3"
-    "ai_ssd0_wdc_ntfs:nvme0n1:/mnt/ai_ssd0/${CACHE_SUBDIR}_v3"
+    "baseline_biwin_ext4:nvme0n1:cache/${CACHE_SUBDIR}_v3"
+    "ai_ssd0_wdc_ntfs:nvme1n1:/mnt/ai_ssd0/${CACHE_SUBDIR}_v3"
     "ai_ssd1_seagate_ntfs:nvme2n1:/mnt/ai_ssd1/${CACHE_SUBDIR}_v3"
     "ai_ssd2_zhitai_ntfs:nvme3n1:/mnt/ai_ssd2/${CACHE_SUBDIR}_v3"
 )

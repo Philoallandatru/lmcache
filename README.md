@@ -35,20 +35,22 @@
 
 ## 速览 (TL;DR)
 
-**4 块候选盘在 sglang HiCache L3 read 场景下的真实排名** (Phase7 multiprompt 触发 L2 evict):
+**4 块候选盘在 sglang HiCache L3 read 场景下的真实排名** (Phase7 v3 复现, multiprompt 触发 L2 evict):
 
 | 排名 | 盘 | L2 hit (p1-p19) | L3 reload (replay_p0) | overhead |
 |---|---|---:|---:|---:|
-| 🥇 | **BIWIN X570 (ext4, system)** | 1.42s | **1.72s** | 1.20× |
-| 🥈 | ZHITAI Ti600 (NTFS) | 1.42s | 2.68s | 1.87× |
-| 🥉 | Seagate ZP1000GV30012 (NTFS) | 1.42s | 2.77s | 1.93× |
-| 4️⃣ | WDC WDS960G2G0C (NTFS) | 1.42s | **3.82s** | **2.66×** |
+| 🥇 | **BIWIN X570 (ext4, system)** | 1.42s | **1.66s** | 1.15× |
+| 🥈 | Seagate ZP1000GV30012 (NTFS) | 1.42s | 2.43s | 1.69× |
+| 🥉 | ZHITAI Ti600 (NTFS) | 1.42s | 2.55s | 1.77× |
+| 4️⃣ | WDC WDS960G2G0C (NTFS) | 1.42s | **2.64s** | **1.84×** |
+
+> v2 (06-14) spread 2.1s (2.22×) 偏大,v3 (06-15) 验证后 spread **980ms (1.59×)**,但 ranking 不变。详见 [docs/hicache-phase7-v3-validation-2026-06-15.md](./docs/hicache-phase7-v3-validation-2026-06-15.md)。
 
 **关键洞察**:
-- L2 host DRAM hit 时 4 盘 **完全无差异** (cold/warm spread < 5ms)
-- L2 miss → L3 读盘时 4 盘 spread **2.1 秒 (WDC vs BIWIN = 2.22×)**
-- NTFS 比 ext4 慢 1.6-2.2× (kernel 驱动开销)
-- WDC 不推荐做大 L3 部署
+- L2 host DRAM hit 时 4 盘 **完全无差异** (cold/warm spread < 10ms)
+- L2 miss → L3 读盘时 4 盘 spread **980ms (v3) / 1.59×** (BIWIN vs WDC)
+- NTFS 比 ext4 慢 1.5-1.6× (kernel 驱动开销, BIWIN 1.66s vs NTFS 2.43-2.64s)
+- WDC 仍是最慢 (1.84× overhead),大 L3 部署不推荐
 
 ## 重现
 
@@ -135,9 +137,10 @@ MODEL_KEY=qwen3_14b_awq bash scripts/hicache_drive_4_rounds_model.sh
 | [docs/hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) | Phase 4 14B-AWQ TP=2 4 盘 baseline ✅ v3 验证 |
 | [docs/hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) | Phase 5 4 client + drop_caches 每 round ✅ v3 验证 |
 | [docs/l3-fio-bench-2026-06-13.md](./docs/l3-fio-bench-2026-06-13.md) | Phase 6 fio 4 盘 L3 file read 硬件极限 |
-| [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) | **Phase 7 multiprompt + replay ✅ 真 4 盘基线 (选型依据)** |
+| [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) | **Phase 7 multiprompt + replay ✅ 真 4 盘基线 (选型依据, v2 数据)** |
 | [docs/hicache-v3-mount-fixed-2026-06-15.md](./docs/hicache-v3-mount-fixed-2026-06-15.md) | **Phase 2/4/5 v3 mount-fixed 重跑 ✅ 验证 spread 跟 v2 一致** |
 | [docs/hicache-v3-policy-2026-06-15.md](./docs/hicache-v3-policy-2026-06-15.md) | **Phase 3 v3 write_through vs write_back 重跑 ✅ 验证 write_back -37ms** |
+| [docs/hicache-phase7-v3-validation-2026-06-15.md](./docs/hicache-phase7-v3-validation-2026-06-15.md) | **Phase 7 v3 复现 ✅ ranking 不变, spread 980ms (v2 2098ms 偏大)** |
 
 ## 计划文档
 
