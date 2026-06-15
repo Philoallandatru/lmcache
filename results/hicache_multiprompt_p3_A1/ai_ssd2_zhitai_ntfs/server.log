@@ -1,0 +1,10 @@
+==== Starting SGLang HiCache ====
+Model:       /home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+TP size:     1
+Port:        30044
+Context:     8192
+Mem static:  0.7
+L3 cache:    /mnt/ai_ssd2/cache_multiprompt_p3_A1_v3
+Write policy:write_through
+Extra args:  
+================================
