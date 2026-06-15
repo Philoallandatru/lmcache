@@ -83,7 +83,11 @@ def call_endpoint(endpoint, payload, timeout=300):
                 content = choice['text']
         return latency, usage, content, None
     except urllib.error.HTTPError as e:
-        return time.time() - t0, {}, '', f'HTTPError: {e.code} {e.reason}'
+        try:
+            body = e.read().decode('utf-8', errors='replace')[:500]
+        except Exception:
+            body = '<no body>'
+        return time.time() - t0, {}, '', f'HTTPError: {e.code} {e.reason} | body={body}'
     except urllib.error.URLError as e:
         return time.time() - t0, {}, '', f'URLError: {e.reason}'
     except Exception as e:

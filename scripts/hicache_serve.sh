@@ -66,6 +66,7 @@ python -m sglang.launch_server \
     --tp-size "$TP_SIZE" \
     --context-length "$CTX_LEN" \
     --mem-fraction-static "$MEM_STATIC" \
+    --max-total-tokens "$((CTX_LEN + 512))" \
     --page-size 64 \
     --enable-metrics \
     --enable-cache-report \
