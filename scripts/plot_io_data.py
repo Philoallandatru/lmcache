@@ -9,7 +9,7 @@ scripts/plot_io_data.py
   - results/hicache_14b_awq_v3/*/load_test.log (Phase4 v3, 4 盘)
   - results/hicache_multiclient_v3/*/load_test.log (Phase5 v3, 4 盘)
   - results/hicache_writeback_v3/*/load_test.log (Phase3 v3, 4 盘)
-  - results/hicache_multiprompt/*/load_test.log (Phase7 v2, 4 盘)
+  - results/hicache_multiprompt/*/load_test.log (Phase7 v3, 4 盘, post-validation 2026-06-15)
   - results/hicache_32k/*/load_test.log (Phase8 32K, 4 盘)
   - iostat_*.log (4 盘时间序列)
   - cache_file_list.txt (4 盘 L3 file 计数)
@@ -47,9 +47,14 @@ DISK_DRIVE_MAP = {
     'Seagate': 'ai_ssd1_seagate_ntfs',
     'ZHITAI':  'ai_ssd2_zhitai_ntfs',
 }
+# 实际盘位 (2026-06-15 lsblk 验证):
+#   nvme0n1 = BIWIN X570 (system root, 953GB)
+#   nvme1n1 = WDC WDS960G2G0C (894GB)
+#   nvme2n1 = Seagate ZP1000GV30012 (931GB)
+#   nvme3n1 = ZHITAI Ti600 (931GB)
 DISK_NVME = {
-    'BIWIN':   'nvme1n1',
-    'WDC':     'nvme0n1',
+    'BIWIN':   'nvme0n1',
+    'WDC':     'nvme1n1',
     'Seagate': 'nvme2n1',
     'ZHITAI':  'nvme3n1',
 }
@@ -306,7 +311,7 @@ def plot_phase_spread():
         ('Phase3 v3\n(4B 7K, write_back)',    'hicache_writeback_v3'),
         ('Phase4 v3\n(14B-AWQ 7K)',           'hicache_14b_awq_v3'),
         ('Phase5 v3\n(4-client N=4 drop)',    'hicache_multiclient_v3'),
-        ('Phase7 v2\n(multiprompt L2 evict)', 'hicache_multiprompt'),
+        ('Phase7 v3\n(multiprompt L2 evict)', 'hicache_multiprompt'),
         ('Phase8 32K\n(no data, OOM)',        'hicache_32k'),
     ]
     fig, ax = plt.subplots(figsize=(13, 6))
@@ -336,58 +341,63 @@ def plot_phase_spread():
     print("✓ 05_phase_spread.png")
 
 # ----------------------------------------------------------------------
-# 图 6: Phase7 v2 vs v3 (cache hit vs cold-from-device)
+# 图 6: Phase7 v3 vs Phase2 v3 (cache hit vs cold-from-device)
 # ----------------------------------------------------------------------
 def plot_cache_hit_vs_device():
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-    # v2: multiprompt cold-from-device
-    v2_cold, v2_replay = [], []
-    # v3: standard cold (cache hit warm)
-    v3_cold, v3_warm = [], []
+    # v3 (06-15 验证): multiprompt cold-from-device
+    v3_cold, v3_replay = [], []
+    # v3 standard: cold (cache hit warm)
+    v3std_cold, v3std_warm = [], []
     for disk in DISK_ORDER:
         subdir = DISK_DRIVE_MAP[disk]
-        # v2 multiprompt
-        v2_path = RESULTS / "hicache_multiprompt" / subdir / "load_test.log"
-        if v2_path.exists():
-            entries = parse_load_test(v2_path)
-            v2_cold.append(next((l for lbl, l in entries if lbl == 'p0'), 0))
-            v2_replay.append(next((l for lbl, l in entries if lbl == 'replay_p0'), 0))
-        else:
-            v2_cold.append(0); v2_replay.append(0)
-        # v3 standard
-        v3_path = RESULTS / "hicache_v3" / subdir / "load_test.log"
+        # v3 multiprompt (post-validation, results/hicache_multiprompt/)
+        v3_path = RESULTS / "hicache_multiprompt" / subdir / "load_test.log"
         if v3_path.exists():
             entries = parse_load_test(v3_path)
-            v3_cold.append(next((l for lbl, l in entries if lbl == 'cold'), 0))
-            warms = [l for lbl, l in entries if lbl.startswith('warm_')]
-            v3_warm.append(np.mean(warms) if warms else 0)
+            v3_cold.append(next((l for lbl, l in entries if lbl == 'p0'), 0))
+            v3_replay.append(next((l for lbl, l in entries if lbl == 'replay_p0'), 0))
         else:
-            v3_cold.append(0); v3_warm.append(0)
+            v3_cold.append(0); v3_replay.append(0)
+        # v3 standard (results/hicache_v3/)
+        std_path = RESULTS / "hicache_v3" / subdir / "load_test.log"
+        if std_path.exists():
+            entries = parse_load_test(std_path)
+            v3std_cold.append(next((l for lbl, l in entries if lbl == 'cold'), 0))
+            warms = [l for lbl, l in entries if lbl.startswith('warm_')]
+            v3std_warm.append(np.mean(warms) if warms else 0)
+        else:
+            v3std_cold.append(0); v3std_warm.append(0)
 
     x = np.arange(len(DISK_ORDER))
     width = 0.2
 
-    # Left: v2 multiprompt
-    ax1.bar(x - width/2, v2_cold, width, label='p0 (cold fill)', color='#1f77b4')
-    ax1.bar(x + width/2, v2_replay, width, label='replay_p0 (L3 read)', color='#ff7f0e')
-    for i, (c, r) in enumerate(zip(v2_cold, v2_replay)):
+    # Left: v3 multiprompt (Phase 7)
+    ax1.bar(x - width/2, v3_cold, width, label='p0 (cold fill)', color='#1f77b4')
+    ax1.bar(x + width/2, v3_replay, width, label='replay_p0 (L3 read)', color='#ff7f0e')
+    for i, (c, r) in enumerate(zip(v3_cold, v3_replay)):
         ax1.text(i - width/2, c + 0.1, f'{c:.2f}s', ha='center', fontsize=8)
         ax1.text(i + width/2, r + 0.1, f'{r:.2f}s', ha='center', fontsize=8)
     ax1.set_xticks(x); ax1.set_xticklabels(DISK_ORDER)
     ax1.set_ylabel('Latency (s)')
-    ax1.set_title('Phase7 v2 multiprompt (L3 真读盘)\n19.8 GB L3 file > page cache')
+    spread_v3 = max(v3_replay) - min(v3_replay)
+    ratio_v3 = max(v3_replay) / min(v3_replay)
+    ax1.set_title(f'Phase7 v3 multiprompt (L3 真读盘)\n'
+                  f'~19 GB L3 file × 2200 page, spread={spread_v3*1000:.0f}ms ({ratio_v3:.2f}×)\n'
+                  f'BIWIN 走 page cache, NTFS 三盘真读盘')
     ax1.legend()
     ax1.grid(axis='y', alpha=0.3)
 
-    # Right: v3 standard
-    ax2.bar(x - width/2, v3_cold, width, label='cold (1st)', color='#1f77b4')
-    ax2.bar(x + width/2, v3_warm, width, label='warm (mean)', color='#2ca02c')
-    for i, (c, w) in enumerate(zip(v3_cold, v3_warm)):
+    # Right: v3 standard (Phase 2)
+    ax2.bar(x - width/2, v3std_cold, width, label='cold (1st)', color='#1f77b4')
+    ax2.bar(x + width/2, v3std_warm, width, label='warm (mean)', color='#2ca02c')
+    for i, (c, w) in enumerate(zip(v3std_cold, v3std_warm)):
         ax2.text(i - width/2, c + 0.02, f'{c:.2f}s', ha='center', fontsize=8)
         ax2.text(i + width/2, w + 0.02, f'{w:.2f}s', ha='center', fontsize=8)
     ax2.set_xticks(x); ax2.set_xticklabels(DISK_ORDER)
     ax2.set_ylabel('Latency (s)')
-    ax2.set_title('Phase2 v3 standard (L3 page cache hit)\n1.2 GB L3 file < page cache')
+    ax2.set_title('Phase2 v3 standard (L3 page cache hit)\n'
+                  '1.2 GB L3 file < page cache, 4 盘 spread < 10ms')
     ax2.legend()
     ax2.grid(axis='y', alpha=0.3)
     plt.tight_layout()
@@ -498,11 +508,11 @@ def plot_decision_radar():
         if not f: f = glob.glob(f"{RESULTS}/l3_fio/{disk}_ext4_seq4t.txt")
         p99_us = parse_fio(Path(f[0]))['clat'].get('p99.00', 99999) if f else 99999
         p99_ms = p99_us / 1000
-        # hicache cold-from-device (Phase7 v2 replay, 4 盘差异最大)
-        v2_log = RESULTS / "hicache_multiprompt" / DISK_DRIVE_MAP[disk] / "load_test.log"
+        # hicache cold-from-device (Phase7 v3 replay, 4 盘差异最大)
+        v3_log = RESULTS / "hicache_multiprompt" / DISK_DRIVE_MAP[disk] / "load_test.log"
         cold = 0
-        if v2_log.exists():
-            entries = parse_load_test(v2_log)
+        if v3_log.exists():
+            entries = parse_load_test(v3_log)
             cold = next((l for lbl, l in entries if lbl == 'replay_p0'), 0)
         # 价格 (相对估值, WDC 4TB ~$300, Seagate 2TB ~$150, BIWIN 2TB ~$200, ZHITAI 2TB ~$180)
         price_score = {'WDC': 8, 'BIWIN': 7, 'Seagate': 9, 'ZHITAI': 6}.get(disk, 5)
@@ -595,7 +605,7 @@ def plot_speedup_by_mode():
         ax.text(i + width, r + 0.1, f'{r:.2f}', ha='center', fontsize=8)
     ax.set_xticks(x); ax.set_xticklabels(DISK_ORDER)
     ax.set_ylabel('Latency (s)')
-    ax.set_title('HiCache Multiprompt Latency 分模式 (Phase7 v2, 4 盘)\np0 cold → L2 fill, p1-p19 L2 hit, replay_p0 L3 read')
+    ax.set_title('HiCache Multiprompt Latency 分模式 (Phase7 v3, 4 盘)\np0 cold → L2 fill, p1-p19 L2 hit, replay_p0 L3 read')
     ax.legend()
     ax.grid(axis='y', alpha=0.3)
     plt.tight_layout()

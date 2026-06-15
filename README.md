@@ -25,11 +25,11 @@
 | 03 | `03_fio_latency_percentiles.png` | 4 盘 fio p50/p99/p99.9 — BIWIN/ZHITAI p99 < 1ms |
 | 04 | `04_hicache_cold_warm.png` | sglang HiCache cold/warm — 4 盘 cold 1.44s 一致 |
 | 05 | `05_phase_spread.png` | 5 phase 横向 — 4B 7K ~1.4s, 14B-AWQ 4.9s |
-| 06 | `06_cache_hit_vs_device.png` | **核心图**: cache hit vs device — 真读盘 2.22× spread |
-| 07 | `07_iostat_timeseries.png` | iostat 时序 — **BIWIN 才有 IO** (暴露 write_through 写系统盘) |
-| 08 | `08_l3_file_count.png` | L3 file 数量 — 4 盘 ~30 file × 5 MB |
+| 06 | `06_cache_hit_vs_device.png` | **核心图**: cache hit vs device — 真读盘 **1.59× spread (v3 验证)** |
+| 07 | `07_iostat_timeseries.png` | iostat 时序 — BIWIN 走 page cache (4.6 MB/s), NTFS 三盘 0 IO (Phase 2 standard cold/warm) |
+| 08 | `08_l3_file_count.png` | L3 file 数量 — 4 盘 ~30 file × 5 MB (write_through 模式) |
 | 09 | `09_decision_radar.png` | **决策雷达** — BIWIN 综合最强 |
-| 10 | `10_multiprompt_modes.png` | multiprompt 3 模式 — WDC replay 3.82s vs BIWIN 1.72s |
+| 10 | `10_multiprompt_modes.png` | multiprompt 3 模式 — WDC replay **2.64s** vs BIWIN **1.66s** (v3 验证) |
 
 详情见 [REPORT.md §7 可视化](./REPORT.md#7-关联文档) 和 [docs/io-profiling-plots-2026-06-15.md](./docs/io-profiling-plots-2026-06-15.md)。
 

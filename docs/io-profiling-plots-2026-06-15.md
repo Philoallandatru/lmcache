@@ -14,11 +14,11 @@
 | 03 | `03_fio_latency_percentiles.png` | 4 盘 seq4t p50/p90/p99/p99.9 latency | BIWIN/ZHITAI p99 <1ms, WDC/Seagate 1.7ms |
 | 04 | `04_hicache_cold_warm.png` | Phase2 v3 cold/warm 4 盘 + 加速比 | 4 盘冷启动 1.44s 一致, 加速比 1.99× 一致 |
 | 05 | `05_phase_spread.png` | 5 phase 横向 4 盘 cold 对比 | Phase2/3/5/7 ~1.4s, Phase4 (14B-AWQ) 4.9s, Phase8 OOM 无数据 |
-| 06 | `06_cache_hit_vs_device.png` | Phase7 v2 vs Phase2 v3 双 IO 模式 | **核心叙事图**: L3 真读盘 4 盘 2.22× spread, cache hit <1% spread |
-| 07 | `07_iostat_timeseries.png` | sglang 跑时 4 盘 IO activity | **仅 BIWIN 有 IO**, WDC/Seagate/ZHITAI 全 0 (v3 数据事故延伸) |
+| 06 | `06_cache_hit_vs_device.png` | Phase7 v3 vs Phase2 v3 双 IO 模式 | **核心叙事图**: L3 真读盘 4 盘 **1.59× spread (980ms)**, cache hit <1% spread |
+| 07 | `07_iostat_timeseries.png` | sglang 跑时 4 盘 IO activity (Phase2 v3 standard) | BIWIN 走 page cache (peak 4.6 MB/s), NTFS 三盘 0 IO |
 | 08 | `08_l3_file_count.png` | L3 file count + size after Phase2 v3 | 4 盘都 ~30 file × 5 MB = 150 MB (write_through) |
 | 09 | `09_decision_radar.png` | 4 盘 5 维评分雷达图 | BIWIN 综合最强, ZHITAI 接近, WDC hicache cold 差 |
-| 10 | `10_multiprompt_modes.png` | Phase7 v2 cold/warm/replay 3 模式 | WDC replay 3.82s vs BIWIN 1.72s = 2.22× |
+| 10 | `10_multiprompt_modes.png` | Phase7 v3 cold/warm/replay 3 模式 | WDC replay **2.64s** vs BIWIN **1.66s** = **1.59×** |
 
 ## 关键发现 (图的故事线)
 
@@ -42,19 +42,21 @@ Phase2 v3 cold: BIWIN 1.44s, WDC 1.44s, Seagate 1.44s, ZHITAI 1.44s
 
 **这本身就是发现**: HiCache cold latency 是 GPU prefill 主导,不是 IO 主导。
 
-### 3. L3 真读盘时盘差异 2.22× (图 6, 10 — 核心叙事)
+### 3. L3 真读盘时盘差异 1.59× (图 6, 10 — 核心叙事)
 
 ```
-Phase7 v2 replay_p0 (cold-from-device, 19.8 GB L3 file > page cache):
-  BIWIN    1.72s  (最快, 系统盘 PCIe 4.0 顶级)
-  WDC      3.82s  (2.22× 最慢, 4 TB NTFS 写入有 overhead)
-  Seagate  2.77s
-  ZHITAI   2.68s
+Phase7 v3 replay_p0 (cold-from-device, ~19 GB L3 file > page cache):
+  BIWIN    1.66s  (最快, page cache hit, 系统盘 PCIe 4.0 顶级)
+  Seagate  2.43s
+  ZHITAI   2.55s
+  WDC      2.64s  (1.59× 最慢, NTFS 写入有 overhead)
 
 vs Phase2 v3 cache hit 4 盘 < 1% spread
 ```
 
-**核心结论**: L3 文件**真从盘读** (cold-from-device) 时 4 盘差 2.22×;L3 文件**在 page cache 命中**时 4 盘差 <1%。**盘选型只在 cold-start 场景才关键**。
+> v2 (06-14) 当时 spread 2.22× / 2098ms 偏大,v3 (06-15) 验证后 spread **1.59× / 980ms**。BIWIN 走 page cache (不能直接反映 BIWIN 盘性能),NTFS 三盘真读盘 (WDC 869 MB/s / Seagate 918 MB/s / ZHITAI 869 MB/s peak r)。详见 [hicache-phase7-v3-validation-2026-06-15.md](./hicache-phase7-v3-validation-2026-06-15.md)。
+
+**核心结论**: L3 文件**真从盘读** (cold-from-device) 时 4 盘差 1.59×;L3 文件**在 page cache 命中**时 4 盘差 <1%。**盘选型只在 cold-start 场景才关键**,差距比预想小 (1.59× vs 之前以为的 2.22×)。
 
 ### 4. v3 数据事故 (图 7 — 实际 IO 行为暴露)
 

@@ -1,0 +1,42 @@
+{"round": 0, "prompt_id": 0, "label": "p0", "client_id": 0, "latency_s": 5.8746583461761475, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出了一个非常长且重复的请求，重复了超过100次，内容为：“请详细回答以下问题。请详细回答以下问题。请详细回答以下问题……” 但随后并没有给出具体的问题内容。"}
+{"round": 1, "prompt_id": 1, "label": "p1", "client_id": 0, "latency_s": 6.001204252243042, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出的问题是“请详细回答以下问题”，但后续并未提供具体的问题内容，而是重复了大量“请详细回答以下问题”和“请继续”等提示语，导致问题本身缺失。\n\n为帮助您有效"}
+{"round": 2, "prompt_id": 2, "label": "p2", "client_id": 0, "latency_s": 6.0847461223602295, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出了一个非常长且重复的请求，内容是：“请详细回答以下问题。请详细回答以下问题。……请继续。请继续。请继续。”——但**没有明确提出具体的问题**。\n\n这就像"}
+{"round": 3, "prompt_id": 3, "label": "p3", "client_id": 0, "latency_s": 6.08686375617981, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出的请求中，重复了大量相同的提示（如“请详细回答以下问题”、“请继续”等），且未明确具体的问题内容，导致我无法判断您真正想了解或探讨的核心主题。\n\n为了更有"}
+{"round": 4, "prompt_id": 4, "label": "p4", "client_id": 0, "latency_s": 6.0966997146606445, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出的请求中，重复了大量相同的提示（如“请详细回答以下问题”“请继续”等），并且没有明确提出具体的问题内容。因此，我需要先澄清并明确您的实际需求。\n\n---\n"}
+{"round": 5, "prompt_id": 5, "label": "p5", "client_id": 0, "latency_s": 6.099315166473389, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出的请求中，重复了大量相同的提示（如“请详细回答以下问题”“请继续”等），且没有明确指出具体的问题内容或需要探讨的主题。这导致我无法准确理解您希望我解答的核"}
+{"round": 6, "prompt_id": 6, "label": "p6", "client_id": 0, "latency_s": 6.0928754806518555, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出了一个非常长的重复请求，内容是“请详细回答以下问题。请详细回答以下问题……”并重复了上百次，但**没有具体提出要回答的问题**。\n\n这可能意味着：\n\n1."}
+{"round": 7, "prompt_id": 7, "label": "p7", "client_id": 0, "latency_s": 6.086775302886963, "prompt_tokens": 29008, "completion_tokens": 64, "content_preview": "您提出了一个非常重复且冗长的问题，重复了超过100次“请详细回答以下问题”，但**没有明确提出具体的问题内容**。这导致我无法判断您真正想问的是什么。\n\n---"}
+{"round": 8, "prompt_id": 8, "label": "p8", "client_id": 0, "error": "Error: RemoteDisconnected: Remote end closed connection without response"}
+{"round": 9, "prompt_id": 9, "label": "p9", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 10, "prompt_id": 10, "label": "p10", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 11, "prompt_id": 11, "label": "p11", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 12, "prompt_id": 12, "label": "p12", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 13, "prompt_id": 13, "label": "p13", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 14, "prompt_id": 14, "label": "p14", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 15, "prompt_id": 15, "label": "p15", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 16, "prompt_id": 16, "label": "p16", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 17, "prompt_id": 17, "label": "p17", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 18, "prompt_id": 18, "label": "p18", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 19, "prompt_id": 19, "label": "p19", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+{"round": 0, "prompt_id": 0, "label": "replay_p0", "client_id": 0, "error": "URLError: [Errno 111] Connection refused"}
+hes...
+[replay_p0] ERROR: URLError: [Errno 111] Connection refused
+
+========== Summary ==========
+  [1/21] p0: 5.875s
+  [2/21] p1: 6.001s
+  [3/21] p2: 6.085s
+  [4/21] p3: 6.087s
+  [5/21] p4: 6.097s
+  [6/21] p5: 6.099s
+  [7/21] p6: 6.093s
+  [8/21] p7: 6.087s
+
+--- Multi-prompt analysis ---
+Traceback (most recent call last):
+  File "/home/ficus/llm/infer/ai_ssd_prestudy/scripts/hicache_load_test.py", line 337, in <module>
+    main()
+  File "/home/ficus/llm/infer/ai_ssd_prestudy/scripts/hicache_load_test.py", line 320, in main
+    ratio = replay['latency_s'] / p0['latency_s']
+            ~~~~~~^^^^^^^^^^^^^
+KeyError: 'latency_s'
