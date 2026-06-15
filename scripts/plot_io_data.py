@@ -18,6 +18,7 @@ import os
 import re
 import json
 import glob
+import statistics
 from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -614,6 +615,165 @@ def plot_speedup_by_mode():
     print("✓ 10_multiprompt_modes.png")
 
 
+
+
+# ----------------------------------------------------------------------
+# 图 11: 4 盘 IO 模式细分对比 (基于 io_pattern_analysis.csv)
+# ----------------------------------------------------------------------
+def plot_io_pattern_breakdown():
+    """从 io_pattern_analysis.csv 读,画 4 盘 × 5+ 个 IO 指标 (mean across runs)"""
+    csv_path = RESULTS / "io_pattern_analysis.csv"
+    if not csv_path.exists():
+        print("WARN: io_pattern_analysis.csv 不存在, 跳过 (先跑 analyze_io_pattern.py)")
+        return
+    import pandas as pd
+    df = pd.read_csv(csv_path)
+    # 跨 run 取均值 (mean across runs)
+    df_mean = df.groupby('disk').mean(numeric_only=True).reset_index()
+    # 按 DISK_ORDER 重排
+    df_mean['_order'] = df_mean['disk'].apply(lambda d: DISK_ORDER.index(d))
+    df_mean = df_mean.sort_values('_order').reset_index(drop=True)
+
+    metrics = [
+        ('read_mb_peak',         'Read Peak (MB/s)',          'higher_better'),
+        ('rareq_sz_mean_active', 'Avg Req Size (KB)',         'higher_better'),
+        ('r_await_mean_active',  'Avg r_await (ms)',          'lower_better'),
+        ('aqu_sz_mean_active',   'Avg Queue Depth',           'neutral'),
+        ('pct_util_mean_active', 'Avg %util',                 'higher_better'),
+        ('pct_rrqm_mean_active', 'Avg Merge Ratio (%)',       'higher_better'),
+    ]
+
+    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
+    for ax, (col, label, direction) in zip(axes.flatten(), metrics):
+        if col not in df_mean.columns:
+            continue
+        vals = df_mean[col].values
+        # 归一化到 0-100 便于跨子图比较 (除以 max × 100)
+        vmax = max(vals) if max(vals) > 0 else 1
+        norm_vals = vals / vmax * 100
+        colors = [DISK_COLORS[d] for d in df_mean['disk']]
+        bars = ax.bar(df_mean['disk'], norm_vals, color=colors, alpha=0.85)
+        for bar, raw, nv in zip(bars, vals, norm_vals):
+            ax.text(bar.get_x() + bar.get_width()/2, nv + 2,
+                    f'{raw:.1f}', ha='center', fontsize=9, fontweight='bold')
+        ax.set_title(f'{label}\n(归一化到 {vmax:.1f} = 100%)', fontsize=10)
+        ax.set_ylim(0, 120)
+        ax.set_ylabel('% of max')
+        ax.grid(axis='y', alpha=0.3)
+        ax.tick_params(axis='x', labelsize=9)
+
+    plt.suptitle('4 盘 IO 模式细分 (Phase7 v3+g1..gN, mean across runs)\n'
+                 'Read peak / req size / latency / queue / util / merge ratio', y=1.00, fontsize=12)
+    plt.tight_layout()
+    plt.savefig(PLOTS / "11_io_pattern_breakdown.png", dpi=120, bbox_inches='tight')
+    plt.close()
+    print("✓ 11_io_pattern_breakdown.png")
+
+
+# ----------------------------------------------------------------------
+# 图 12: replay latency 多 run 对比 (mean ± stddev)
+# ----------------------------------------------------------------------
+def plot_replay_multirun():
+    """从 multiprompt_g_summary.json 读,画 4 盘 × N runs 的 replay latency"""
+    json_path = RESULTS / "multiprompt_g_summary.json"
+    if not json_path.exists():
+        print("WARN: multiprompt_g_summary.json 不存在, 跳过")
+        return
+    data = json.loads(json_path.read_text())
+    if not data:
+        print("WARN: empty multiprompt_g_summary.json, 跳过")
+        return
+
+    fig, ax = plt.subplots(figsize=(11, 6))
+    # 按 disk 顺序
+    disks = [d['disk'] for d in data]
+    means = [d['mean'] for d in data]
+    stds = [d['stdev'] for d in data]
+    mins = [d['min'] for d in data]
+    maxs = [d['max'] for d in data]
+    n_runs = [d['n_runs'] for d in data]
+    x = np.arange(len(disks))
+    colors = [DISK_COLORS[d] for d in disks]
+    bars = ax.bar(x, means, yerr=stds, capsize=8,
+                  color=colors, alpha=0.85, edgecolor='black', linewidth=0.5)
+    for i, (m, s, mn, mx, n) in enumerate(zip(means, stds, mins, maxs, n_runs)):
+        ax.text(i, m + s + 0.05, f'{m:.3f}s\n±{s:.3f}s\nn={n}', ha='center',
+                fontsize=10, fontweight='bold')
+        ax.text(i, mn - 0.18, f'min={mn:.2f}', ha='center', fontsize=8, color='gray')
+        ax.text(i, mx + s + 0.30, f'max={mx:.2f}', ha='center', fontsize=8, color='gray')
+    ax.set_xticks(x); ax.set_xticklabels(disks, fontsize=11)
+    ax.set_ylabel('replay_p0 Latency (s)')
+    spread = max(means) - min(means)
+    ratio = max(means) / min(means)
+    ax.set_title(f'Phase7 G: Replay Latency 4 盘 × N run 取平均\n'
+                 f'mean spread = {spread*1000:.0f}ms ({ratio:.2f}×)\n'
+                 f'(BIWIN 走 page cache, 仅供参考; NTFS 三盘反映真 L3 读盘性能)', fontsize=11)
+    ax.grid(axis='y', alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(PLOTS / "12_replay_multirun.png", dpi=120, bbox_inches='tight')
+    plt.close()
+    print("✓ 12_replay_multirun.png")
+
+
+# ----------------------------------------------------------------------
+# 图 13: Burst 分析 (4 盘 iostat burst peak BW + duration, top 5 bursts per disk)
+# ----------------------------------------------------------------------
+def plot_burst_analysis():
+    """从 io_pattern_analysis.json 读,画 4 盘 top burst 对比"""
+    json_path = RESULTS / "io_pattern_analysis.json"
+    if not json_path.exists():
+        print("WARN: io_pattern_analysis.json 不存在, 跳过")
+        return
+    data = json.loads(json_path.read_text())
+    if not data:
+        print("WARN: empty io_pattern_analysis.json, 跳过")
+        return
+
+    # 只取 v3 + g1 (多 run 数据齐的)
+    runs_to_show = ['v3', 'g1']
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6), sharey=True)
+
+    for ax, run in zip(axes, runs_to_show):
+        run_data = [d for d in data if d.get('run') == run]
+        if not run_data:
+            continue
+        # 画 4 盘 burst peak BW (取所有 burst 的 peak max)
+        disks, peak_bw, n_bursts, avg_dur = [], [], [], []
+        for d in run_data:
+            disks.append(d['disk'])
+            burst_peaks = [b['peak'] for b in d.get('bursts_top5', [])]
+            peak_bw.append(max(burst_peaks) if burst_peaks else 0)
+            n_bursts.append(d.get('n_bursts', 0))
+            durs = [b['duration_samples'] for b in d.get('bursts_top5', [])]
+            avg_dur.append(statistics.mean(durs) if durs else 0)
+
+        x = np.arange(len(disks))
+        width = 0.4
+        bars1 = ax.bar(x - width/2, peak_bw, width, label='Top burst peak (MB/s)',
+                       color=[DISK_COLORS[d] for d in disks], alpha=0.85)
+        bars2 = ax.bar(x + width/2, avg_dur, width, label='Avg burst duration (samples)',
+                       color=[DISK_COLORS[d] for d in disks], alpha=0.4, edgecolor='black', hatch='//')
+        for bar, v in zip(bars1, peak_bw):
+            ax.text(bar.get_x() + bar.get_width()/2, v + 20, f'{v:.0f}',
+                    ha='center', fontsize=9, fontweight='bold')
+        for bar, v, n in zip(bars2, avg_dur, n_bursts):
+            ax.text(bar.get_x() + bar.get_width()/2, v + 0.3, f'{v:.1f}\n(n={n} burst)',
+                    ha='center', fontsize=8)
+        ax.set_xticks(x); ax.set_xticklabels(disks)
+        ax.set_title(f'Burst 分析 — run={run}', fontsize=11)
+        ax.grid(axis='y', alpha=0.3)
+        ax.set_ylabel('MB/s (left) / samples (right)')
+        ax.legend(loc='upper right')
+
+    plt.suptitle('4 盘 iostat Burst 分析 (Phase7 G)\n'
+                 '连续 read >0.5 MB/s 段, top 5 burst per disk', fontsize=12)
+    plt.tight_layout()
+    plt.savefig(PLOTS / "13_burst_analysis.png", dpi=120, bbox_inches='tight')
+    plt.close()
+    print("✓ 13_burst_analysis.png")
+
+
+
 # ----------------------------------------------------------------------
 # MAIN
 # ----------------------------------------------------------------------
@@ -629,6 +789,9 @@ if __name__ == '__main__':
     plot_l3_file_count()
     metrics = plot_decision_radar()
     plot_speedup_by_mode()
+    plot_io_pattern_breakdown()
+    plot_replay_multirun()
+    plot_burst_analysis()
 
     # 也打印 metrics 给 doc 用
     print("\n=== 4 盘核心指标 (供 doc 引用) ===")

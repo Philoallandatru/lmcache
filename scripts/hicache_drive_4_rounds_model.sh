@@ -86,6 +86,23 @@ case "$MODEL_KEY" in
         SUBDIR=hicache_multiprompt
         CACHE_SUBDIR=cache_multiprompt
         ;;
+    qwen3_4b_multiprompt_run)
+        # Phase7 G: 多 run 取平均 (5 run 默认) — 数据写到 hicache_multiprompt_g{N}
+        # RUN_ID 控制 subdir 编号 (默认 1)
+        # env: RUN_ID=N
+        RUN_ID=${RUN_ID:-1}
+        export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+        export TP_SIZE=1
+        export CTX_LEN=8192
+        export MEM_STATIC=0.7
+        export WATCHDOG_TIMEOUT=1800
+        export PORT=$((30010 + RUN_ID))   # 30011..30015, 互不冲突
+        export HICACHE_RATIO=2
+        export NUM_PROMPTS=${NUM_PROMPTS:-20}
+        export REPLAY_PROMPT_ID=${REPLAY_PROMPT_ID:-0}
+        SUBDIR="hicache_multiprompt_g${RUN_ID}"
+        CACHE_SUBDIR="cache_multiprompt_g${RUN_ID}"
+        ;;
     qwen3_14b_awq)
         # Phase4 v3: mount 修正后重跑, 数据写到 hicache_14b_awq_v3
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-14B-AWQ
@@ -100,7 +117,7 @@ case "$MODEL_KEY" in
         ;;
     *)
         echo "FATAL: unknown model_key '$MODEL_KEY'"
-        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_4b_multiprompt | qwen3_14b_awq"
+        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_4b_multiprompt | qwen3_4b_multiprompt_run | qwen3_14b_awq"
         exit 1
         ;;
 esac
@@ -199,8 +216,9 @@ for entry in "${ROUNDS[@]}"; do
         qwen3_4b)              MIN_COLD_MS=1400 ;;
         qwen3_4b_multiclient)  MIN_COLD_MS=1600 ;;
         qwen3_4b_l2small)      MIN_COLD_MS=3000 ;;
-        qwen3_4b_multiprompt)  MIN_COLD_MS=1300 ;;
-        qwen3_14b_awq)         MIN_COLD_MS=2500 ;;
+        qwen3_4b_multiprompt)      MIN_COLD_MS=1300 ;;
+        qwen3_4b_multiprompt_run)  MIN_COLD_MS=1300 ;;
+        qwen3_14b_awq)             MIN_COLD_MS=2500 ;;
     esac
     if [ "$cold_ms" -lt "$MIN_COLD_MS" ]; then
         echo "FATAL: cold TTFT=$cold_ttft s ($cold_ms ms) < ${MIN_COLD_MS}ms (model=$MODEL_KEY), likely cached"
