@@ -1,0 +1,299 @@
+{
+  "v3": {
+    "BIWIN": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 8.112830655901659,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2228841963640826,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "WDC": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 5.683327131813337,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2649663400453308,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "Seagate": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 7.781370122732527,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.255064759091097,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 7.735848558884805,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2543499632725301,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    }
+  },
+  "g1": {
+    "BIWIN": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 9.506621274137299,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.218682627227033,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "WDC": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 5.643176571129192,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.272161950227614,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "Seagate": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.556091951980765,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.3003056634085872,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140646.0
+    },
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 7.708229064643675,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2510776639545922,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    }
+  },
+  "g2": {
+    "BIWIN": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 9.271607529559006,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2202381421362092,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "WDC": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 5.6688261373894795,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.271973333818592,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "Seagate": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 8.160002857045486,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2598563501818385,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 8.422775777230049,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.243986124636153,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    }
+  },
+  "g3": {
+    "BIWIN": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 7.952607161307796,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.220066973545148,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "WDC": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.371394687719312,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2569988393638183,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "Seagate": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.4609671581744434,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2988728449092213,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 8.350262291523253,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.238126411136446,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    }
+  },
+  "g4": {
+    "BIWIN": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 9.265595223413637,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2202640852729845,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "WDC": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.6929844486559755,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2581431355457342,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "Seagate": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.549374442632913,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.3082652679091884,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 141158.0
+    },
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 8.534951285156229,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2408079539545724,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    }
+  },
+  "g5": {
+    "BIWIN": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 9.341443586800969,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.219871823273107,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "WDC": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.0246136394528005,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2706081099539999,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "Seagate": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 6.78374965645259,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2614243219551016,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 140198.0
+    },
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 7.686912294391832,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.2412413747728848,
+      "ttft_p99": 2.0,
+      "uncached_prompt_total": 140198.0
+    }
+  },
+  "P3v2_A1": {
+    "BIWIN": null,
+    "WDC": null,
+    "Seagate": null,
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 3.2951805602712643,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.3325940224554373,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 146278.0
+    }
+  },
+  "P3v2_A2": {
+    "BIWIN": null,
+    "WDC": null,
+    "Seagate": null,
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 1.229852322619722,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.3271683755007293,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 147174.0
+    }
+  },
+  "P3v3_A1": {
+    "BIWIN": null,
+    "WDC": null,
+    "Seagate": null,
+    "ZHITAI": {
+      "cache_hit_rate": 0.0,
+      "prompt_tokens_total": 147174.0,
+      "num_requests_total": 22.0,
+      "gen_throughput": 2.0216599715340404,
+      "num_used_tokens": 7104.0,
+      "ttft_avg": 1.3295661062266761,
+      "ttft_p99": 4.0,
+      "uncached_prompt_total": 147174.0
+    }
+  }
+}
