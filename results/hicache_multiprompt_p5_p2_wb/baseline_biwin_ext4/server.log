@@ -1,0 +1,380 @@
+==== Starting SGLang HiCache ====
+Model:       /home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+TP size:     1
+Port:        30022
+Context:     8192
+Mem static:  0.7
+L3 cache:    cache/cache_multiprompt_p5_p2_wb_v3
+Write policy:write_back
+Extra args:  
+================================
+/home/ficus/llm/.venv/lib/python3.12/site-packages/sglang/launch_server.py:54: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+WARNING 06-16 14:10:36 [cuda.py:822] Detected different devices in the system: NVIDIA GeForce RTX 5080, NVIDIA GeForce RTX 5060 Ti. Please make sure to set `CUDA_DEVICE_ORDER=PCI_BUS_ID` to avoid unexpected behavior.
+[2026-06-16 14:10:36] Attention backend not specified. Use flashinfer backend by default.
+[2026-06-16 14:10:37] server_args=ServerArgs(model_path='/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507', tokenizer_path='/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507', tokenizer_mode='auto', tokenizer_backend='huggingface', tokenizer_worker_num=1, detokenizer_worker_num=1, skip_tokenizer_init=False, load_format='auto', model_loader_extra_config='{}', trust_remote_code=False, context_length=8192, is_embedding=False, prefill_only_disable_kv_cache=False, enable_multimodal=None, revision=None, model_impl='auto', model_config_parser='auto', host='127.0.0.1', port=30022, fastapi_root_path='', grpc_mode=False, skip_server_warmup=False, warmups=None, nccl_port=None, checkpoint_engine_wait_weights_before_ready=False, ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_keyfile_password=None, enable_ssl_refresh=False, enable_http2=False, dtype='auto', quantization=None, quantization_param_path=None, kv_cache_dtype='auto', enable_fp32_lm_head=False, modelopt_quant=None, modelopt_checkpoint_restore_path=None, modelopt_checkpoint_save_path=None, modelopt_export_path=None, quantize_and_serve=False, rl_quant_profile=None, mem_fraction_static=0.7, max_running_requests=None, max_queued_requests=None, max_total_tokens=8704, chunked_prefill_size=2048, enable_dynamic_chunking=False, max_prefill_tokens=16384, prefill_max_requests=None, schedule_policy='fcfs', enable_priority_scheduling=False, disable_priority_preemption=False, default_priority_value=None, abort_on_priority_when_disabled=False, schedule_low_priority_values_first=False, priority_scheduling_preemption_threshold=10, schedule_conservativeness=1.0, page_size=64, swa_full_tokens_ratio=0.8, disable_hybrid_swa_memory=False, radix_eviction_policy='lru', enable_prefill_delayer=False, prefill_delayer_max_delay_passes=30, prefill_delayer_token_usage_low_watermark=None, prefill_delayer_forward_passes_buckets=None, prefill_delayer_wait_seconds_buckets=None, prefill_delayer_queue_min_ratio=None, prefill_delayer_max_delay_ms=None, device='cuda', tp_size=1, pp_size=1, pp_max_micro_batch_size=None, pp_async_batch_depth=0, stream_interval=1, batch_notify_size=16, stream_response_default_include_usage=False, incremental_streaming_output=False, enable_streaming_session=False, random_seed=409177202, constrained_json_whitespace_pattern=None, constrained_json_disable_any_whitespace=False, watchdog_timeout=1800.0, soft_watchdog_timeout=None, dist_timeout=None, download_dir=None, model_checksum=None, base_gpu_id=0, gpu_id_step=1, sleep_on_idle=False, load_snapshot_publish_interval=15, use_ray=False, custom_sigquit_handler=None, log_level='info', log_level_http=None, log_requests=False, log_requests_level=2, log_requests_format='text', log_requests_target=None, uvicorn_access_log_exclude_prefixes=[], crash_dump_folder=None, show_time_cost=False, enable_metrics=True, grpc_http_sidecar_port=None, enable_mfu_metrics=False, enable_metrics_for_all_schedulers=False, tokenizer_metrics_custom_labels_header='x-custom-labels', tokenizer_metrics_allowed_custom_labels=None, extra_metric_labels=None, bucket_time_to_first_token=None, bucket_inter_token_latency=None, bucket_e2e_request_latency=None, prompt_tokens_buckets=None, generation_tokens_buckets=None, gc_warning_threshold_secs=0.0, decode_log_interval=40, enable_request_time_stats_logging=False, kv_events_config=None, enable_forward_pass_metrics=False, forward_pass_metrics_worker_id='', forward_pass_metrics_ipc_name=None, enable_trace=False, trace_modules='request', otlp_traces_endpoint='localhost:4317', export_metrics_to_file=False, export_metrics_to_file_dir=None, stat_loggers=None, api_key=None, admin_api_key=None, served_model_name='/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507', weight_version='default', chat_template=None, hf_chat_template_name=None, completion_template=None, file_storage_path='sglang_storage', enable_cache_report=True, reasoning_parser=None, strip_thinking_cache=False, enable_strict_thinking=False, tool_call_parser=None, tool_server=None, sampling_defaults='model', asr_max_buffer_seconds=60, asr_max_concurrent_sessions=32, dp_size=1, load_balance_method='round_robin', attn_cp_size=1, moe_dp_size=1, dist_init_addr=None, nnodes=1, node_rank=0, json_model_override_args='{}', preferred_sampling_params=None, enable_lora=None, enable_lora_overlap_loading=None, max_lora_rank=None, lora_target_modules=None, lora_paths=None, max_loaded_loras=None, max_loras_per_batch=8, lora_eviction_policy='lru', lora_backend='csgmv', max_lora_chunk_size=16, experts_shared_outer_loras=None, lora_use_virtual_experts=False, lora_strict_loading=False, lora_drain_wait_threshold=0.0, attention_backend='flashinfer', decode_attention_backend=None, prefill_attention_backend=None, sampling_backend='flashinfer', grammar_backend='xgrammar', radix_cache_backend=None, mm_attention_backend=None, fp8_gemm_runner_backend='auto', fp4_gemm_runner_backend='auto', dsa_prefill_backend=None, dsa_decode_backend=None, dsa_topk_backend='sgl-kernel', disable_flashinfer_autotune=False, mamba_backend='triton', speculative_algorithm=None, speculative_draft_model_path=None, speculative_draft_model_revision=None, speculative_draft_load_format=None, speculative_num_steps=None, speculative_eagle_topk=None, speculative_num_draft_tokens=None, speculative_dflash_block_size=None, speculative_accept_threshold_single=1.0, speculative_accept_threshold_acc=1.0, speculative_token_map=None, speculative_attention_mode='prefill', speculative_draft_attention_backend=None, speculative_draft_window_size=None, speculative_moe_runner_backend='auto', speculative_moe_a2a_backend=None, speculative_draft_model_quantization=None, speculative_skip_dp_mlp_sync=False, speculative_ngram_min_bfs_breadth=1, speculative_ngram_max_bfs_breadth=10, speculative_ngram_match_type='BFS', speculative_ngram_max_trie_depth=18, speculative_ngram_capacity=10000000, speculative_ngram_external_corpus_path=None, speculative_ngram_external_sam_budget=0, speculative_ngram_external_corpus_max_tokens=10000000, enable_multi_layer_eagle=False, speculative_adaptive=False, speculative_adaptive_config=None, ep_size=1, moe_a2a_backend='none', moe_runner_backend='auto', flashinfer_mxfp4_moe_precision='default', enable_flashinfer_allreduce_fusion=False, enforce_disable_flashinfer_allreduce_fusion=False, enable_aiter_allreduce_fusion=False, deepep_mode='auto', deepep_dispatcher_output_dtype='auto', ep_num_redundant_experts=0, ep_dispatch_algorithm=None, init_expert_location='trivial', enable_eplb=False, eplb_algorithm='auto', eplb_rebalance_num_iterations=1000, eplb_rebalance_layers_per_chunk=None, eplb_min_rebalancing_utilization_threshold=1.0, expert_distribution_recorder_mode=None, expert_distribution_recorder_buffer_size=1000, enable_expert_distribution_metrics=False, deepep_config=None, moe_dense_tp_size=None, elastic_ep_backend=None, enable_elastic_expert_backup=False, mooncake_ib_device=None, enable_deepep_waterfill=False, elastic_ep_rejoin=False, max_mamba_cache_size=None, mamba_ssm_dtype=None, mamba_full_memory_ratio=0.9, mamba_scheduler_strategy='no_buffer', mamba_track_interval=256, linear_attn_backend='triton', linear_attn_decode_backend=None, linear_attn_prefill_backend=None, enable_hierarchical_cache=True, hicache_ratio=2.0, hicache_size=0, hicache_write_policy='write_back', hicache_io_backend='direct', hicache_mem_layout='page_first_direct', hicache_storage_backend='file', hicache_storage_prefetch_policy='timeout', hicache_storage_backend_extra_config=None, enable_hisparse=False, hisparse_config=None, enable_lmcache=False, lmcache_config_file=None, kt_weight_path=None, kt_method='AMXINT4', kt_cpuinfer=None, kt_threadpool_count=2, kt_num_gpu_experts=None, kt_max_deferred_experts_per_token=None, dllm_algorithm=None, dllm_algorithm_config=None, cpu_offload_gb=0, offload_group_size=-1, offload_num_in_group=1, offload_prefetch_step=1, offload_mode='cpu', enable_mis=False, disable_radix_cache=False, cuda_graph_max_bs=8, cuda_graph_bs=[1, 2, 4, 8], disable_cuda_graph=False, disable_cuda_graph_padding=False, enable_breakable_cuda_graph=False, enable_profile_cuda_graph=False, enable_cudagraph_gc=False, debug_cuda_graph=False, enable_layerwise_nvtx_marker=False, enable_nccl_nvls=False, enable_symm_mem=False, disable_flashinfer_cutlass_moe_fp4_allgather=False, enable_tokenizer_batch_encode=False, disable_tokenizer_batch_decode=False, disable_outlines_disk_cache=False, disable_custom_all_reduce=False, enable_mscclpp=False, enable_torch_symm_mem=False, pre_warm_nccl=False, disable_overlap_schedule=False, enable_mixed_chunk=False, enable_dp_attention=False, enable_dp_attention_local_control_broadcast=False, enable_dp_lm_head=False, enable_two_batch_overlap=False, enable_single_batch_overlap=False, tbo_token_distribution_threshold=0.48, enable_torch_compile=False, disable_piecewise_cuda_graph=True, enforce_piecewise_cuda_graph=False, enable_torch_compile_debug_mode=False, torch_compile_max_bs=32, piecewise_cuda_graph_max_tokens=2048, piecewise_cuda_graph_tokens=[4, 8, 12, 16, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 832, 896, 960, 1024, 1280, 1536, 1792, 2048], piecewise_cuda_graph_compiler='eager', torchao_config='', enable_p2p_check=False, triton_attention_reduce_in_fp32=False, triton_attention_num_kv_splits=8, triton_attention_split_tile_size=None, num_continuous_decode_steps=1, delete_ckpt_after_loading=False, enable_memory_saver=False, enable_weights_cpu_backup=False, enable_draft_weights_cpu_backup=False, allow_auto_truncate=False, enable_custom_logit_processor=False, flashinfer_mla_disable_ragged=False, disable_shared_experts_fusion=False, enforce_shared_experts_fusion=False, disable_chunked_prefix_cache=False, disable_fast_image_processor=False, keep_mm_feature_on_device=False, enable_return_hidden_states=False, enable_return_routed_experts=False, enable_return_indexer_topk=False, enable_deepseek_v4_fp4_indexer=False, scheduler_recv_interval=1, numa_node=None, enable_deterministic_inference=False, rl_on_policy_target=None, enable_attn_tp_input_scattered=False, disable_attn_tp_gather=False, gc_threshold=None, kv_canary='none', kv_canary_real_data='none', kv_canary_sweep_interval=0, enable_dsa_prefill_context_parallel=False, dsa_prefill_cp_mode='round-robin-split', enable_fused_qk_norm_rope=False, enable_precise_embedding_interpolation=False, enable_fused_moe_sum_all_reduce=False, enable_prefill_context_parallel=False, prefill_cp_mode='in-seq-split', enable_dynamic_batch_tokenizer=False, dynamic_batch_tokenizer_batch_size=32, dynamic_batch_tokenizer_batch_timeout=0.002, debug_tensor_dump_output_folder=None, debug_tensor_dump_layers=None, debug_tensor_dump_input_file=None, debug_tensor_dump_inject=False, disaggregation_mode='null', disaggregation_transfer_backend='mooncake', disaggregation_bootstrap_port=8998, disaggregation_ib_device=None, disaggregation_decode_enable_radix_cache=False, disaggregation_decode_enable_offload_kvcache=False, num_reserved_decode_tokens=512, disaggregation_decode_polling_interval=1, optimistic_prefill_retries=0, encoder_only=False, language_only=False, encoder_transfer_backend='zmq_to_scheduler', encoder_urls=[], encoder_bootstrap_port=8997, encoder_register_urls=[], enable_adaptive_dispatch_to_encoder=False, custom_weight_loader=[], weight_loader_disable_mmap=False, weight_loader_prefetch_checkpoints=False, weight_loader_prefetch_num_threads=4, weight_loader_drop_cache_after_load=False, remote_instance_weight_loader_seed_instance_ip=None, remote_instance_weight_loader_seed_instance_service_port=None, remote_instance_weight_loader_send_weights_group_ports=None, remote_instance_weight_loader_backend='nccl', remote_instance_weight_loader_start_seed_via_transfer_engine=False, engine_info_bootstrap_port=6789, modelexpress_config=None, enable_pdmux=False, pdmux_config_path=None, sm_group_num=8, enable_broadcast_mm_inputs_process=False, enable_prefix_mm_cache=False, mm_enable_dp_encoder=False, mm_process_config={}, limit_mm_data_per_request=None, enable_mm_global_cache=False, decrypted_config_file=None, decrypted_draft_config_file=None, forward_hooks=None, enable_quant_communications=False, msprobe_dump_config=None)
+[2026-06-16 14:10:38] Using default HuggingFace chat template with detected content format: string
+WARNING 06-16 14:10:41 [cuda.py:822] Detected different devices in the system: NVIDIA GeForce RTX 5080, NVIDIA GeForce RTX 5060 Ti. Please make sure to set `CUDA_DEVICE_ORDER=PCI_BUS_ID` to avoid unexpected behavior.
+WARNING 06-16 14:10:41 [cuda.py:822] Detected different devices in the system: NVIDIA GeForce RTX 5080, NVIDIA GeForce RTX 5060 Ti. Please make sure to set `CUDA_DEVICE_ORDER=PCI_BUS_ID` to avoid unexpected behavior.
+[2026-06-16 14:10:42] Init torch distributed begin.
+[2026-06-16 14:10:42] Init torch distributed ends. elapsed=0.11 s, mem usage=0.06 GB
+[2026-06-16 14:10:43] Load weight begin. avail mem=15.07 GB
+Multi-thread loading shards:   0% Completed | 0/3 [00:00<?, ?it/s]Multi-thread loading shards:  33% Completed | 1/3 [00:02<00:05,  2.88s/it]Multi-thread loading shards:  67% Completed | 2/3 [00:05<00:02,  2.85s/it]Multi-thread loading shards: 100% Completed | 3/3 [00:05<00:00,  1.93s/it]
+[2026-06-16 14:10:49] Load weight end. elapsed=5.88 s, type=Qwen3ForCausalLM, avail mem=7.36 GB, mem usage=7.71 GB.
+[2026-06-16 14:10:49] Max concurrent requests (per dp worker) from the finalized token capacity: max_num_reqs=2048.
+[2026-06-16 14:10:49] KV Cache is allocated. dtype: torch.bfloat16, #tokens: 8704, K size: 0.60 GB, V size: 0.60 GB
+[2026-06-16 14:10:49] Memory pool end. avail mem=6.03 GB
+[2026-06-16 14:10:49] Capture cuda graph begin. This can take up to several minutes. avail mem=5.52 GB
+[2026-06-16 14:10:49] Capture cuda graph bs [1, 2, 4, 8]
+  0%|          | 0/4 [00:00<?, ?it/s]Capturing batches (bs=8 avail_mem=5.52 GB):   0%|          | 0/4 [00:00<?, ?it/s]Capturing batches (bs=8 avail_mem=5.52 GB):  25%|██▌       | 1/4 [00:00<00:02,  1.00it/s]Capturing batches (bs=4 avail_mem=5.47 GB):  25%|██▌       | 1/4 [00:00<00:02,  1.00it/s]Capturing batches (bs=2 avail_mem=5.45 GB):  25%|██▌       | 1/4 [00:01<00:02,  1.00it/s]Capturing batches (bs=1 avail_mem=5.45 GB):  25%|██▌       | 1/4 [00:01<00:02,  1.00it/s]Capturing batches (bs=1 avail_mem=5.45 GB): 100%|██████████| 4/4 [00:01<00:00,  4.64it/s]Capturing batches (bs=1 avail_mem=5.45 GB): 100%|██████████| 4/4 [00:01<00:00,  3.65it/s]
+[2026-06-16 14:10:50] Capture cuda graph end. Time elapsed: 1.54 s. mem usage=0.09 GB. avail mem=5.43 GB.
+[2026-06-16 14:10:50] Disable piecewise CUDA graph because --disable-piecewise-cuda-graph is set
+[2026-06-16 14:10:51] max_total_num_tokens=8704, chunked_prefill_size=2048, max_prefill_tokens=16384, max_running_requests=2048, context_len=8192, available_gpu_mem=5.43 GB
+[2026-06-16 14:10:51] Allocating 2.58 GB host memory for hierarchical KV cache.
+[2026-06-16 14:10:51] Creating storage backend 'file' (sglang.srt.mem_cache.hicache_storage.HiCacheFile)
+[2026-06-16 14:10:52] Tree cache initialized: source=default impl=HiRadixCache hybrid_swa=False hybrid_ssm=False hierarchical=True streaming_wrapped=False
+[2026-06-16 14:10:52] INFO:     Started server process [655659]
+[2026-06-16 14:10:52] INFO:     Waiting for application startup.
+[2026-06-16 14:10:52] Using default chat sampling params from model generation config: {'temperature': 0.7, 'top_k': 20, 'top_p': 0.8}
+[2026-06-16 14:10:53] INFO:     Application startup complete.
+[2026-06-16 14:10:53] INFO:     Uvicorn running on http://127.0.0.1:30022 (Press CTRL+C to quit)
+[2026-06-16 14:10:54] INFO:     127.0.0.1:56028 - "GET /model_info HTTP/1.1" 200 OK
+[2026-06-16 14:10:54] Prefill batch, #new-seq: 1, #new-token: 64, #cached-token: 0, token usage: 0.01, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 47.26
+[2026-06-16 14:10:54] INFO:     127.0.0.1:56032 - "POST /generate HTTP/1.1" 200 OK
+[2026-06-16 14:10:54] The server is fired up and ready to roll!
+/home/ficus/llm/.venv/lib/python3.12/site-packages/fastapi/routing.py:120: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  response = await f(request)
+[2026-06-16 14:10:54] INFO:     127.0.0.1:56040 - "GET /v1/models HTTP/1.1" 200 OK
+[2026-06-16 14:10:59] INFO:     127.0.0.1:37168 - "GET /metrics HTTP/1.1" 200 OK
+[2026-06-16 14:11:06] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 159.44
+[2026-06-16 14:11:07] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 10899.46
+[2026-06-16 14:11:07] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9440.21
+[2026-06-16 14:11:07] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9254.11
+[2026-06-16 14:11:07] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 2.66, #queue-req: 0
+[2026-06-16 14:11:08] INFO:     127.0.0.1:37178 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:09] Failed to save tensor c11efbe1784cbd92f490a8a4cf4b2378f9eeaf2f2fdebe51d2a288654813e926_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 8388608 written
+[2026-06-16 14:11:09] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:09] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1075.85
+[2026-06-16 14:11:09] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9200.39
+[2026-06-16 14:11:09] Failed to save tensor 74c14c4cec3bab910a85dbb8c8a82f33c8d6e3f90ef7da8fde2363afeee48305_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:09] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:09] Failed to save tensor 0544b9da29a8afccf985571f455f3051c6d05f9961af51229db7d694c9203039_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:09] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:09] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9445.86
+[2026-06-16 14:11:09] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9343.07
+[2026-06-16 14:11:09] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.41, #queue-req: 0
+[2026-06-16 14:11:10] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 89.95, #queue-req: 0
+[2026-06-16 14:11:10] INFO:     127.0.0.1:37192 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:11] Failed to save tensor e7e95663fd26a3e5cca392f1a4e406b295a6a504ec60aa19acb044706827c0ac_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:11] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:11] Failed to save tensor 0ce8b2ec164bad9b9dc527a14dcb575edd1f8a1a06a4ed478ea412c91a2c385a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:11] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:11] Failed to save tensor c249d220386246752a6b0987b0ad29db6252c834997ac31ea96b749a92a3414f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:11] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:11] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1076.14
+[2026-06-16 14:11:11] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9159.64
+[2026-06-16 14:11:12] Failed to save tensor b3a4ecc5ebb9627f025f4cef0005d296d661ab62ac071ffafedca57094a24021_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:12] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:12] Failed to save tensor c6ff85863975f34293ea4626a15e2e8ab3d2c5ec0c286b7255aa394078c523f0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:12] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:12] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9445.54
+[2026-06-16 14:11:12] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9363.05
+[2026-06-16 14:11:12] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.41, #queue-req: 0
+[2026-06-16 14:11:13] INFO:     127.0.0.1:48190 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:13] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 90.01, #queue-req: 0
+[2026-06-16 14:11:14] Failed to save tensor 087c82079b42d5449b8cb6ed410556502031aa7212cb4e64ff9210bd579ef4d8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:14] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:14] Failed to save tensor 1eb6831230c54fe43b9e6a0ce21fefb1b7b484379cc644001fced61b052838a1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:14] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:14] Failed to save tensor 569e6496f47889f29b09e81d97f7417d8ff3b516763f0f5daad8f4d85a79913b_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:14] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:14] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1075.11
+[2026-06-16 14:11:14] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9157.82
+[2026-06-16 14:11:14] Failed to save tensor d42a207ef157097ec1889850cb4d3e148e13b45bb33d030f45f29ad3682b6906_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:14] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:14] Failed to save tensor 2a850ca5424247b0574e4cbdfeae5bf47eb8619d332ccd93960d5be833046137_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:14] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:14] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9449.98
+[2026-06-16 14:11:14] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9363.02
+[2026-06-16 14:11:15] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.40, #queue-req: 0
+[2026-06-16 14:11:15] INFO:     127.0.0.1:48192 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:16] Failed to save tensor bd15d6c60ca1e17b946bd2b4bdbfa93b76ddf4299d88c70b28fca274563efba6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:16] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:16] Failed to save tensor 1775a8abcafe213f38308d03449b88c9c57d3c8174c3ae1b25395ecb61a4b7f5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:16] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:16] Failed to save tensor 742734298524e1870c16d8785cb15b60fb2603b166622b2dc1bbbe2d26224aba_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:16] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:16] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.85
+[2026-06-16 14:11:16] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9178.28
+[2026-06-16 14:11:16] Failed to save tensor f0e392bec13b23e61f041783643d206e74950116eb01f36e8929bf0afcea7116_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:16] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:16] Failed to save tensor 921afadff6e763c3444358317ffcc5acab65790ee96576b3b621c2ea4b038b14_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:16] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:17] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9429.47
+[2026-06-16 14:11:17] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9371.82
+[2026-06-16 14:11:17] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.40, #queue-req: 0
+[2026-06-16 14:11:17] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 89.85, #queue-req: 0
+[2026-06-16 14:11:17] INFO:     127.0.0.1:48206 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:18] Failed to save tensor a6c0f2e65ed154db4d0c72877de51b4f9da1e89c25a459500868559f6a59f68d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:18] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:18] Failed to save tensor 9fac91f52a8606e72e0c352d7535c9c38b8ff2692a9569add749c813f1357f7d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:18] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:18] Failed to save tensor 6f99dbe97920286e37280bc362206dc371569172ab77f39a676a209940dee0ee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:18] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:19] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.72
+[2026-06-16 14:11:19] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9191.92
+[2026-06-16 14:11:19] Failed to save tensor a2fcc975dcdd43f5ee8d77ec697468201d579ba000b8d6bc39cc273435020c21_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:19] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:19] Failed to save tensor 327067ff4206a1c8df9dd00948176f86407c87c804c24e202d3f176b3ffa5bef_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:19] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:19] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9446.35
+[2026-06-16 14:11:19] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9359.45
+[2026-06-16 14:11:19] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.40, #queue-req: 0
+[2026-06-16 14:11:20] INFO:     127.0.0.1:48220 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:21] Failed to save tensor ab475a5915f5c60eed83164cda3d41784214cff2d2932bc8a0055f2635b0c966_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:21] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:21] Failed to save tensor 33a73b7a48a06442ef046a104a8ce499b1eb80c0d68d4e2c7513777757855373_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:21] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:21] Failed to save tensor 80641ad776f0f3ed97679036c46ecaa6be368db56ea2d4e094a66bbfcce0e261_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:21] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:21] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1075.02
+[2026-06-16 14:11:21] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9144.60
+[2026-06-16 14:11:21] Failed to save tensor 93bdf0843e404d92622926f6eae43fad6f32ab8f72d2a75ffbcce64913351cf4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:21] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:21] Failed to save tensor 7556f4aac3e236e93371c581b736e611ebf8f7e5c674323b3f18387f3a26bcee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:21] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:21] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9449.58
+[2026-06-16 14:11:22] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9311.05
+[2026-06-16 14:11:22] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.39, #queue-req: 0
+[2026-06-16 14:11:22] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 90.00, #queue-req: 0
+[2026-06-16 14:11:22] INFO:     127.0.0.1:33884 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:23] Failed to save tensor 2bbb028d0a33ea7a9ea896148be2e3cdaebfca2bd725afba95ba2827092fcd65_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:23] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:23] Failed to save tensor 9b9d1433b6cd410baf8a71bcf80aca66c8de70f458528e2f7ed0eb67f2512d77_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:23] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:23] Failed to save tensor fc900d92b4946db82c9dc77715896c993da10facc220a98f47d0ac8802480383_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:23] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:23] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1075.04
+[2026-06-16 14:11:24] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9144.30
+[2026-06-16 14:11:24] Failed to save tensor f8cd4379968004014b31f70b226ea189e3129c85035b81fb214fb43982914ad3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:24] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:24] Failed to save tensor b81da27dd8da82b9591862e9cfd2b2b75f8107503604910ed6e70e9202ebd317_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:24] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:24] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9427.47
+[2026-06-16 14:11:24] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9311.45
+[2026-06-16 14:11:24] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:25] INFO:     127.0.0.1:33894 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:25] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 89.87, #queue-req: 0
+[2026-06-16 14:11:26] Failed to save tensor b4c6fb974da0f15dc014413f709cb9d5f3bccdb0ac862f8c072931553b9213e2_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:26] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:26] Failed to save tensor e75dabc628bb43e6de8e92cca67ea3746c83dcae8ddfd7f83fee7ef07258a4dd_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:26] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:26] Failed to save tensor 206672b289866416964eb2a7fb39a805db5bf8fc238eca8381f4cbe911b276a1_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:26] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:26] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.29
+[2026-06-16 14:11:26] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9099.90
+[2026-06-16 14:11:26] Failed to save tensor f3bd4ef525c396ffe1569235bb84b183c8d75506ce0c1536caba0aec5efc682d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:26] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:26] Failed to save tensor c8806887f502bf1b6f578e8279ea2df5c6cfd44685a2b136232d5054510bd1a5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:26] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:26] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9449.80
+[2026-06-16 14:11:26] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9306.65
+[2026-06-16 14:11:27] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.37, #queue-req: 0
+[2026-06-16 14:11:27] INFO:     127.0.0.1:33910 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:28] Failed to save tensor 1e1579434237237ab823cad7b60e6fba9c64ed560cd8c041d8db7aaa942a04ee_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:28] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:28] Failed to save tensor 8c692ad302d660f6e822bfffa7880e05b43ea8ee9ea803b710dfcdf7a066c027_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:28] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:28] Failed to save tensor 59f7c874790632988c71a81f930f0f9bba065d48eda489708719e432676ec950_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:28] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:28] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.84
+[2026-06-16 14:11:29] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9118.20
+[2026-06-16 14:11:29] Failed to save tensor 472a0924a8237e4d46837a131a1a3e15182c84078556d30e3e3a038558d4da2a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:29] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:29] Failed to save tensor 816ea977d19ac9222558d40cc12aa4b7231d1955eb39cfe91e1e7b89b65a0601_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:29] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:29] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9437.94
+[2026-06-16 14:11:29] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9295.04
+[2026-06-16 14:11:29] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:30] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 89.97, #queue-req: 0
+[2026-06-16 14:11:30] INFO:     127.0.0.1:33924 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:31] Failed to save tensor 7d16dcfc01e60ad5dd3ee9d55e9ee7f72729f81f10d25f241f7e5cc3cebd0da7_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:31] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:31] Failed to save tensor 6c89917cb46c632ab866137b3973a07ac08a9ad489f83c3d8a847f618ccef5a3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:31] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:31] Failed to save tensor 017ed11143d24016d99983d501b92e9dea41259af2516f77a7ddefe99d6d074e_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:31] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:31] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1075.00
+[2026-06-16 14:11:31] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9143.46
+[2026-06-16 14:11:31] Failed to save tensor 61277f80b42ba074b41a1503ac6ef6c5ca7916d62b9e9a4def505b0b2206f597_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:31] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:31] Failed to save tensor 42b9775da3b37f6e73dd114c411dc98f31ca84b334da81c2e59f1f8e115d13d6_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:31] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:31] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9386.47
+[2026-06-16 14:11:31] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9320.72
+[2026-06-16 14:11:32] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:32] INFO:     127.0.0.1:55320 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:33] Failed to save tensor 0038ceaa53ef9a1dd07607b4469194399ec8dbb9f14d3e2ef2be5975b4a755bb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:33] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:33] Failed to save tensor a1a6db4b45443fcce0f25eb55e73f6a50362b5e6dbfc6a1c4ac1d23f08cbc903_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:33] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:33] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.26
+[2026-06-16 14:11:33] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9081.35
+[2026-06-16 14:11:33] Failed to save tensor eb059d04d56c91af1fb2ba209f251c739689fc2ad50f6bf9d6c3eabbe6ce2220_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:33] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:34] Failed to save tensor 761cec5f57825272a41bc5045edf0daa0b02e1a78f9e45ac02514284c926fe41_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:34] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:34] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9411.03
+[2026-06-16 14:11:34] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9314.36
+[2026-06-16 14:11:34] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: Tr[2026-06-16 14:11:34] INFO:     127.0.0.1:55330 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:36] Failed to save tensor c94d7526c2a7d6435718dda5f737e2eed682f2b4b6bc15cce7cb0f37ba657a26_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 4194304 written
+[2026-06-16 14:11:36] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:36] Failed to save tensor 9f3bc5623f1a6f0052020ea1a171af1f8c3b44dc87d8127d0c0981e763f21898_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:36] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:36] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.64
+[2026-06-16 14:11:36] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9113.28
+[2026-06-16 14:11:36] Failed to save tensor e5bd081e471c558dc86807343ed899c7ca73a0cb977d47e4127aca48033a47d8_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:36] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:36] Failed to save tensor 1bc6852d8d15575feea2ea40ec3c445950b12f6e0039c3252319ff0df0e05b16_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:36] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:36] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9419.43
+[2026-06-16 14:11:36] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9304.35
+[2026-06-16 14:11:37] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.37, #queue-req: 0
+[2026-06-16 14:11:37] INFO:     127.0.0.1:55334 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:37] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 89.83, #queue-req: 0
+[2026-06-16 14:11:38] Failed to save tensor ecea6ef9ee94499f4934b5ab233231a037e4abf32586f29911a64afa55aeeada_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:38] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:38] Failed to save tensor a08929e10525e3ae3d3a8f18c0dff583e07dbc76d561994f998e137b40525cca_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:38] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:38] Failed to save tensor 6d4dfa56a83effe8e785a77492b08ef4401f64d12e9d9455848990a9299387de_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:38] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:38] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.95
+[2026-06-16 14:11:38] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9095.98
+[2026-06-16 14:11:38] Failed to save tensor 1d30b7cee8a55e3ef59adc44ea476b796ae595578b0c793275ba09e2c8d3649a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:38] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:38] Failed to save tensor 27b977c30281192c1f9d2ace8fa687c3f9474c142e2d8f05c37d83bda727f2bc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:38] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:39] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9415.53
+[2026-06-16 14:11:39] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9315.73
+[2026-06-16 14:11:39] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.37, #queue-req: 0
+[2026-06-16 14:11:39] INFO:     127.0.0.1:55344 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:40] Failed to save tensor 8548beb213217c53d4807f6f4306b660a16335e476cb296b81cd129c294db1cc_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:40] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:40] Failed to save tensor d3351bf463656a11f3175d43ffc71cac77ac411455e1a1ad849c0b85bc272707_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:40] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:40] Failed to save tensor 1146d1adb6cc1c9530087d05b5955efd1f6a7e667186597938cc35b7ce63be53_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:40] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:41] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.96
+[2026-06-16 14:11:41] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9144.02
+[2026-06-16 14:11:41] Failed to save tensor 6fe400ab21ecfd9a506dd06f5a5f2bc72c877baff590723cf4500658cfc4f2bb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:41] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:41] Failed to save tensor 558c4d067ce17dd879873a28682a8573e0ea3cef1b0b7cd7698b669e39ef2a14_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:41] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:41] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9408.92
+[2026-06-16 14:11:41] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9306.76
+[2026-06-16 14:11:41] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:42] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 89.93, #queue-req: 0
+[2026-06-16 14:11:42] INFO:     127.0.0.1:53522 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:43] Failed to save tensor 050b57d005ca6123de6c23822db434ea9a0a387dc10457d5a1a4cb504860d239_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:43] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:43] Failed to save tensor 5068e8dbed19cdd653fff99eb7910772c359d6fb77ce462edc71ef049baa10f3_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:43] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:43] Failed to save tensor 8ca2139a30e26f3003834e05560081450add64881af5e543ec0b522093620171_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:43] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:43] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1075.16
+[2026-06-16 14:11:43] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9153.28
+[2026-06-16 14:11:43] Failed to save tensor ebae9764e3fe3fafe11b50b33b41119990922a083886ddbacadbe74f2353aac5_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:43] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:43] Failed to save tensor ef98b227d517978c499af05a86d60be67afc65ef1981f17ccdd1fb0ae48f194f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:43] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:43] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9386.38
+[2026-06-16 14:11:44] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9315.30
+[2026-06-16 14:11:44] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:44] INFO:     127.0.0.1:53534 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:45] Failed to save tensor 5f07cb274751d55916e7f2f70806f1f7eb1b78f2c7ad75da499c419eb856b72f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:45] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:45] Failed to save tensor f20e9dd414b447771606ca4b2f786ff56390f8f2e791395d87423237f4ef06ec_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:45] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:45] Failed to save tensor 6613ce3f7430b9e74609df10a15d48277f30507dbaf4d79eec6ef00d16a1ab4d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:45] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:45] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.80
+[2026-06-16 14:11:46] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9131.60
+[2026-06-16 14:11:46] Failed to save tensor 4accfda56d5208be5aee9fc3204f1116755f11360918baa4db48842d9f3db067_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:46] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:46] Failed to save tensor d99877046fed92a97ff0f28687d5c3c7a1772a9c598234330d293e09c620e1f9_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:46] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:46] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9415.35
+[2026-06-16 14:11:46] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9297.25
+[2026-06-16 14:11:46] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:47] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 89.97, #queue-req: 0
+[2026-06-16 14:11:47] INFO:     127.0.0.1:53538 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:48] Failed to save tensor c0f6416b390dd999664dd61d02da242bf9218ff23db7341ad63ba678fb015500_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:48] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:48] Failed to save tensor c4d7a47e01d7b854312ce8eb3dd501dd4b2ff47fd99dc2ef04ba9816ee414aa0_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:48] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:48] Failed to save tensor bdb5a12f22fd7062c5493429e24799fe71eed08c6d063f4674d0f1e693191b08_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:48] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:48] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.68
+[2026-06-16 14:11:48] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9103.49
+[2026-06-16 14:11:48] Failed to save tensor c249694d54cf094a9f76a80b329e1eab13940dae4ff2721524950b075c0e2f12_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:48] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:48] Failed to save tensor 926e064772e6760f25dd63a8b9e23c5f0d7808a5d9fdba9ed0850874236fd0aa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:48] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:48] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9423.37
+[2026-06-16 14:11:48] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9310.48
+[2026-06-16 14:11:49] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.37, #queue-req: 0
+[2026-06-16 14:11:49] INFO:     127.0.0.1:53540 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:49] Decode batch, #running-req: 1, #token: 0, token usage: 0.00, cuda graph: True, gen throughput (token/s): 90.03, #queue-req: 0
+[2026-06-16 14:11:50] Failed to save tensor 920fdb02d0c85383882c48827c1ac3a6b5dea8ce33e333ede20cacdac17761fa_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:50] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:50] Failed to save tensor 8473e81b7579b193f7d408eae7d662724f389207ced5b708fe0b1299b6ff606d_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:50] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:50] Failed to save tensor 6720fbe250e4d52a5724792c479b57b353db8ef9b3e31d7e11ede7aa890dcb87_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:50] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:50] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.77
+[2026-06-16 14:11:51] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9134.05
+[2026-06-16 14:11:51] Failed to save tensor dd9a93550889684395fa4ce9b34696ca668963c2eed434032cdb1123c0029902_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:51] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:51] Failed to save tensor 8d739e0d11f4b83189a3e01ac8794869bbb27a90e3b97c7a28faa8d807e505cb_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:51] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:51] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9409.74
+[2026-06-16 14:11:51] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9305.30
+[2026-06-16 14:11:51] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 18.37, #queue-req: 0
+[2026-06-16 14:11:52] INFO:     127.0.0.1:37134 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:53] Failed to save tensor c7dda55a11f69e8f9f20493014623d5f97c3b83cf72f4ef9931916d24ec96fb4_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:53] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:53] Failed to save tensor 7f279fbc933723f96cd27832b7c083ce524e85ab7686b0d40b91e6aa79f0380a_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:53] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:53] Failed to save tensor e3735d7cef69396eb08cdeb55b19897a359030ee66ce0e04351b8cda7ebf4e55_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:53] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:53] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 1074.93
+[2026-06-16 14:11:53] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9110.70
+[2026-06-16 14:11:53] Failed to save tensor 07150b7d623cf812b94140af4de492ee01def8c0b417209d16361f70216d5c51_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:53] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:53] Failed to save tensor cd4b0842c0d4524523610ec813e74ae2645e287b44a9312d7366f6e5bf7bcdbf_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:53] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:53] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9427.40
+[2026-06-16 14:11:53] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9303.95
+[2026-06-16 14:11:54] Decode batch, #running-req: 1, #token: 7040, token usage: 0.81, cuda graph: True, gen throughput (token/s): 18.38, #queue-req: 0
+[2026-06-16 14:11:54] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 89.85, #queue-req: 0
+[2026-06-16 14:11:54] INFO:     127.0.0.1:37138 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:55] Failed to save tensor 3d60e05a0560458b1b44c66ea0a721c6ad1fd3c6dc4dd1f6a30d47737fd0729c_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:55] Write page to storage: 1 pages failed.
+[2026-06-16 14:11:55] Failed to save tensor c6fe6a5c9a82431c2243a7d44499d0017fb941e27e19ccd020d89c57b21a8e9f_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:55] Write page to storage: 13 pages failed.
+[2026-06-16 14:11:55] Failed to save tensor 008e0ebed5c9fde80608a8108750c53774e49a6eadfaeaeafb10c14328c0a812_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:55] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:56] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.47, #running-req: 0, #queue-req: 0, #pending-token: 4960, cuda graph: False, input throughput (token/s): 910.27
+[2026-06-16 14:11:56] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.71, #running-req: 0, #queue-req: 0, #pending-token: 2912, cuda graph: False, input throughput (token/s): 9140.78
+[2026-06-16 14:11:56] Failed to save tensor 3f62b676503f9e45bd9bd56b18527731ffb5e39144cd491778a1c170b224a094_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:56] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:56] Failed to save tensor 622aba18745194207e80920e763e9610a237fe8016d2f73f72a131a034a70f43_-home-ficus-llm-models-Qwen-Qwen3-4B-Instruct-2507_0_1: 9437184 requested and 0 written
+[2026-06-16 14:11:56] Write page to storage: 32 pages failed.
+[2026-06-16 14:11:56] Prefill batch, #new-seq: 1, #new-token: 2048, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 864, cuda graph: False, input throughput (token/s): 9413.84
+[2026-06-16 14:11:56] Prefill batch, #new-seq: 1, #new-token: 896, #cached-token: 0, token usage: 0.81, #running-req: 0, #queue-req: 0, #pending-token: 0, cuda graph: False, input throughput (token/s): 9303.61
+[2026-06-16 14:11:56] Decode batch, #running-req: 1, #token: 7104, token usage: 0.82, cuda graph: True, gen throughput (token/s): 15.87, #queue-req: 0
+[2026-06-16 14:11:57] INFO:     127.0.0.1:37150 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-06-16 14:11:59] INFO:     127.0.0.1:37158 - "GET /metrics HTTP/1.1" 200 OK
+/home/ficus/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

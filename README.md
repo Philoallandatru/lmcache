@@ -11,12 +11,28 @@
 | [docs/](./docs/) — 各 phase 详细数据报告 (7 篇) |
 | [scripts/](./scripts/) — 启动 / 压测 / IO 监测 / 驱动器 |
 | [results/](./results/) — 原始测试数据 (iostat / jsonl / cache_file_list / metrics) |
-| [results/plots/](./results/plots/) — **10 张 IO profiling 可视化图** (PNG, gitignore, 本地生成) |
+| [results/plots/](./results/plots/) — **13 张 IO profiling 可视化图** (PNG, 入 git) |
 
 ## 可视化图索引
 
-> 10 张 IO profiling 图,本地生成不入 git。运行 `python scripts/plot_io_data.py` 一键生成 (`results/plots/*.png`)。
+> 13 张 IO profiling 图已入 git, GitHub 直接看。运行 `python scripts/plot_io_data.py` 一键重生成 (`results/plots/*.png`)。
 > ⚠️ 需要 `matplotlib`,先 `source ~/llm/.venv/bin/activate` (复用 vllm 时代的 venv)。
+
+| # | 文件 | 主题 | Phase |
+|---|------|------|-------|
+| 01 | [fio_bw.png](./results/plots/01_fio_bw.png) | 顺序/随机读写带宽 (4 盘) | P0 fio |
+| 02 | [fio_rand4k_iops.png](./results/plots/02_fio_rand4k_iops.png) | 4K 随机 IOPS (4 盘) | P0 fio |
+| 03 | [fio_latency_percentiles.png](./results/plots/03_fio_latency_percentiles.png) | fio 延迟 p50/p99/p99.9 (4 盘) | P0 fio |
+| 04 | [hicache_cold_warm.png](./results/plots/04_hicache_cold_warm.png) | HiCache 冷/热首 token 延迟 | P2 |
+| 05 | [phase_spread.png](./results/plots/05_phase_spread.png) | 各 phase 端到端耗时 spread (4 盘) | P2-P4 |
+| 06 | [cache_hit_vs_device.png](./results/plots/06_cache_hit_vs_device.png) | L3 命中率 vs 设备 (4 盘) | P3-P4 |
+| 07 | [iostat_timeseries.png](./results/plots/07_iostat_timeseries.png) | iostat 时间序列 (r/s w/s await) | P2 |
+| 08 | [l3_file_count.png](./results/plots/08_l3_file_count.png) | L3 落盘文件数随轮次增长 | P3 |
+| 09 | [decision_radar.png](./results/plots/09_decision_radar.png) | AI-SSD 选型雷达图 (4 维度) | P6 |
+| 10 | [multiprompt_modes.png](./results/plots/10_multiprompt_modes.png) | multiprompt write_through/write_back 对比 | P5 |
+| 11 | [io_pattern_breakdown.png](./results/plots/11_io_pattern_breakdown.png) | IO 模式分解 (顺序写 / 随机读) | P3-P4 |
+| 12 | [replay_multirun.png](./results/plots/12_replay_multirun.png) | 复现多轮稳定性 | P5 |
+| 13 | [burst_analysis.png](./results/plots/13_burst_analysis.png) | BurstGPT 突发 IO 分析 | P6 |
 
 | # | 图 | 关键故事 |
 |---|---|---|

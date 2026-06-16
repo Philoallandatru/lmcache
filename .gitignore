@@ -51,4 +51,5 @@ sglang_repo/
 logs/sglang/
 
 # IO profiling plots (regenerate via python scripts/plot_io_data.py)
-results/plots/
+# 注: 我们选择把这些图推上去 (1MB 总), 方便在 GitHub 直接看, 不需要重跑 plot 脚本
+# results/plots/

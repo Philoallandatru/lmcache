@@ -103,6 +103,31 @@ case "$MODEL_KEY" in
         SUBDIR="hicache_multiprompt_g${RUN_ID}"
         CACHE_SUBDIR="cache_multiprompt_g${RUN_ID}"
         ;;
+    qwen3_4b_multiprompt_policy)
+        # P5: 3 种 write_policy 跨 4 盘对比
+        # POLICY_ID 控制 (1=write_through / 2=write_back / 3=write_through_selective)
+        # 数据写到 hicache_multiprompt_p5_p{POLICY_ID}/
+        # env: POLICY_ID=1|2|3
+        POLICY_ID=${POLICY_ID:-1}
+        case "$POLICY_ID" in
+            1) WRITE_POLICY_VAL=write_through            ; SUFFIX=p1_wt  ;;
+            2) WRITE_POLICY_VAL=write_back               ; SUFFIX=p2_wb  ;;
+            3) WRITE_POLICY_VAL=write_through_selective  ; SUFFIX=p3_wts ;;
+            *) echo "FATAL: POLICY_ID must be 1, 2, or 3 (got: $POLICY_ID)"; exit 1 ;;
+        esac
+        export WRITE_POLICY="$WRITE_POLICY_VAL"
+        export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507
+        export TP_SIZE=1
+        export CTX_LEN=8192
+        export MEM_STATIC=0.7
+        export WATCHDOG_TIMEOUT=1800
+        export PORT=$((30020 + POLICY_ID))   # 30021..30023, 互不冲突
+        export HICACHE_RATIO=2
+        export NUM_PROMPTS=${NUM_PROMPTS:-20}
+        export REPLAY_PROMPT_ID=${REPLAY_PROMPT_ID:-0}
+        SUBDIR="hicache_multiprompt_p5_${SUFFIX}"
+        CACHE_SUBDIR="cache_multiprompt_p5_${SUFFIX}"
+        ;;
     qwen3_14b_awq)
         # Phase4 v3: mount 修正后重跑, 数据写到 hicache_14b_awq_v3
         export MODEL_PATH=/home/ficus/llm/models/Qwen/Qwen3-14B-AWQ
@@ -117,7 +142,7 @@ case "$MODEL_KEY" in
         ;;
     *)
         echo "FATAL: unknown model_key '$MODEL_KEY'"
-        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_4b_multiprompt | qwen3_4b_multiprompt_run | qwen3_14b_awq"
+        echo "  supported: qwen3_4b | qwen3_4b_multiclient | qwen3_4b_l2small | qwen3_4b_multiprompt | qwen3_4b_multiprompt_run | qwen3_4b_multiprompt_policy | qwen3_14b_awq"
         exit 1
         ;;
 esac
@@ -178,9 +203,10 @@ for entry in "${ROUNDS[@]}"; do
 
     # 复用已有 bench_one_round.sh, 但把结果写到 SUBDIR 目录
     # 通过 OUT_DIR_SUBDIR + 透传所有 model + load env vars
+    # WRITE_POLICY env var 让 caller 切换 (默认 write_through = baseline)
     OUT_DIR_SUBDIR="$SUBDIR" \
     bash scripts/hicache_bench_one_round.sh \
-        "$round_name" "$dev" "$cache_dir" "write_through"
+        "$round_name" "$dev" "$cache_dir" "${WRITE_POLICY:-write_through}"
 
     rc=$?
     if [ "$rc" != "0" ]; then
@@ -216,8 +242,9 @@ for entry in "${ROUNDS[@]}"; do
         qwen3_4b)              MIN_COLD_MS=1400 ;;
         qwen3_4b_multiclient)  MIN_COLD_MS=1600 ;;
         qwen3_4b_l2small)      MIN_COLD_MS=3000 ;;
-        qwen3_4b_multiprompt)      MIN_COLD_MS=1300 ;;
-        qwen3_4b_multiprompt_run)  MIN_COLD_MS=1300 ;;
+        qwen3_4b_multiprompt)          MIN_COLD_MS=1300 ;;
+        qwen3_4b_multiprompt_run)      MIN_COLD_MS=1300 ;;
+        qwen3_4b_multiprompt_policy)   MIN_COLD_MS=1300 ;;
         qwen3_14b_awq)             MIN_COLD_MS=2500 ;;
     esac
     if [ "$cold_ms" -lt "$MIN_COLD_MS" ]; then
