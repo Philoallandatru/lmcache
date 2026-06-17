@@ -1,0 +1,35 @@
+{
+  "backend": "disabled",
+  "model": "/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",
+  "trial_id": 0,
+  "model_load_time_s": 9.664729356765747,
+  "pass1_total_time_s": 1.6152243614196777,
+  "pass2_total_time_s": 1.4337036609649658,
+  "pass1_ttfts": [
+    0.04576587677001953,
+    0.11084294319152832,
+    0.11025500297546387,
+    0.10975456237792969,
+    0.8262233734130859,
+    0.9157357215881348,
+    0.9152011871337891,
+    0.9146955013275146
+  ],
+  "pass2_ttfts": [
+    0.023823261260986328,
+    0.029146194458007812,
+    0.02869248390197754,
+    0.028278112411499023,
+    0.7280199527740479,
+    0.7394003868103027,
+    0.7389154434204102,
+    0.7384686470031738
+  ],
+  "pass1_ttft_mean_s": 0.4935592710971832,
+  "pass2_ttft_mean_s": 0.38184306025505066,
+  "pass1_prompt_tokens": 2694,
+  "pass2_prompt_tokens": 2694,
+  "gpu_mem_util": 0.7,
+  "speedup": 1.2925710127284025,
+  "interpretation": "No LMCache: Pass1 ~ Pass2 (sanity check that speedup ~1.0 means LMCache isn't accidentally active)."
+}

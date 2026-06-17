@@ -1,0 +1,35 @@
+{
+  "backend": "cpu",
+  "model": "/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",
+  "trial_id": 1,
+  "model_load_time_s": 17.777254343032837,
+  "pass1_total_time_s": 1.6532659530639648,
+  "pass2_total_time_s": 1.4562933444976807,
+  "pass1_ttfts": [
+    0.12856125831604004,
+    0.1294257640838623,
+    0.12883687019348145,
+    0.12833499908447266,
+    0.9435257911682129,
+    0.9502425193786621,
+    0.9497027397155762,
+    0.949181318283081
+  ],
+  "pass2_ttfts": [
+    0.02824687957763672,
+    0.034090518951416016,
+    0.03358650207519531,
+    0.03315448760986328,
+    0.7411129474639893,
+    0.7525928020477295,
+    0.7521133422851562,
+    0.7516541481018066
+  ],
+  "pass1_ttft_mean_s": 0.5384764075279236,
+  "pass2_ttft_mean_s": 0.3908189535140991,
+  "pass1_prompt_tokens": 2694,
+  "pass2_prompt_tokens": 2694,
+  "gpu_mem_util": 0.7,
+  "speedup": 1.3778154889524763,
+  "interpretation": "Pass2 should be faster than Pass1 if LMCache is hitting the cache."
+}

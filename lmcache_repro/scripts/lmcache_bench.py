@@ -79,7 +79,7 @@ KILLER_PROMPTS = [
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="/home/ficus/llm/models/Qwen/Qwen2.5-7B-Instruct")
+    p.add_argument("--model", default="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507")
     p.add_argument("--backend", choices=["cpu", "gpu", "disabled"], required=True,
                    help="cpu=LMCache CPU offload, gpu=LMCache GPU only, "
                         "disabled=LMCache off (baseline)")
@@ -122,15 +122,13 @@ def run_benchmark(args):
         model=args.model,
         gpu_memory_utilization=args.gpu_mem_util,
         dtype="bfloat16",
-        max_model_len=1024,
-        max_num_seqs=4,  # limit concurrent sequences to control KV cache footprint
-        enforce_eager=True,  # avoid CUDA graph capture overhead in benchmark
+        max_model_len=2048,        # restore after 7B OOM
+        max_num_seqs=4,            # limit concurrent sequences to control KV cache footprint
+        enforce_eager=True,        # avoid CUDA graph capture overhead in benchmark
+        disable_log_stats=False,   # needed so RequestOutput.metrics is populated
     )
-    if args.backend == "cpu":
-        # For 7B+ models on 16GB GPUs, offload part of model weights to CPU
-        # so the GPU has room for KV cache. 7B ~14.3GB leaves ~1.7GB for KV.
-        # cpu_offload_gb pushes some weights to host RAM, freeing GPU for KV.
-        llm_kwargs["cpu_offload_gb"] = 4  # offload 4 GB of weights
+    # NOTE: with Qwen3-4B (~8 GB bf16), cpu_offload_gb is no longer needed.
+    # If we ever swap back to a 7B model, add: llm_kwargs["cpu_offload_gb"] = 4
     if args.backend in ("cpu", "gpu"):
         ktc = KVTransferConfig(
             kv_connector="LMCacheConnectorV1",
@@ -164,10 +162,27 @@ def run_benchmark(args):
 
     # Extract per-prompt TTFT
     # vllm outputs RequestOutputs with .metrics.first_token_time
-    pass1_ttfts = [o.metrics.first_token_time - o.metrics.arrival_time
-                   for o in outputs_p1]
-    pass2_ttfts = [o.metrics.first_token_time - o.metrics.arrival_time
-                   for o in outputs_p2]
+    def safe_ttft(o):
+        m = o.metrics
+        # vllm 0.22.x: RequestStateStats has pre-computed first_token_latency
+        # (arrival_time is wall-clock, first_token_ts is monotonic, so don't subtract them)
+        if m is None:
+            return float("nan")
+        ftl = getattr(m, "first_token_latency", None)
+        if ftl is None or ftl <= 0:
+            return float("nan")
+        return float(ftl)
+
+    pass1_ttfts = [safe_ttft(o) for o in outputs_p1]
+    pass2_ttfts = [safe_ttft(o) for o in outputs_p2]
+
+    # Drop NaNs before averaging (shouldn't happen with disable_log_stats=False)
+    def nanmean(xs):
+        clean = [x for x in xs if not (isinstance(x, float) and x != x)]
+        return sum(clean) / max(len(clean), 1)
+
+    pass1_mean = nanmean(pass1_ttfts)
+    pass2_mean = nanmean(pass2_ttfts)
 
     result = {
         "backend": args.backend,
@@ -178,8 +193,8 @@ def run_benchmark(args):
         "pass2_total_time_s": t_p2,
         "pass1_ttfts": pass1_ttfts,
         "pass2_ttfts": pass2_ttfts,
-        "pass1_ttft_mean_s": sum(pass1_ttfts) / len(pass1_ttfts),
-        "pass2_ttft_mean_s": sum(pass2_ttfts) / len(pass2_ttfts),
+        "pass1_ttft_mean_s": pass1_mean,
+        "pass2_ttft_mean_s": pass2_mean,
         "pass1_prompt_tokens": sum(
             len(o.prompt_token_ids) for o in outputs_p1),
         "pass2_prompt_tokens": sum(
@@ -188,16 +203,12 @@ def run_benchmark(args):
     }
     # Only compute speedup when LMCache is enabled
     if args.backend in ("cpu", "gpu"):
-        # Pass1 = cold (no cache), Pass2 = hot (cache hit expected)
-        # speedup = pass1_mean / pass2_mean
-        result["speedup"] = (result["pass1_ttft_mean_s"] /
-                             result["pass2_ttft_mean_s"])
+        result["speedup"] = pass1_mean / pass2_mean if pass2_mean > 0 else float("nan")
         result["interpretation"] = ("Pass2 should be faster than Pass1 if LMCache is "
                                     "hitting the cache.")
     else:
         # No cache: Pass1 and Pass2 should be roughly equal (no caching benefit)
-        result["speedup"] = (result["pass1_ttft_mean_s"] /
-                             result["pass2_ttft_mean_s"])
+        result["speedup"] = pass1_mean / pass2_mean if pass2_mean > 0 else float("nan")
         result["interpretation"] = ("No LMCache: Pass1 ~ Pass2 (sanity check that "
                                     "speedup ~1.0 means LMCache isn't accidentally active).")
 
