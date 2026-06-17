@@ -5,55 +5,55 @@
 [hicache_load_test] generated 20 unique prompts+ 1 replay, each 7000 tokens
 
 [1/21] prompt_id=0 label=p0 request (clients=1)
-[p0] latency=1.403s prompt_tokens=7008 completion_tokens=64
+[p0] latency=1.402s prompt_tokens=7008 completion_tokens=64
 
 [2/21] prompt_id=1 label=p1 request (clients=1)
 [p1] latency=1.437s prompt_tokens=7008 completion_tokens=64
 
 [3/21] prompt_id=2 label=p2 request (clients=1)
-[p2] latency=1.435s prompt_tokens=7008 completion_tokens=64
+[p2] latency=1.433s prompt_tokens=7008 completion_tokens=64
 
 [4/21] prompt_id=3 label=p3 request (clients=1)
-[p3] latency=1.435s prompt_tokens=7008 completion_tokens=64
+[p3] latency=1.436s prompt_tokens=7008 completion_tokens=64
 
 [5/21] prompt_id=4 label=p4 request (clients=1)
-[p4] latency=1.439s prompt_tokens=7008 completion_tokens=64
+[p4] latency=1.436s prompt_tokens=7008 completion_tokens=64
 
 [6/21] prompt_id=5 label=p5 request (clients=1)
-[p5] latency=1.435s prompt_tokens=7008 completion_tokens=64
+[p5] latency=1.436s prompt_tokens=7008 completion_tokens=64
 
 [7/21] prompt_id=6 label=p6 request (clients=1)
-[p6] latency=1.436s prompt_tokens=7008 completion_tokens=64
+[p6] latency=1.437s prompt_tokens=7008 completion_tokens=64
 
 [8/21] prompt_id=7 label=p7 request (clients=1)
-[p7] latency=1.440s prompt_tokens=7008 completion_tokens=64
+[p7] latency=1.438s prompt_tokens=7008 completion_tokens=64
 
 [9/21] prompt_id=8 label=p8 request (clients=1)
 [p8] latency=1.437s prompt_tokens=7008 completion_tokens=64
 
 [10/21] prompt_id=9 label=p9 request (clients=1)
-[p9] latency=1.438s prompt_tokens=7008 completion_tokens=64
+[p9] latency=1.439s prompt_tokens=7008 completion_tokens=64
 
 [11/21] prompt_id=10 label=p10 request (clients=1)
-[p10] latency=1.437s prompt_tokens=7008 completion_tokens=64
+[p10] latency=1.443s prompt_tokens=7008 completion_tokens=64
 
 [12/21] prompt_id=11 label=p11 request (clients=1)
 [p11] latency=1.439s prompt_tokens=7008 completion_tokens=64
 
 [13/21] prompt_id=12 label=p12 request (clients=1)
-[p12] latency=1.439s prompt_tokens=7008 completion_tokens=64
+[p12] latency=1.438s prompt_tokens=7008 completion_tokens=64
 
 [14/21] prompt_id=13 label=p13 request (clients=1)
-[p13] latency=1.438s prompt_tokens=7008 completion_tokens=64
+[p13] latency=1.439s prompt_tokens=7008 completion_tokens=64
 
 [15/21] prompt_id=14 label=p14 request (clients=1)
-[p14] latency=1.439s prompt_tokens=7008 completion_tokens=64
+[p14] latency=1.441s prompt_tokens=7008 completion_tokens=64
 
 [16/21] prompt_id=15 label=p15 request (clients=1)
-[p15] latency=1.438s prompt_tokens=7008 completion_tokens=64
+[p15] latency=1.444s prompt_tokens=7008 completion_tokens=64
 
 [17/21] prompt_id=16 label=p16 request (clients=1)
-[p16] latency=1.437s prompt_tokens=7008 completion_tokens=64
+[p16] latency=1.439s prompt_tokens=7008 completion_tokens=64
 
 [18/21] prompt_id=17 label=p17 request (clients=1)
 [p17] ERROR: Error: RemoteDisconnected: Remote end closed connection without response
@@ -69,23 +69,23 @@
 [replay_p0] ERROR: URLError: [Errno 111] Connection refused
 
 ========== Summary ==========
-  [1/21] p0: 1.403s
+  [1/21] p0: 1.402s
   [2/21] p1: 1.437s
-  [3/21] p2: 1.435s
-  [4/21] p3: 1.435s
-  [5/21] p4: 1.439s
-  [6/21] p5: 1.435s
-  [7/21] p6: 1.436s
-  [8/21] p7: 1.440s
+  [3/21] p2: 1.433s
+  [4/21] p3: 1.436s
+  [5/21] p4: 1.436s
+  [6/21] p5: 1.436s
+  [7/21] p6: 1.437s
+  [8/21] p7: 1.438s
   [9/21] p8: 1.437s
-  [10/21] p9: 1.438s
-  [11/21] p10: 1.437s
+  [10/21] p9: 1.439s
+  [11/21] p10: 1.443s
   [12/21] p11: 1.439s
-  [13/21] p12: 1.439s
-  [14/21] p13: 1.438s
-  [15/21] p14: 1.439s
-  [16/21] p15: 1.438s
-  [17/21] p16: 1.437s
+  [13/21] p12: 1.438s
+  [14/21] p13: 1.439s
+  [15/21] p14: 1.441s
+  [16/21] p15: 1.444s
+  [17/21] p16: 1.439s
 
 --- Multi-prompt analysis ---
 Traceback (most recent call last):
