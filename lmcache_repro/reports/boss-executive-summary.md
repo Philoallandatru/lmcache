@@ -187,3 +187,35 @@ SGLang 0.5.13 的 L2 (host DRAM KV cache) 容量 = (1 + hicache_ratio) × device
 | 🟡 中 | LMCache NVMe disk backend 测试 | 当前只测了 CPU offload |
 | 🟡 中 | ext4/ntfs-3g 文件系统驱动对比 | 确认文件系统开销占比 |
 | 🟢 低 | 等 RTX 5090 (24GB) 或 H100 做 32K 测试 | 当前硬件受限 |
+
+---
+
+## 附录:术语解释
+
+| 术语 | 中文 | 说明 |
+|---|---|---|
+| **KV Cache** | 键值缓存 | LLM 推理时存储中间注意力数据的缓存。类比:一次对话看到第 10 行时,前 9 行的"阅读笔记"需要存下来。序列越长,缓存越大。 |
+| **KV Cache Offloading** | KV 缓存卸载 | 把 KV Cache 从昂贵的 GPU 显存(VRAM)搬到便宜的 CPU 内存或 NVMe SSD 上,释放 GPU 空间给推理计算。 |
+| **Prefill** | 预填充 | LLM 收到一段输入时,先"读懂"整段输入并生成 KV Cache 的过程。计算密集型(类似批改一整篇文章)。 |
+| **Decode** | 解码 | LLM 逐词生成输出的过程。存储密集型(每次都从 KV Cache 读之前的内容)。 |
+| **TTFT** | 首 Token 延迟 | 从用户发出请求到模型输出第一个词的时间。用户体验最敏感的指标,类比"网页首屏加载时间"。 |
+| **Speedup** | 加速比 | 冷启动耗时 / 热启动耗时。2.0× 表示热启动比冷启动快一倍。 |
+| **Throughput** | 吞吐量 | 每秒处理的 token 数量。单位 tok/s。类似"每分钟处理多少字"。 |
+| **LMCache** | — | 一种 KV Cache 卸载方案,把 KV 数据存到 CPU 内存或 SSD。缓存命中时加速推理。 |
+| **SGLang HiCache** | — | 另一种 KV Cache 卸载方案,支持 GPU→CPU→NVMe 三级缓存。 |
+| **Prefix Caching** | 前缀缓存 | vLLM 内建功能。如果多个请求有相同前缀(如同样的系统指令),只计算一次 KV,后续直接复用。本质上是一种"免计算"优化。 |
+| **L2 / L3** | 二级/三级缓存 | SGLang HiCache 中的分层:L2=CPU 内存(快但容量有限),L3=NVMe SSD(慢但容量巨大)。 |
+| **write_through** | 同步写入 | 数据同时写到 CPU 内存和 SSD,确保 SSD 有完整副本(数据安全,但增加延迟)。 |
+| **write_back** | 异步写入 | 数据先写到 CPU 内存,后台慢慢写到 SSD(性能好,但 SSD 数据可能不完整)。 |
+| **OOM** | 显存溢出 | 模型+缓存超过 GPU 可用显存,推理直接崩溃。 |
+| **page cache** | 操作系统页缓存 | Linux 内核自动缓存最近读过的文件。好消息:加速读盘;坏消息:测不出真实盘速。 |
+| **fio direct=1** | 裸盘测试 | 绕过操作系统缓存,直接测 NVMe SSD 的物理读写速度——获取"盘到底能跑多快"的基线。 |
+| **iostat** | I/O 监控工具 | Linux 系统级磁盘 I/O 监控,显示每秒读写量、延迟等。 |
+| **bimodal / 双峰分布** | — | 同一个操作有时快有时慢,呈现两种截然不同的速度。Seagate 的 replay 2.4s/3.5s 各 50% 概率就是双峰。 |
+| **CV (Coefficient of Variation)** | 变异系数 | 标准差/均值×100%,衡量数据的稳定性。CV > 10% 表示不稳定(如同一个测试多次结果差异大)。 |
+| **chunk store** | 分块存储 | LMCache 把 KV 数据切成 256 token 的小块分别存储,每个块 ~2.5ms。 |
+| **NVMe (Non-Volatile Memory Express)** | 非易失性内存标准 | 高速 SSD 的接口协议。本报告中的 4 块盘都是 PCIe 3.0/4.0 NVMe。 |
+| **PCIe Gen4** | 第四代 PCI Express | SSD 与 CPU 之间的数据传输通道。Gen4(16 GT/s)比 Gen3(8 GT/s)带宽翻倍。 |
+| **NTFS vs ext4** | 文件系统 | NTFS(Windows 原生,本测试通过 ntfs-3g 在 Linux 挂载) vs ext4(Linux 原生)。NTFS 在 Linux 上有额外驱动开销。 |
+| **TP (Tensor Parallelism)** | 张量并行 | 把模型拆分到多张 GPU 上运行。TP=2 表示 2 张 GPU 各负责一半计算。 |
+| **AWQ / 4-bit** | 模型量化 | 把模型权重从 16bit 精度压缩到 4bit,模型体积减小 ~4 倍,推理速度更快,但精度略微损失。 |

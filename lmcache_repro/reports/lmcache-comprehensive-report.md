@@ -435,3 +435,27 @@ LMCache GPU:  3 trials
 - 当前磁盘上的 `validation_results.md` 与用户提供的原始摘录不一致：磁盘文件第 7 节实际写的是 vLLM baseline `13,730 tok/s`，高于 LMCache `9,4xx tok/s`，因此需要先确认使用哪个报告版本作为权威对照。
 - 本次尚未覆盖原始报告最核心的 storage simulator、多层 tier allocation、server-mode 50 并发和 I/O percentile profiling；这些是后续复现与归因的主要缺口。
 
+---
+
+## 附录：术语解释
+
+| 术语 | 中文 | 说明 |
+|---|---|---|
+| **KV Cache** | 键值缓存 | LLM 推理时存储中间注意力数据的缓存。序列越长，缓存越大。 |
+| **TTFT** | 首 Token 延迟 | 从用户发出请求到模型输出第一个词的时间。用户体验最敏感的指标。 |
+| **Throughput** | 吞吐量 | 每秒处理的 token 数量（tok/s）。 |
+| **Speedup** | 加速比 | 冷启动耗时 / 热启动耗时。2.0× 表示热启动比冷启动快一倍。 |
+| **Prefix Caching** | 前缀缓存 | vLLM 内建功能。相同前缀只计算一次 KV，后续直接复用。 |
+| **LMCache** | — | KV Cache 卸载方案，把 KV 数据存到 CPU 内存或 SSD。 |
+| **SGLang HiCache** | — | 另一 KV Cache 卸载方案，GPU→CPU→NVMe 三级缓存。 |
+| **enable_prefix_caching** | 前缀缓存开关 | vLLM 0.22.1 默认开启，vLLM 0.13 默认关闭。这个差异是"报告 vs 我们结论相反"的根本原因。 |
+| **Offline batch** | 离线批量推理 | 一次性把 500 个请求全扔给模型，批量处理。不是逐个响应的服务器模式。 |
+| **Server-mode** | 服务器模式 | 启动 HTTP 服务器，客户端逐个发请求，模拟真实用户并发。原始报告用 50 并发用户。 |
+| **OOM** | 显存溢出 | 模型+缓存超过 GPU 可用显存，推理崩溃。 |
+| **page cache** | 操作系统页缓存 | Linux 自动缓存最近读过的文件，加速重复读但掩盖真实盘速。 |
+| **chunk store** | 分块存储 | LMCache 把 KV 切成 256 token 小块分别存储，每块 ~2.5ms。 |
+| **CV** | 变异系数 | 标准差/均值×100%，衡量数据稳定性。CV > 10% 表明不稳定。 |
+| **bimodal / 双峰** | — | 同一操作有时快有时慢，呈现两种截然不同的速度。 |
+| **KV transfer config** | KV 传输配置 | vLLM 中启用 LMCache 的配置对象：`KVTransferConfig(kv_connector="LMCacheConnectorV1")`。 |
+| **storage simulator** | 存储模拟器 | `kv-cache.py` 是一个纯存储 I/O 模拟工具，不跑真正的 LLM 推理，只测存储层的读写延迟和吞吐。 |
+
