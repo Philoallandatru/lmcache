@@ -1,0 +1,21 @@
+{
+  "trial": 1,
+  "name": "LMCache CPU",
+  "model_load_time_s": 23.0,
+  "elapsed_s": 109.62,
+  "total_tokens": 117852,
+  "prompt_tokens": 54505,
+  "output_tokens": 63347,
+  "throughput_tok_per_s": 1075.0,
+  "output_throughput_tok_per_s": 577.9,
+  "avg_ttft_ms": 0,
+  "requests_completed": 500,
+  "config": {
+    "model": "/home/ficus/llm/models/Qwen/Qwen2___5-14B-Instruct-AWQ",
+    "use_lmcache": true,
+    "gpu_memory_utilization": 0.75,
+    "max_tokens": 128,
+    "temperature": 0.7,
+    "num_prompts": 500
+  }
+}
