@@ -79,13 +79,13 @@ KILLER_PROMPTS = [
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--model", default="/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507")
+    p.add_argument("--model", default="/home/ficus/llm/models/Qwen/Qwen2___5-14B-Instruct-AWQ")
     p.add_argument("--backend", choices=["cpu", "gpu", "disabled"], required=True,
                    help="cpu=LMCache CPU offload, gpu=LMCache GPU only, "
                         "disabled=LMCache off (baseline)")
     p.add_argument("--max-tokens", type=int, default=64)
     p.add_argument("--temperature", type=float, default=0.0)
-    p.add_argument("--gpu-mem-util", type=float, default=0.7)
+    p.add_argument("--gpu-mem-util", type=float, default=0.75)
     p.add_argument("--num-trials", type=int, default=3,
                    help="Number of trials per backend (report recommends >=3)")
     p.add_argument("--output", required=True, help="Output JSON path")

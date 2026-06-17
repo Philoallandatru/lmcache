@@ -13,7 +13,7 @@ ROOT="$(pwd)"
 mkdir -p results logs
 
 NUM_TRIALS=${1:-3}
-MODEL_PATH=${MODEL_PATH:-/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507}
+MODEL_PATH=${MODEL_PATH:-/home/ficus/llm/models/Qwen/Qwen2___5-14B-Instruct-AWQ}
 
 # Use a SHORT tmp dir for LMCache local_cpu offload (ZMQ IPC path is
 # limited to ~107 chars on Linux). /tmp paths are <80 chars.
