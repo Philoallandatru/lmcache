@@ -1,0 +1,7 @@
+# LMCache CPU backend config (matches report A.3)
+# Replicates validation_results.md Appendix A.3 settings
+chunk_size: 256
+local_cpu: True
+max_local_cpu_size: 32
+save_decode_cache: True
+enable_blending: False

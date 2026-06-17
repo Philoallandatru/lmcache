@@ -1,0 +1,7 @@
+# LMCache GPU backend config (matches report A.2)
+# Replicates validation_results.md Appendix A.2 settings
+chunk_size: 256
+local_cpu: False
+max_local_cpu_size: 0
+save_decode_cache: False
+enable_blending: False
