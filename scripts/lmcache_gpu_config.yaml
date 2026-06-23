@@ -1,0 +1,3 @@
+# LMCache: GPU-only KV cache storage
+chunk_size: 256
+local_cpu: false

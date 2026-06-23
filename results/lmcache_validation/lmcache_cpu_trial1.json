@@ -1,0 +1,20 @@
+{
+  "trial": 1,
+  "name": "LMCache CPU",
+  "elapsed_s": 18.44,
+  "total_tokens": 117997,
+  "prompt_tokens": 54505,
+  "output_tokens": 63492,
+  "throughput_tok_per_s": 6400.2,
+  "output_throughput_tok_per_s": 3443.8,
+  "requests_completed": 500,
+  "config": {
+    "model": "/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",
+    "use_lmcache": true,
+    "lmcache_config": "/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_cpu_config.yaml",
+    "gpu_memory_utilization": 0.7,
+    "max_tokens": 128,
+    "temperature": 0.7,
+    "num_prompts": 500
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "LMCache CPU",
+  "trials": [
+    {
+      "trial": 1,
+      "name": "LMCache CPU",
+      "elapsed_s": 18.44,
+      "total_tokens": 117997,
+      "prompt_tokens": 54505,
+      "output_tokens": 63492,
+      "throughput_tok_per_s": 6400.2,
+      "output_throughput_tok_per_s": 3443.8,
+      "requests_completed": 500,
+      "config": {
+        "model": "/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",
+        "use_lmcache": true,
+        "lmcache_config": "/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_cpu_config.yaml",
+        "gpu_memory_utilization": 0.7,
+        "max_tokens": 128,
+        "temperature": 0.7,
+        "num_prompts": 500
+      }
+    },
+    {
+      "trial": 2,
+      "name": "LMCache CPU",
+      "elapsed_s": 18.56,
+      "total_tokens": 118129,
+      "prompt_tokens": 54505,
+      "output_tokens": 63624,
+      "throughput_tok_per_s": 6363.9,
+      "output_throughput_tok_per_s": 3427.6,
+      "requests_completed": 500,
+      "config": {
+        "model": "/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",
+        "use_lmcache": true,
+        "lmcache_config": "/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_cpu_config.yaml",
+        "gpu_memory_utilization": 0.7,
+        "max_tokens": 128,
+        "temperature": 0.7,
+        "num_prompts": 500
+      }
+    },
+    {
+      "trial": 3,
+      "name": "LMCache CPU",
+      "elapsed_s": 18.51,
+      "total_tokens": 117932,
+      "prompt_tokens": 54505,
+      "output_tokens": 63427,
+      "throughput_tok_per_s": 6372.7,
+      "output_throughput_tok_per_s": 3427.4,
+      "requests_completed": 500,
+      "config": {
+        "model": "/home/ficus/llm/models/Qwen/Qwen3-4B-Instruct-2507",
+        "use_lmcache": true,
+        "lmcache_config": "/home/ficus/llm/infer/ai_ssd_prestudy/scripts/lmcache_cpu_config.yaml",
+        "gpu_memory_utilization": 0.7,
+        "max_tokens": 128,
+        "temperature": 0.7,
+        "num_prompts": 500
+      }
+    }
+  ],
+  "average": {
+    "elapsed_s": 18.5,
+    "total_tokens": 118019.0,
+    "output_tokens": 63514.0,
+    "throughput_tok_per_s": 6378.9,
+    "output_throughput_tok_per_s": 3432.9
+  }
+}
