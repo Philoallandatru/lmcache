@@ -1,0 +1,85 @@
+{
+  "date": "2026-06-23",
+  "model": "Qwen3-30B-A3B",
+  "quant": "Q4_K_M GGUF (17.3 GB)",
+  "gpu": "RTX 5080 16GB + RTX 5060 Ti 16GB",
+  "engine_ftllm": "ftllm 0.1.7.0",
+  "engine_llamacpp": "llama.cpp (built from source, CUDA 13.3)",
+  "tests": [
+    {
+      "mode": "纯GPU (双卡TP)",
+      "engine": "llama.cpp",
+      "gpu_config": "RTX 5080 + 5060 Ti, tensor-split 0.5:0.5, -ngl all",
+      "status": "OK",
+      "avg_tps": 183.84,
+      "stdev_tps": 4.84,
+      "min_tps": 170.1,
+      "max_tps": 185.86,
+      "avg_latency_s": 1.39,
+      "gpu0_mem_mb": 9703,
+      "gpu1_mem_mb": 9095
+    },
+    {
+      "mode": "CPU RAM offload",
+      "engine": "ftllm",
+      "gpu_config": "GPU (non-MoE layers) + CPU RAM (MoE experts via --moe_device numa)",
+      "status": "OK",
+      "avg_tps": 33.4,
+      "avg_latency_s": 2.39,
+      "ssd_read_mbs": 0
+    },
+    {
+      "mode": "SSD offload",
+      "disk": "BIWIN X570 (ext4)",
+      "gguf_location": "system disk",
+      "engine": "ftllm",
+      "status": "OK",
+      "avg_tps": 7.9,
+      "avg_latency_s": 10.4,
+      "ssd_read_mbs": 30
+    },
+    {
+      "mode": "SSD offload",
+      "disk": "ZHITAI Ti600 (NTFS)",
+      "gguf_location": "/mnt/ai_ssd2",
+      "engine": "ftllm",
+      "status": "OK",
+      "avg_tps": 7.8,
+      "avg_latency_s": 13.0,
+      "ssd_read_mbs": 25
+    },
+    {
+      "mode": "SSD offload",
+      "disk": "WDC (NTFS)",
+      "gguf_location": "/mnt/ai_ssd0",
+      "engine": "ftllm",
+      "status": "OK",
+      "avg_tps": 6.9,
+      "avg_latency_s": 14.3,
+      "ssd_read_mbs": 20
+    },
+    {
+      "mode": "SSD offload",
+      "disk": "Seagate (NTFS)",
+      "gguf_location": "/mnt/ai_ssd1",
+      "engine": "ftllm",
+      "status": "OK",
+      "avg_tps": 6.5,
+      "avg_latency_s": 15.8,
+      "ssd_read_mbs": 15
+    }
+  ],
+  "speedup_matrix": {
+    "pure_gpu_vs_numa": "183.84 / 33.4 = 5.5x",
+    "pure_gpu_vs_best_ssd": "183.84 / 7.9 = 23.3x",
+    "pure_gpu_vs_worst_ssd": "183.84 / 6.5 = 28.3x",
+    "numa_vs_best_ssd": "33.4 / 7.9 = 4.2x",
+    "numa_vs_worst_ssd": "33.4 / 6.5 = 5.1x"
+  },
+  "key_findings": [
+    "纯GPU双卡(TP)推理达到 ~184 tps,比CPU RAM offload快5.5倍,比SSD offload快23-28倍",
+    "ftllm不支持GGUF格式的多卡纯GPU推理(Qwen3 MoE需要merged qkv weight)",
+    "llama.cpp原生支持GGUF + 多GPU tensor parallelism,且性能优异",
+    "双卡32GB足够装下17.3GB Q4_K_M模型,每卡约9-10GB"
+  ]
+}

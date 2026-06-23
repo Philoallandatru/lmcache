@@ -1,0 +1,64 @@
+{"disk_run": {
+  "model": "Qwen3-30B-A3B-Q4_K_M.gguf",
+  "model_size_gb": 17.3,
+  "moe_device": "disk",
+  "chunked_prefill_size": 128,
+  "gpu_mem_ratio": 0.04,
+  "kv_cache_dtype": "fp8",
+  "ports": 9821,
+  "test_prompts": 10,
+  "max_tokens": 80,
+  "temperature": 0.0,
+  "results": {
+    "req1": {"latency_s": 9.84, "tps": 8.13},
+    "req2": {"latency_s": 8.01, "tps": 9.99},
+    "req3": {"latency_s": 10.85, "tps": 7.37},
+    "req4": {"latency_s": 10.74, "tps": 7.45},
+    "req5": {"latency_s": 11.34, "tps": 7.05},
+    "req6": {"latency_s": 8.52, "tps": 9.39},
+    "req7": {"latency_s": 14.08, "tps": 5.68},
+    "req8": {"latency_s": 9.19, "tps": 8.71},
+    "req9": {"latency_s": 11.29, "tps": 7.09},
+    "req10": {"latency_s": 9.86, "tps": 8.11}
+  },
+  "avg_tps": 7.90,
+  "avg_latency_s": 10.37,
+  "ssd_read_evidence": {
+    "nvme0n1_rMB_s_peak": 4.10,
+    "nvme2n1_rMB_s_peak": 29.56,
+    "nvme2n1_GB_to_ssd": "MoE experts on SSD, ~30MB/s sustained"
+  }
+}, "numa_run": {
+  "model": "Qwen3-30B-A3B-Q4_K_M.gguf",
+  "model_size_gb": 17.3,
+  "moe_device": "numa",
+  "chunked_prefill_size": 128,
+  "gpu_mem_ratio": 0.04,
+  "kv_cache_dtype": "fp8",
+  "test_prompts": 10,
+  "max_tokens": 80,
+  "temperature": 0.0,
+  "results": {
+    "req1": {"latency_s": 2.53, "tps": 31.6},
+    "req2": {"latency_s": 2.47, "tps": 32.4},
+    "req3": {"latency_s": 2.48, "tps": 32.3},
+    "req4": {"latency_s": 2.47, "tps": 32.4},
+    "req5": {"latency_s": 2.47, "tps": 32.3},
+    "req6": {"latency_s": 2.47, "tps": 32.4},
+    "req7": {"latency_s": 2.48, "tps": 32.3},
+    "req8": {"latency_s": 2.47, "tps": 32.4},
+    "req9": {"latency_s": 2.47, "tps": 32.3},
+    "req10": {"latency_s": 2.48, "tps": 32.3}
+  },
+  "avg_tps": 32.3,
+  "avg_latency_s": 2.48,
+  "ssd_read_evidence": {
+    "all_nvmes_rMB_s": 0.00,
+    "numa_status": "MoE experts all in CPU RAM, 0 SSD IO"
+  }
+}, "comparison": {
+  "speedup_numa_vs_disk": 4.09,
+  "disk_avg_tps": 7.90,
+  "numa_avg_tps": 32.3,
+  "conclusion": "MoE on consumer NVMe SSD is 4x slower than CPU RAM. SSD is the bottleneck."
+}}
