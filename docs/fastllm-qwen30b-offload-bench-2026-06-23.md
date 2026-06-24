@@ -267,3 +267,17 @@ flowchart LR
 | 原始报告 | `~/llm/fast/REPORT.md`、`~/llm/fast/IO_ANALYSIS_REPORT.md` |
 
 本仓内副本将随本报告 commit 一并落库至 `results/fastllm-2026-06-23/` 子目录(见 commit 信息)。
+
+---
+
+## 九、后续:实验 H uprobe 实证 (2026-06-24)
+
+**本报告 (06-23) 的"假设 4K IOPS" 在 2026-06-24 通过 bpftrace biosnoop 被修正**:
+- ftllm 实际读 128KB 块,不是 4K
+- SSD 顺序读带宽利用率只有 4-21%
+- 真正的瓶颈是 `CpuMergeMOE` (CPU MoE forward) + SSD IO 同步开销
+
+详见姊妹文档:
+- `docs/fastllm-qwen30b-offload-bench-2026-06-24-v2-uprobe.md` — 实验 H 实证结论 + 25× 差距根因
+- `docs/fastllm-qwen30b-io-uprobe-validation-2026-06-24.md` — 8 实验 (A-H) 完整 IO 分析
+- `docs/fastllm-qwen30b-io-analysis-plan-2026-06-23.md` — IO 分析实验设计

@@ -1,0 +1,38 @@
+{
+  "server": "http://127.0.0.1:9833",
+  "model": "qwen30b",
+  "max_tokens": 80,
+  "repeat": 5,
+  "avg_tps": 8.14,
+  "stdev_tps": 0.6,
+  "min_tps": 7.25,
+  "max_tps": 8.9,
+  "avg_latency_s": 9.87,
+  "results": [
+    {
+      "elapsed_s": 9.497,
+      "tokens": 80,
+      "tps": 8.42
+    },
+    {
+      "elapsed_s": 8.987,
+      "tokens": 80,
+      "tps": 8.9
+    },
+    {
+      "elapsed_s": 9.873,
+      "tokens": 80,
+      "tps": 8.1
+    },
+    {
+      "elapsed_s": 11.036,
+      "tokens": 80,
+      "tps": 7.25
+    },
+    {
+      "elapsed_s": 9.979,
+      "tokens": 80,
+      "tps": 8.02
+    }
+  ]
+}

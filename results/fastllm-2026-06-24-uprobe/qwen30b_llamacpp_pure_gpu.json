@@ -1,0 +1,84 @@
+{
+  "mode": "pure-gpu-dual",
+  "engine": "llama.cpp",
+  "gpu": "RTX 5080 16GB + 5060 Ti 16GB",
+  "tensor_split": "0.5,0.5",
+  "model": "Qwen3-30B-A3B Q4_K_M GGUF",
+  "avg_tps": 183.84,
+  "stdev_tps": 4.84,
+  "min_tps": 170.1,
+  "max_tps": 185.86,
+  "avg_latency_s": 1.39,
+  "results": [
+    {
+      "elapsed_s": 1.505,
+      "tokens": 256,
+      "tps": 170.1,
+      "prompt_tokens": 17,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.384,
+      "tokens": 256,
+      "tps": 184.99,
+      "prompt_tokens": 17,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.384,
+      "tokens": 256,
+      "tps": 184.95,
+      "prompt_tokens": 16,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.386,
+      "tokens": 256,
+      "tps": 184.74,
+      "prompt_tokens": 19,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.38,
+      "tokens": 256,
+      "tps": 185.55,
+      "prompt_tokens": 17,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.379,
+      "tokens": 256,
+      "tps": 185.63,
+      "prompt_tokens": 16,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.38,
+      "tokens": 256,
+      "tps": 185.45,
+      "prompt_tokens": 19,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.38,
+      "tokens": 256,
+      "tps": 185.5,
+      "prompt_tokens": 14,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.377,
+      "tokens": 256,
+      "tps": 185.86,
+      "prompt_tokens": 16,
+      "content_preview": ""
+    },
+    {
+      "elapsed_s": 1.379,
+      "tokens": 256,
+      "tps": 185.6,
+      "prompt_tokens": 16,
+      "content_preview": ""
+    }
+  ]
+}

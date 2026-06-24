@@ -1,0 +1,92 @@
+Attached 10 probes
+
+=== FINAL EXPERIMENT H STATS ===
+
+--- Block IO size histogram (top 10) ---
+@io_size[16384]: 34
+@io_size[81920]: 45
+@io_size[114688]: 54
+@io_size[98304]: 59
+@io_size[32768]: 64
+@io_size[122880]: 104
+@io_size[65536]: 198
+@io_size[126976]: 219
+@io_size[4096]: 518
+@io_size[131072]: 1488
+
+--- Block IO latency (us) ---
+
+--- DiskMergeMOE::Run latency (us) ---
+@disk_moe_us:
+[256K, 512K)           1 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+
+--- CpuMergeMOE::Run latency (us) ---
+@cpu_moe_us:
+[16K, 32K)             1 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+
+--- NumasFusedMOE::Run latency (us) ---
+
+--- Call counts ---
+disk_moe: 2
+cpu_moe:  1
+numa_moe: 0
+block IOs: 3000
+
+
+@cpu_moe_calls: 2
+@cpu_moe_start[149401]: 17053300048427
+@cpu_moe_us:
+[16K, 32K)             1 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+@disk_moe_calls: 2
+@disk_moe_start[149401]: 17053010313967
+@disk_moe_us:
+[256K, 512K)           1 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+@io_size[118784]: 4
+@io_size[102400]: 4
+@io_size[86016]: 6
+@io_size[53248]: 6
+@io_size[69632]: 8
+@io_size[36864]: 8
+@io_size[73728]: 9
+@io_size[20480]: 9
+@io_size[106496]: 9
+@io_size[40960]: 9
+@io_size[90112]: 12
+@io_size[28672]: 13
+@io_size[94208]: 13
+@io_size[57344]: 13
+@io_size[45056]: 14
+@io_size[77824]: 17
+@io_size[110592]: 19
+@io_size[24576]: 22
+@io_size[8192]: 22
+@io_size[12288]: 28
+@io_size[49152]: 32
+@io_size[61440]: 36
+@io_size[16384]: 46
+@io_size[114688]: 90
+@io_size[98304]: 95
+@io_size[81920]: 106
+@io_size[32768]: 131
+@io_size[122880]: 191
+@io_size[65536]: 366
+@io_size[126976]: 435
+@io_size[4096]: 662
+@io_size[131072]: 2614
+@io_total: 5049
+@start[1536]: 17051714514289
+@start[18309]: 17051728157849
+@start[44207]: 17051850450087
+@start[44208]: 17051850451553
+@start[44209]: 17051850517496
+@start[44041]: 17051961580407
+@start[136827]: 17052264246521
+@start[149362]: 17052545054171
+@start[149376]: 17052559639327
+@start[149044]: 17052573819381
+@start[149364]: 17053037412701
+@start[1517]: 17053736002043
