@@ -24,15 +24,15 @@
 | 02 | [fio_rand4k_iops.png](./results/plots/02_fio_rand4k_iops.png) | 4K 随机 IOPS (4 盘) | P0 fio |
 | 03 | [fio_latency_percentiles.png](./results/plots/03_fio_latency_percentiles.png) | fio 延迟 p50/p99/p99.9 (4 盘) | P0 fio |
 | 04 | [hicache_cold_warm.png](./results/plots/04_hicache_cold_warm.png) | HiCache 冷/热首 token 延迟 | P2 |
-| 05 | [phase_spread.png](./results/plots/05_phase_spread.png) | 各 phase 端到端耗时 spread (4 盘) | P2-P4 |
-| 06 | [cache_hit_vs_device.png](./results/plots/06_cache_hit_vs_device.png) | L3 命中率 vs 设备 (4 盘) | P3-P4 |
+| 05 | [phase_spread.png](./results/plots/05_phase_spread.png) | 各 phase 端到端耗时 spread (4 盘) | P2-P8 |
+| 06 | [cache_hit_vs_device.png](./results/plots/06_cache_hit_vs_device.png) | L2 hit vs L3 reload 延迟 | P2/P7 |
 | 07 | [iostat_timeseries.png](./results/plots/07_iostat_timeseries.png) | iostat 时间序列 (r/s w/s await) | P2 |
 | 08 | [l3_file_count.png](./results/plots/08_l3_file_count.png) | L3 落盘文件数随轮次增长 | P3 |
 | 09 | [decision_radar.png](./results/plots/09_decision_radar.png) | AI-SSD 选型雷达图 (4 维度) | P6 |
-| 10 | [multiprompt_modes.png](./results/plots/10_multiprompt_modes.png) | multiprompt write_through/write_back 对比 | P5 |
-| 11 | [io_pattern_breakdown.png](./results/plots/11_io_pattern_breakdown.png) | IO 模式分解 (顺序写 / 随机读) | P3-P4 |
-| 12 | [replay_multirun.png](./results/plots/12_replay_multirun.png) | 复现多轮稳定性 | P5 |
-| 13 | [burst_analysis.png](./results/plots/13_burst_analysis.png) | BurstGPT 突发 IO 分析 | P6 |
+| 10 | [multiprompt_modes.png](./results/plots/10_multiprompt_modes.png) | multiprompt p0 / p1-p19 / replay 对比 | P7 |
+| 11 | [io_pattern_breakdown.png](./results/plots/11_io_pattern_breakdown.png) | IO 模式分解 (await / req size / util) | P7 G |
+| 12 | [replay_multirun.png](./results/plots/12_replay_multirun.png) | replay 多轮稳定性 | P7 G |
+| 13 | [burst_analysis.png](./results/plots/13_burst_analysis.png) | read burst 分析 | P7 G |
 
 | # | 图 | 关键故事 |
 |---|---|---|
@@ -51,7 +51,7 @@
 
 ## 速览 (TL;DR)
 
-**4 块候选盘在 sglang HiCache L3 read 场景下的真实排名** (Phase7 v3 复现, multiprompt 触发 L2 evict):
+**4 块候选盘在 sglang HiCache L3 read 场景下的单轮结果** (Phase7 v3, multiprompt 触发 L2 evict):
 
 | 排名 | 盘 | L2 hit (p1-p19) | L3 reload (replay_p0) | overhead |
 |---|---|---:|---:|---:|
@@ -60,13 +60,22 @@
 | 🥉 | ZHITAI Ti600 (NTFS) | 1.42s | 2.55s | 1.77× |
 | 4️⃣ | WDC WDS960G2G0C (NTFS) | 1.42s | **2.64s** | **1.84×** |
 
-> v2 (06-14) spread 2.1s (2.22×) 偏大,v3 (06-15) 验证后 spread **980ms (1.59×)**,但 ranking 不变。详见 [docs/hicache-phase7-v3-validation-2026-06-15.md](./docs/hicache-phase7-v3-validation-2026-06-15.md)。
+> v2 (06-14) spread 2.1s (2.22×) 偏大,v3 (06-15) 验证后 spread **980ms (1.59×)**。单轮只能说明 L3 reload 能暴露盘差,最终选型要看 6 run 均值。
+
+**Phase7 G 6-run 复核后的稳定性排序**:
+
+| 排名 | 盘 | replay_p0 mean | stdev | CV | 解读 |
+|---|---|---:|---:|---:|---|
+| 1 | **BIWIN X570 (ext4, system)** | **1.62s** | 0.02s | 1.3% | page cache/系统盘路径,最快但不完全公平 |
+| 2 | **ZHITAI Ti600 (NTFS)** | **2.27s** | 0.17s | 7.7% | NTFS 三盘最好 |
+| 3 | WDC WDS960G2G0C (NTFS) | 2.65s | 0.16s | 6.0% | 稳定居中 |
+| 4 | Seagate ZP1000GV30012 (NTFS) | 2.98s | 0.54s | 18.1% | bimodal 慢读,tail 风险最大 |
 
 **关键洞察**:
 - L2 host DRAM hit 时 4 盘 **完全无差异** (cold/warm spread < 10ms)
-- L2 miss → L3 读盘时 4 盘 spread **980ms (v3) / 1.59×** (BIWIN vs WDC)
-- NTFS 比 ext4 慢 1.5-1.6× (kernel 驱动开销, BIWIN 1.66s vs NTFS 2.43-2.64s)
-- WDC 仍是最慢 (1.84× overhead),大 L3 部署不推荐
+- L2 miss → L3 读盘时,单轮 v3 spread **980ms / 1.59×**,6 run mean spread **1.36s / 1.84×**
+- HiCache replay 是约 60-125KB 小块读,盘没有长期打满;差异主要看 `r_await` 和 tail
+- NTFS 三盘中 ZHITAI 均值最好,WDC 稳定居中,Seagate tail 风险最大
 
 ## 重现
 
@@ -153,10 +162,11 @@ MODEL_KEY=qwen3_14b_awq bash scripts/hicache_drive_4_rounds_model.sh
 | [docs/hicache-14b-baseline-2026-06-12.md](./docs/hicache-14b-baseline-2026-06-12.md) | Phase 4 14B-AWQ TP=2 4 盘 baseline ✅ v3 验证 |
 | [docs/hicache-multiclient-dropcaches-2026-06-12.md](./docs/hicache-multiclient-dropcaches-2026-06-12.md) | Phase 5 4 client + drop_caches 每 round ✅ v3 验证 |
 | [docs/l3-fio-bench-2026-06-13.md](./docs/l3-fio-bench-2026-06-13.md) | Phase 6 fio 4 盘 L3 file read 硬件极限 |
-| [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) | **Phase 7 multiprompt + replay ✅ 真 4 盘基线 (选型依据, v2 数据)** |
+| [docs/hicache-multiprompt-l2fill-2026-06-14.md](./docs/hicache-multiprompt-l2fill-2026-06-14.md) | **Phase 7 multiprompt + replay ✅ 真 4 盘基线 (v2 原始数据)** |
 | [docs/hicache-v3-mount-fixed-2026-06-15.md](./docs/hicache-v3-mount-fixed-2026-06-15.md) | **Phase 2/4/5 v3 mount-fixed 重跑 ✅ 验证 spread 跟 v2 一致** |
 | [docs/hicache-v3-policy-2026-06-15.md](./docs/hicache-v3-policy-2026-06-15.md) | **Phase 3 v3 write_through vs write_back 重跑 ✅ 验证 write_back -37ms** |
-| [docs/hicache-phase7-v3-validation-2026-06-15.md](./docs/hicache-phase7-v3-validation-2026-06-15.md) | **Phase 7 v3 复现 ✅ ranking 不变, spread 980ms (v2 2098ms 偏大)** |
+| [docs/hicache-phase7-v3-validation-2026-06-15.md](./docs/hicache-phase7-v3-validation-2026-06-15.md) | **Phase 7 v3 复现 ✅ 单轮 spread 980ms (v2 2098ms 偏大)** |
+| [docs/hicache-phase7-g-multirun-validation-2026-06-15.md](./docs/hicache-phase7-g-multirun-validation-2026-06-15.md) | **Phase 7 G 多 run ✅ 6 run 统计 + IO 模式细分,选型主依据** |
 
 ## 计划文档
 

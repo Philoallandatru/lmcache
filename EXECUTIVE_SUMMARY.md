@@ -9,7 +9,7 @@
 
 ## 一句话结论
 
-> **BIWIN X570 (ext4) + Seagate ZP1000 / ZHITAI Ti600 (NTFS) 三盘混合部署** 是当前性价比最优方案。WDC WDS960G2G0C 在 L3 reload 场景稳定慢 ~15%,**生产环境不推荐**。**page cache + L2 host DRAM 是真实瓶颈,不是盘** — 加大 host RAM 收益高于换盘。
+> **BIWIN X570 (ext4 系统盘路径) + ZHITAI Ti600 (NTFS 数据盘)** 是当前低延迟组合。WDC WDS960G2G0C 稳定居中,可作容量补充；Seagate ZP1000 存在 bimodal 慢读,尾延迟敏感场景不建议单独承载热 L3。**page cache + L2 host DRAM 是真实屏蔽层** — 加大 host RAM 的收益通常高于换盘。
 
 ---
 
@@ -21,7 +21,7 @@
 - **Phase 7**: **20 个不同 prompt + replay p0** — 唯一能触发 L2 evict 暴露盘差的场景
 - **Phase G**: Phase7 重跑 6 次取平均, 量化 ranking 稳定性
 
-**关键工程坑 (提前告知)**: Phase2-5 期间 3 块 NTFS 盘未 mount,数据是 BIWIN 重复 4 次的"伪 4 盘对比"。06-15 mount 修正后 v3 重跑验证 spread 一致 (1-23ms),**确认 page cache 屏蔽能力本就如此强**。**Phase 7 + 6 才是真选型依据**。
+**关键工程坑 (提前告知)**: Phase2-5 期间 3 块 NTFS 盘未 mount,数据是 BIWIN 重复 4 次的"伪 4 盘对比"。06-15 mount 修正后 v3 重跑验证 spread 一致 (1-23ms),**确认 page cache / L2 屏蔽能力本就如此强**。**Phase 7 + G 多 run 才是真选型依据**。
 
 ---
 
@@ -31,8 +31,8 @@
 |---|---:|---:|---:|---|
 | 🥇 **BIWIN X570 (953G, ext4)** | **1.62s** ± 0.02 | 4.77 GB/s | ~$200 | ⭐⭐⭐⭐⭐ (系统盘) |
 | 🥈 **ZHITAI Ti600 (931G, NTFS)** | **2.27s** ± 0.17 | 3.62 GB/s | ~$180 | ⭐⭐⭐⭐ |
-| 🥉 **Seagate ZP1000 (931G, NTFS)** | **2.98s** ± 0.54 ⚠ | 3.03 GB/s | ~$150 | ⭐⭐⭐ |
-| 4️⃣ **WDC WDS960G2G0C (894G, NTFS)** | 2.65s ± 0.16 | 2.63 GB/s | ~$300 | ⭐⭐ |
+| 🥉 **WDC WDS960G2G0C (894G, NTFS)** | 2.65s ± 0.16 | 2.63 GB/s | ~$300 | ⭐⭐⭐ |
+| 4️⃣ **Seagate ZP1000 (931G, NTFS)** | **2.98s** ± 0.54 ⚠ | 3.03 GB/s | ~$150 | ⭐⭐ |
 
 ⚠ **Seagate 间歇性慢**: 6 run 中 3 次 3.4-3.5s (bimodal),CV 高达 18%。**生产环境需要监控或换 ZHITAI 替代**。
 
@@ -72,18 +72,18 @@
 
 | 场景 | 推荐配置 | 理由 |
 |---|---|---|
-| **生产推理 (单实例, 频繁 reload)** | 🥇 BIWIN (ext4) 做 L3 系统盘 + 2× ZHITAI 扩容 | BIWIN 1.6s 稳定, ZHITAI 2.2-2.5s 第二快且稳 |
-| **离线/低频 reload** | 🥈 ZHITAI / Seagate 单独部署 | 2.5-3.0s 可接受, Seagate 价格最低 (~$150) |
+| **生产推理 (单实例, 频繁 reload)** | 🥇 BIWIN (ext4) 做系统盘 L3 + ZHITAI 扩容 | BIWIN 1.6s 稳定, ZHITAI 2.27s 是 NTFS 三盘最好 |
+| **离线/低频 reload** | 🥈 ZHITAI / WDC 单独部署 | ZHITAI 最快,WDC 2.65s 且稳定 |
 | **预算受限,单盘** | ⚠️ WDC / ZHITAI | WDC 894G 容量 + 稳定 2.6s; ZHITAI 1TB 容量 + 更快 2.3s (推荐) |
 
-**不推荐**: 纯 WDC 部署 (4 盘中最慢 + 最贵 + 容量最小)。
+**不推荐**: 让 Seagate 单独承载 tail-sensitive 热 L3。它不是每次都慢,但 6 run 中 3 次落到 3.4-3.5s。
 
 ---
 
 ## AI SSD 产品反推 4 点
 
-1. **NTFS 内核驱动延迟是软件瓶颈** — 同样 4 块盘,硬件 1.5-1.8× spread,软件实测 1.6-2.2×,**SSD 控制器优化对 sglang 收益 < 25%**。重点优化应在 NTFS / 文件系统层。
-2. **降 page_size 比换盘收益大 10×+** — 9MB → 1MB 可让 L3 reload 效率从 1.5% 提到 ~15%(待 sglang 0.6+ 验证)。
+1. **小块读延迟是软件路径瓶颈** — HiCache replay 是约 60-125KB 读请求,不是 1MB 大顺序读。重点应看 `r_await`、tail、文件系统和 reader 并发。
+2. **降 page_size / 加 reader 并发可能比换盘收益更大** — 盘 util 未长期打满,当前瓶颈不是 SSD 峰值带宽。
 3. **L2 host DRAM 是 ROI 最高的扩容** — 16GB → 32GB 单卡 → 装 2× prompt,L3 reload 触发概率降 ~50%。
 4. **drop_caches 对 sglang 0.5.13 pin_memory 无效** — 想测真 L3 读盘必须 multiprompt 累积填满 L2(20 prompts × 7K tokens)。
 
@@ -108,7 +108,7 @@
 | 主报告 | [REPORT.md](./REPORT.md) | 22.8 KB,7 phase 完整分析 + 选型矩阵 |
 | Phase7 v3 验证 | [docs/hicache-phase7-v3-validation-2026-06-15.md](./docs/hicache-phase7-v3-validation-2026-06-15.md) | 9.4 KB,单 run ranking 复现 |
 | Phase7 G 多 run | [docs/hicache-phase7-g-multirun-validation-2026-06-15.md](./docs/hicache-phase7-g-multirun-validation-2026-06-15.md) | 8.4 KB,6 run 统计 + IO 模式细分 |
-| IO Profile Plots | [docs/io-profiling-plots-2026-06-15.md](./docs/io-profiling-plots-2026-06-15.md) | 10 张图 + 3 张新增 IO 模式图 |
+| IO Profile Plots | [docs/io-profiling-plots-2026-06-15.md](./docs/io-profiling-plots-2026-06-15.md) | 13 张图 + IO 证据链 |
 | Driver / 脚本 | `scripts/` | `hicache_drive_4_rounds_model.sh`, `plot_io_data.py`, `analyze_io_pattern.py`, `run_g_rounds.sh` |
 | 原始数据 | `results/` | 6 套 hicache_multiprompt* + multiprompt_g_summary.json (单源真相) |
 
